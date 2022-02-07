@@ -6,6 +6,7 @@ require("plugin.config.auto-save")
 --Theme
 require("theme")
 
+-- require("plugin.config.null-ls")
 --Auto completion
 require("plugin.config.lspconfig")
 require("plugin.config.lspsaga_config")
@@ -30,3 +31,7 @@ require("plugin.config.galaxy-line")
 
 --Notify
 require("plugin.config.notify")
+
+require('plugin.config.indent')
+
+require("plugin.config.sidebar") 

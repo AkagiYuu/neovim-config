@@ -5,6 +5,11 @@ source ~/AppData/Local/nvim/keymap.vim
 
 set guicursor=
 set mouse=a
+set noswapfile
+set wrap!
+
+" Opacity
+set pumblend=15
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -103,15 +108,14 @@ let g:dashboard_custom_section = {
           \ 'description': [' Bookmarks                SPC f b'],
           \ 'command': 'Telescope marks'},
     \ }
-autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2
+autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2 | setlocal nospell
 
 set spelllang=en
-set spell
+highlight SpellBad gui=NONE
 nnoremap <silent> <leader>s :set spell!<cr>
 
 " Lspsaga
 highlight LspFloatWinNormal guibg=NONE
-highlight LspSagaLightBulb guifg=LightGreen
 
 " Lsp auto complete
 " gray
@@ -131,6 +135,21 @@ highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
 highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
 highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
 
+highlight NormalFloat guibg=NONE
+
+" TODO comments
+highlight Todo gui=NONE
+
 "Keep cursor in the same position when scrolling
 set scrolloff=7
 autocmd User LightspeedLeave set scrolloff=7
+
+" Firen
+if exists('g:started_by_firenvim')
+    autocmd BufEnter * :set lines=25
+    autocmd BufEnter colab.*.txt set filetype=python
+endif
+
+" Rainbow brackets
+hi rainbowcol1 guifg=LightBlue
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'

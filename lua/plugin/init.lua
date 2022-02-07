@@ -67,6 +67,10 @@ return packer.startup(function(use)
 		end,
 	})
 
+    use({
+        'sidebar-nvim/sidebar.nvim',
+    })
+
 	--Autosave
 	use("Pocco81/AutoSave.nvim")
 
@@ -95,14 +99,14 @@ return packer.startup(function(use)
 	})
 
 	--Terminal
-	--TODO : check toggle term powershell ("akinsho/toggleterm.nvim" )
-	use({
-		"s1n7ax/nvim-terminal",
-		config = function()
-			vim.o.hidden = true
-			require("nvim-terminal").setup()
-		end,
-	})
+	use({"akinsho/toggleterm.nvim"})
+	-- use({
+	-- 	"s1n7ax/nvim-terminal",
+	-- 	config = function()
+	-- 		vim.o.hidden = true
+	-- 		require("nvim-terminal").setup()
+	-- 	end,
+	-- })
 
 	--Tab (buffer)
 	use("akinsho/bufferline.nvim")
@@ -136,8 +140,9 @@ return packer.startup(function(use)
 			})
 		end,
 		requires = "nvim-treesitter/nvim-treesitter",
-		opt = true,
 	})
+
+    use {'matze/vim-move'}
 
 	--Lsp
 
@@ -151,6 +156,7 @@ return packer.startup(function(use)
 		"hrsh7th/nvim-cmp",
 		requires = {
 			{ "hrsh7th/vim-vsnip" },
+            { "rafamadriz/friendly-snippets" },
 			{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
@@ -167,10 +173,12 @@ return packer.startup(function(use)
 			require("plugin.config.nvim-cmp")
 		end,
 	})
-
-	--Format
+	
+    --Format
 	use("sbdchd/neoformat")
 
+    --Lint
+    use {'quick-lint/quick-lint-js', rtp = 'plugin/vim/quick-lint-js.vim', tag = '1.0.0', opt = true}
 	--Action menu
 	use({ "tami5/lspsaga.nvim" })
 
@@ -192,7 +200,8 @@ return packer.startup(function(use)
 	})
 
 	--Debug
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	-- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+    use({ 'puremourning/vimspector'})
 
 	--Outline
 	use({ "simrat39/symbols-outline.nvim" })
@@ -223,14 +232,16 @@ return packer.startup(function(use)
 		config = function()
 			require("spellsitter").setup()
 		end,
+        opt = true,
 	})
+    use({
+        'p00f/nvim-ts-rainbow',
+        after = 'nvim-treesitter',
+    })
 
 	use({
 		"SmiteshP/nvim-gps",
 		requires = "nvim-treesitter/nvim-treesitter",
-		config = function()
-			require("nvim-gps").setup()
-		end,
 	})
 
 	use({
@@ -249,6 +260,12 @@ return packer.startup(function(use)
 	-- use 'tribela/vim-transparent'
 	use("rafamadriz/neon")
 	use("projekt0n/github-nvim-theme")
+    use({
+	    "catppuccin/nvim",
+	    as = "catppuccin"
+    })
+    use "rebelot/kanagawa.nvim"
+    use 'marko-cerovac/material.nvim'
 
 	--Cursor
 	use("yamatsum/nvim-cursorline")
@@ -287,6 +304,14 @@ return packer.startup(function(use)
 			require("plugin.config.whichkey")
 		end,
 	})
+
+    use "lukas-reineke/indent-blankline.nvim"
+
+    --Browser integration
+    use {
+       'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end
+    }
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

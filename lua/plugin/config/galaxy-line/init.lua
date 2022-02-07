@@ -1,4 +1,8 @@
 local gps = require('nvim-gps')
+require("nvim-gps").setup({
+    depth = 3,
+})
+
 local gl = require "galaxyline"
 local vcs = require "galaxyline.providers.vcs"
 local condition = require "galaxyline.condition"
