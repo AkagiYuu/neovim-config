@@ -3,34 +3,27 @@ lua require("init")
 " Key map
 source ~/AppData/Local/nvim/keymap.vim
 
+" UI
+set termguicolors
 set guicursor=
 set mouse=a
-set noswapfile
-set wrap!
-
 " Opacity
 set pumblend=15
 
-" TextEdit might fail if hidden is not set.
-set hidden
 
-" Some servers have issues with backup files, see #649.
+
+set wrap!
+set noswapfile
 set nobackup
-
 set nowritebackup
-
-" Give more space for displaying messages.
 set cmdheight=1
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
 set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
 " Line number
 set number
+set relativenumber
+set signcolumn=number
 
 let &shell = 'pwsh'
 let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
@@ -38,23 +31,10 @@ let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 set shellquote= shellxquote=
 
-" Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-set termguicolors
-
-set relativenumber
-
 set smarttab
 set cindent
 set tabstop=4
 set shiftwidth=4
-" always uses spaces instead of tab characters
 set expandtab
 
 " https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
@@ -63,9 +43,6 @@ set fillchars=fold:\
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
-
-" Delete all buffer except the current one.
-command! BufOnly execute "%bd|e#|bd#"
 
 " Dash board
 let g:dashboard_default_executive ='telescope'
@@ -91,7 +68,6 @@ let g:dashboard_custom_header =[
     \'    ⡇⠀⠇⠀⠀⡇⡸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠮⢧⣀⣻⢂⠀⠀⠀⠀⠀⠀⢧  ',
     \'    ⣇⠀⢠⠀⠀⢳⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡎⣆⠀⠀⠀⠀⠀⠘  ',
     \]
-highlight DashboardHeader guifg=LightBlue
 
 
 let g:dashboard_custom_section = {
@@ -114,10 +90,20 @@ set spelllang=en
 highlight SpellBad gui=NONE
 nnoremap <silent> <leader>s :set spell!<cr>
 
-" Lspsaga
-highlight LspFloatWinNormal guibg=NONE
+set scrolloff=7
+autocmd User LightspeedLeave set scrolloff=7
 
-" Lsp auto complete
+" Firen
+if exists('g:started_by_firenvim')
+    autocmd BufEnter * :set lines=25
+    autocmd BufEnter colab.*.txt set filetype=python
+endif
+
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+" Highlight
+
+" Lsp
 " gray
 highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
 " blue
@@ -135,21 +121,14 @@ highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
 highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
 highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
 
-highlight NormalFloat guibg=NONE
-
-" TODO comments
-highlight Todo gui=NONE
-
-"Keep cursor in the same position when scrolling
-set scrolloff=7
-autocmd User LightspeedLeave set scrolloff=7
-
-" Firen
-if exists('g:started_by_firenvim')
-    autocmd BufEnter * :set lines=25
-    autocmd BufEnter colab.*.txt set filetype=python
-endif
+" Lspsaga
+highlight LspFloatWinNormal guibg=NONE
 
 " Rainbow brackets
 hi rainbowcol1 guifg=LightBlue
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+highlight Todo gui=NONE
+
+highlight NormalFloat guibg=NONE
+
+highlight DashboardHeader guifg=LightBlue

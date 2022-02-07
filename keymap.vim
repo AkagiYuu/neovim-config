@@ -1,18 +1,22 @@
-xnoremap $ g_
+xnoremap $          g_
+
+" Horizontal Scroll
+nnoremap <C-Left>   20zh
+nnoremap <C-Right>  20zl
 
 " Fix search highlighting in the current buffer.
-nnoremap i :noh<cr>i
+nnoremap i          :noh<cr>i
 
 " Copy to clipboard
-vnoremap <C-c>  "+y
-nnoremap <C-c>  "+yg_
-nnoremap <C-c>  "+y
+vnoremap <C-c>      "+y
+nnoremap <C-c>      "+yg_
+nnoremap <C-c>      "+y
 
 " Naivigate between window
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-h>      <C-w>h
+nnoremap <C-j>      <C-w>j
+nnoremap <C-k>      <C-w>k
+nnoremap <C-l>      <C-w>l
 
 " Nvim tree
 nnoremap <F3>                   :NvimTreeToggle<CR>
@@ -85,8 +89,9 @@ nnoremap <A-f>                  :lua vim.lsp.buf.formatting()<CR>
 " augroup append(lnum, string)
 
 " Moving line
-let g:move_map_keys = 0
-nmap <A-Up>                     <Plug>MoveLineUp
-nmap <A-Down>                   <Plug>MoveLineDown
-vmap <A-Up>                     <Plug>MoveBlockUp
-vmap <A-Down>                   <Plug>MoveBlockDown
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv

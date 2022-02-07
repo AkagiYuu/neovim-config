@@ -69,10 +69,8 @@ return packer.startup(function(use)
 
     use({
         'sidebar-nvim/sidebar.nvim',
+        config = function () require('plugin.config.sidebar') end,
     })
-
-	--Autosave
-	use("Pocco81/AutoSave.nvim")
 
 	-- Icon
 	use("kyazdani42/nvim-web-devicons")
@@ -99,7 +97,10 @@ return packer.startup(function(use)
 	})
 
 	--Terminal
-	use({"akinsho/toggleterm.nvim"})
+	use({
+        "akinsho/toggleterm.nvim",
+        opt = true,
+    })
 	-- use({
 	-- 	"s1n7ax/nvim-terminal",
 	-- 	config = function()
@@ -142,8 +143,6 @@ return packer.startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 
-    use {'matze/vim-move'}
-
 	--Lsp
 
 	--Auto completion
@@ -183,28 +182,11 @@ return packer.startup(function(use)
 	use({ "tami5/lspsaga.nvim" })
 
 	--Diagnostic
-	use({
-		"folke/lsp-colors.nvim",
-		config = function()
-			require("lsp-colors").setup({
-				Error = "#db4b4b",
-				Warning = "#e0af68",
-				Information = "#0db9d7",
-				Hint = "#10B981",
-			})
-		end,
-	})
+	use({ "folke/lsp-colors.nvim" })
 	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
 	})
-
-	--Debug
-	-- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-    use({ 'puremourning/vimspector'})
-
-	--Outline
-	use({ "simrat39/symbols-outline.nvim" })
 
 	--Telescope
 	use({

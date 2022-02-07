@@ -1,5 +1,5 @@
 require("sidebar-nvim").setup({
-	sections = { "git", "diagnostics", "containers", "todos" },
+	sections = { "git", "diagnostics", "symbols", "containers", "todos" },
 	todos = {
 		icon = "",
 		ignored_paths = { "~" }, -- ignore certain paths, this will prevent huge folders like $HOME to hog Neovim with TODO searching

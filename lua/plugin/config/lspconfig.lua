@@ -21,7 +21,6 @@ local servers = {
 	"emmet_ls",
 	"html",
 	"jsonls",
-	"eslint",
 	"vimls",
 	"quick_lint_js",
     "dockerls",
