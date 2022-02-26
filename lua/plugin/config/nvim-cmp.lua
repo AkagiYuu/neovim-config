@@ -1,6 +1,37 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
+lspkind.init({
+    mode = 'symbol_text',
+    symbol_map = {
+        Text = '  ',
+        Method = '  ',
+        Function = '  ',
+        Constructor = '  ',
+        Field = '  ',
+        Variable = '  ',
+        Class = '  ',
+        Interface = '  ',
+        Module = '  ',
+        Property = '  ',
+        Unit = '  ',
+        Value = '  ',
+        Enum = '  ',
+        Keyword = '  ',
+        Snippet = '  ',
+        Color = '  ',
+        File = '  ',
+        Reference = '  ',
+        Folder = '  ',
+        EnumMember = '  ',
+        Constant = '  ',
+        Struct = '  ',
+        Event = '  ',
+        Operator = '  ',
+        TypeParameter = '  '
+    }
+})
+
 cmp.setup({
 	-- REQUIRED
 	snippet = {
@@ -12,8 +43,6 @@ cmp.setup({
 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
 	mapping = {
-		-- ['<c-@>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-		--[[ ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping. ]]
 		["<C-n>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
@@ -63,3 +92,4 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=] },
 	}),
 })
+

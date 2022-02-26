@@ -1,12 +1,12 @@
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
-local trouble = require("trouble.providers.telescope")
+local telescope = require("telescope")
 
-require("telescope").setup({
+telescope.setup({
 	defaults = {
-		file_sorter = require("telescope.sorters").get_fzy_sorter,
-		prompt_prefix = "   ",
+		-- file_sorter = require("telescope.sorters").get_fzy_sorter,
+		-- prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
 		file_previewer = previewers.vim_buffer_cat.new,
@@ -16,24 +16,18 @@ require("telescope").setup({
 		mappings = {
 			n = {
 				["<A-p>"] = action_layout.toggle_preview,
-				["<C-T>"] = trouble.open_with_trouble,
+				["<C-Up>"] = actions.preview_scrolling_up,
+				["<C-Down>"] = actions.preview_scrolling_down,
 			},
 			i = {
 				["<A-p>"] = action_layout.toggle_preview,
+				["<C-Up>"] = actions.preview_scrolling_up,
+				["<C-Down>"] = actions.preview_scrolling_down,
 				["<esc>"] = actions.close,
 				["<C-q>"] = actions.send_to_qflist,
-				["<C-T>"] = trouble.open_with_trouble,
 			},
-		},
-	},
-	extensions = {
-		fzy_native = {
-			overide_generic_sorter = false,
-			overide_file_sorter = true,
 		},
 	},
 })
 
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("fzy_native")
-require("telescope").load_extension("notify")
+telescope.load_extension("notify")

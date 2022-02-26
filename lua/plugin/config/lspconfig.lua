@@ -6,8 +6,6 @@ local on_attach = function(client, bufnr)
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
-
-	-- Enable completion triggered by <c-x><c-o>
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -51,25 +49,6 @@ nvim_lsp.sumneko_lua.setup({
 	},
 })
 
--- require "lspconfig".efm.setup {
---     cmd = {'efm-langserver', '-c', 'C:/Users/HUYNH MINH KHANG/AppData/Local/efm-langserver/config.yaml'},
---     init_options = {documentFormatting = true},
---     settings = {
---         rootMarkers = {".git/"},
---         languages = {
---             lua = {
---                 {formatCommand = "lua-format -i", formatStdin = true}
---             },
---             javascript = {
---                 {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
---             },
---             html = {
---                 {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
---             }
---         }
---     }
--- }
-
 
 --Diagnostic configuration
 vim.diagnostic.config({
@@ -87,34 +66,3 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
--- local library = {}
---
---
--- local function add(lib)
---   for _, p in pairs(vim.fn.expand(lib, false, true)) do
---     p = vim.loop.fs_realpath(p)
---     library[p] = true
---   end
--- end
---
--- -- add runtime
--- add("$VIMRUNTIME")
---
--- -- add your config
--- -- add("~/.config/nvim")
---
---  nvim_lsp.sumneko_lua.setup ({
---   settings = {
---     Lua = {
---       diagnostics = {
---         globals = { "vim" }
---       },
---       workspace = {
---         library = library,
---         maxPreload = 2000,
---         preloadFileSize = 50000
---       },
---     }
---   }
--- })
