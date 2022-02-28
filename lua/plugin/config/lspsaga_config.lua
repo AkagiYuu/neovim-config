@@ -1,7 +1,13 @@
 -- https://github.com/glepnir/lspsaga.nvim/issues/145
 local M = {}
-
-require("lspsaga").init_lsp_saga()
+require("lspsaga").init_lsp_saga({
+	code_action_prompt = {
+		enable = true,
+		sign = true,
+		sign_priority = 40,
+		virtual_text = false,
+	},
+})
 
 function M.check_trigger_char(line_to_cursor, trigger_character)
 	if trigger_character == nil then

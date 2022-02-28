@@ -1,7 +1,7 @@
+local telescope = require("telescope")
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
-local telescope = require("telescope")
 
 telescope.setup({
 	defaults = {
@@ -31,3 +31,5 @@ telescope.setup({
 })
 
 telescope.load_extension("notify")
+telescope.load_extension("fzf")
+telescope.load_extension("file_browser")

@@ -1,42 +1,43 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
+local luasnip = require("luasnip")
 
 lspkind.init({
-    mode = 'symbol_text',
-    symbol_map = {
-        Text = '  ',
-        Method = '  ',
-        Function = '  ',
-        Constructor = '  ',
-        Field = '  ',
-        Variable = '  ',
-        Class = '  ',
-        Interface = '  ',
-        Module = '  ',
-        Property = '  ',
-        Unit = '  ',
-        Value = '  ',
-        Enum = '  ',
-        Keyword = '  ',
-        Snippet = '  ',
-        Color = '  ',
-        File = '  ',
-        Reference = '  ',
-        Folder = '  ',
-        EnumMember = '  ',
-        Constant = '  ',
-        Struct = '  ',
-        Event = '  ',
-        Operator = '  ',
-        TypeParameter = '  '
-    }
+	mode = "symbol_text",
+	symbol_map = {
+		Text = "  ",
+		Method = "  ",
+		Function = "  ",
+		Constructor = "  ",
+		Field = "  ",
+		Variable = "  ",
+		Class = "  ",
+		Interface = "  ",
+		Module = "  ",
+		Property = "  ",
+		Unit = "  ",
+		Value = "  ",
+		Enum = "  ",
+		Keyword = "  ",
+		Snippet = "  ",
+		Color = "  ",
+		File = "  ",
+		Reference = "  ",
+		Folder = "  ",
+		EnumMember = "  ",
+		Constant = "  ",
+		Struct = "  ",
+		Event = "  ",
+		Operator = "  ",
+		TypeParameter = "  ",
+	},
 })
 
 cmp.setup({
 	-- REQUIRED
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	documentation = {
@@ -63,10 +64,25 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
+		["<C-D>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(1) then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		["<C-A>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = "vsnip" },
+		{ name = "luasnip" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -92,4 +108,3 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=] },
 	}),
 })
-

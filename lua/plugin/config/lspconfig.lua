@@ -38,17 +38,14 @@ nvim_lsp.omnisharp.setup({
 })
 
 nvim_lsp.sumneko_lua.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-		},
-	},
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = {"vim"},
+            },
+        },
+    },
 })
-
 
 --Diagnostic configuration
 vim.diagnostic.config({

@@ -10,8 +10,8 @@ null_ls.setup({
         formatting.stylua,
         formatting.ptop,
         diagnostics.codespell,
-        diagnostics.write_good,
-        codeactions.refactoring,
+        -- diagnostics.write_good,
+        -- codeactions.refactoring,
         codeactions.eslint_d,
         completion.spell
     },

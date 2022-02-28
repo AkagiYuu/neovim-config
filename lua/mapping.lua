@@ -22,8 +22,8 @@ map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
 -- Terminal
-map("n", "<C-leader>", ":ToggleTerm<CR>")
-map("i", "<C-leader>", ":ToggleTerm<CR>")
+map("n", "<C-\\>", ":ToggleTerm<CR>")
+map("i", "<C-\\>", ":ToggleTerm<CR>")
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<cr>")
@@ -59,10 +59,14 @@ map("n", "[e", ":Lspsaga diagnostic_jump_next<CR>", { silent = true })
 map("n", "]e", ":Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 
 --Snippets
-map("i", "<Tab>", "vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'", { expr = true })
-map("s", "<Tab>", "vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'", { expr = true })
-map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'", { expr = true })
-map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'", { expr = true })
+-- map("i", "<Tab>", "luasnip#jumpable(1)   ? '<cmd>lua require'luasnip'.jump(1)<Cr>'     : '<Tab>'", { expr = true })
+-- map("s", "<Tab>", "luasnip#jumpable(1)   ? '<cmd>lua require'luasnip'.jump(1)<Cr>'     : '<Tab>'", { expr = true })
+-- map("i", "<S-Tab>", "luasnip#jumpable(-1) ? '<cmd>lua require'luasnip'.jump(-1)<Cr>'     : '<S-Tab>'", { expr = true })
+-- map("s", "<S-Tab>", "luasnip#jumpable(-1) ? '<cmd>lua require'luasnip'.jump(-1)<Cr>'     : '<S-Tab>'", { expr = true })
+-- map("i", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", { silent = true })
+-- map("s", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", { silent = true })
+-- map("i", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<CR>", { silent = true })
+-- map("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>", { silent = true })
 
 --Trouble
 map("n", "<leader>xx", ":TroubleToggle<cr>")

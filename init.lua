@@ -1,100 +1,69 @@
 require("impatient")
-
-require("plugin")
+local uv = vim.loop
 
 require("theme")
+require("alpha").setup(require("alpha.themes.startify").config)
 
-require("plugin.config.notify")
-
-require("plugin.config.treesitter")
 require("plugin.config.lspconfig")
-require("plugin.config.null-ls")
 
-require("plugin.config.icon")
+require("plugin.config.galaxy-line")
 
-require('mapping')
+local main
+main = uv.new_async(vim.schedule_wrap(function()
+    require("plugin")
 
--- Options
-vim.cmd([[
-" UI
-set termguicolors
-set guicursor=
-set mouse=a
-" Opacity
-set pumblend=15
+    require("plugin.config.bufferline")
+    require("plugin.config.notify")
+    require("plugin.config.treesitter")
 
-set wrap!
-set noswapfile
-set nobackup
-set nowritebackup
-set cmdheight=1
-set updatetime=300
-set shortmess+=c
-set path+=**
-set wildmode=list:longest,full
+	require("plugin.config.nvim-cmp")
+	require("plugin.config.null-ls")
+    require("plugin.config.telescope")
+    require("plugin.config.indent")
+    require("plugin.config.lspsaga_config")
 
-" Line number
-set number
-set relativenumber
-set signcolumn=number
+	require("todo-comments").setup()
+	require('gitsigns').setup()
+    require("plugin.config.whichkey")
 
-let &shell = 'pwsh'
-let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-set shellquote= shellxquote=
+    require("mapping")
 
-set smarttab
-set cindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
+    main:close()
+end))
+main:send()
+-- local main
+-- main = uv.new_async(vim.schedule_wrap(function()
+--     require("plugin")
 
-" https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
-set foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))
-set fillchars=fold:\
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set nofoldenable
+--     require("plugin.config.bufferline")
+--     require("plugin.config.notify")
+--     require("plugin.config.treesitter")
 
-set spelllang=en
-highlight SpellBad gui=NONE
-nnoremap <silent> <leader>s :set spell!<cr>
+--     main:close()
+-- end))
+-- main:send()
 
-set scrolloff=7
-autocmd User LightspeedLeave set scrolloff=7
+-- local second
+-- second = uv.new_async(vim.schedule_wrap(function()
+--     require("plugin.config.null-ls")
+--     require("plugin.config.telescope")
+--     require("plugin.config.indent")
+--     require("plugin.config.lspsaga_config")
 
-" Firen
-" if exists('g:started_by_firenvim')
-"     autocmd BufEnter * :set lines=25
-"     autocmd BufEnter colab.*.txt set filetype=python
-" endif
+--     second:close()
+-- end))
+-- second:send()
 
+-- local last
+-- last = uv.new_async(vim.schedule_wrap(function()
 
-" Highlight
+--     require("todo-comments").setup()
+--     require("plugin.config.whichkey")
 
-" Lsp
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+--     require("mapping")
 
-" Lspsaga
-highlight LspFloatWinNormal guibg=NONE
+--     last:close()
+-- end))
+-- last:send()
 
-" Rainbow brackets
-hi rainbowcol1 guifg=LightBlue
-
-highlight Todo gui=NONE
-
-highlight NormalFloat guibg=NONE
-
-highlight DashboardHeader guifg=LightBlue
-]])
+require("option")

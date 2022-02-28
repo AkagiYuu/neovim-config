@@ -1,7 +1,7 @@
-local gps = require("nvim-gps")
-require("nvim-gps").setup({
-    depth = 3
-})
+-- local gps = require("nvim-gps")
+-- require("nvim-gps").setup({
+--     depth = 3
+-- })
 
 local gl = require("galaxyline")
 local vcs = require("galaxyline.providers.vcs")
@@ -30,11 +30,11 @@ local icons = {
         logo = "", -- f7a1
         branch = "" -- f418
     },
-    square = {
-        plus = "", -- f0fe
-        minus = "", -- f146
-        dot = "" -- f264
-    },
+    -- square = {
+    --     plus = "", -- f0fe
+    --     minus = "", -- f146
+    --     dot = "" -- f264
+    -- },
     circle = {
         plus = "", -- f055
         minus = "", -- f056
@@ -71,64 +71,36 @@ local icons = {
         left = "" -- e621
     }
 }
-local tokyonight = {
-    none = "NONE",
-    bg_highlight = "#292e42",
-    fg_gutter = "#3b4261",
-    dark3 = "#545c7e",
-    dark5 = "#737aa2",
-    comment = "#565f89",
-    blue0 = "#3d59a1",
-    blue1 = "#2ac3de",
-    blue2 = "#0db9d7",
-    blue5 = "#89ddff",
-    blue6 = "#b4f9f8",
-    blue7 = "#394b70",
-    cyan = "#7dcfff",
-    purple = "#9d7cd8",
-    teal = "#1abc9c",
-    red1 = "#db4b4b",
-    blue = "#F8F8F2",
-    red = "#db4b4b",
-    green = "#9ece6a",
-    orange = "#ff9e64",
-    yellow = "#e0af68",
-    magenta = "#bb9af7",
-    fg = "#65a380",
-    bg0 = "#1f2335",
-    bg = "#51afef"
-}
 local colors = {
-    n = {tokyonight.blue, tokyonight.bg},
-    i = {tokyonight.green, tokyonight.bg},
-    ic = {tokyonight.green, tokyonight.bg},
-    R = {tokyonight.red, tokyonight.bg},
-    v = {tokyonight.orange, tokyonight.bg},
-    V = {tokyonight.orange, tokyonight.bg},
-    c = {tokyonight.yellow, tokyonight.bg},
-    s = {tokyonight.orange, tokyonight.bg},
-    S = {tokyonight.orange, tokyonight.bg},
-    t = {tokyonight.blue7, tokyonight.bg},
-    nt = {tokyonight.blue, tokyonight.bg},
-    ["\22"] = {tokyonight.orange, tokyonight.bg},
-    ["\19"] = {tokyonight.blue, tokyonight.bg},
-    substrate = tokyonight.bg0,
-    git_icon = tokyonight.orange,
-    git_branch = tokyonight.fg,
-    diff_add = tokyonight.green,
-    diff_modified = tokyonight.orange,
-    diff_remove = tokyonight.red,
-    lsp_icon = tokyonight.magenta,
-    lsp_name = tokyonight.fg,
-    ok = tokyonight.green,
-    error = tokyonight.red,
-    warn = tokyonight.yellow,
-    info = tokyonight.blue2,
-    hint = tokyonight.teal,
-    gps = "#61afef"
+    n = {"#F8F8F2", "#51afef"},
+    i = {"#9ece6a", "#51afef"},
+    ic = {"#9ece6a", "#51afef"},
+    R = {"#db4b4b", "#51afef"},
+    v = {"#ff9e64", "#51afef"},
+    V = {"#ff9e64", "#51afef"},
+    c = {"#e0af68", "#51afef"},
+    s = {"#ff9e64", "#51afef"},
+    S = {"#ff9e64", "#51afef"},
+    t = {"#394b70", "#51afef"},
+    nt = {"#F8F8F2", "#51afef"},
+    ["\22"] = {"#ff9e64", "#51afef"},
+    ["\19"] = {"#F8F8F2", "#51afef"},
+    substrate = "#1f2335",
+    git_icon = "#ff9e64",
+    git_branch = "#65a380",
+    diff_add = "#9ece6a",
+    diff_modified = "#ff9e64",
+    diff_remove = "#db4b4b",
+    lsp_icon = "#bb9af7",
+    lsp_name = "#65a380",
+    ok = "#9ece6a",
+    error = "#db4b4b",
+    warn = "#e0af68",
+    info = "#0db9d7",
+    hint = "#1abc9c",
 }
 
-gl.short_line_list = {"packer", "Outline", "Mundo", "MundoDiff", "startify", "startuptime"}
+gl.short_line_list = {"packer", "startuptime"}
 
 local mode_map = {
     n = {"", "NORMAL"},
@@ -173,16 +145,7 @@ gls.left[1] = {
         separator_highlight = "GalaxyViModeInv"
     }
 }
---[[ gls.left[2] = {
-  FileFormat = {
-    provider = function()
-      local icon = icons[vim.bo.fileformat] or ""
-      return " " .. icon .. " "
-    end,
-    highlight = "GalaxyViModeNested",
-  },
-} ]]
-gls.left[3] = {
+gls.left[2] = {
     FileIcon = {
         provider = function()
             local extension = vim.fn.expand("%:e")
@@ -200,7 +163,7 @@ gls.left[3] = {
         condition = utils.buffer_not_empty
     }
 }
-gls.left[4] = {
+gls.left[3] = {
     FileName = {
         provider = function()
             if vim.bo.buftype == "terminal" then
@@ -238,6 +201,13 @@ gls.left[4] = {
         highlight = "GalaxyViModeNested",
         condition = utils.buffer_not_empty
     }
+}
+gls.left[4] = {
+    FileSize = {
+        provider = 'FileSize',
+        condition = condition.buffer_not_empty,
+        highlight = "GalaxyViModeNested",
+    },
 }
 gls.left[5] = {
     LeftSep = {
@@ -314,18 +284,17 @@ gls.left[10] = {
     }
 }
 
-gls.left[12] = {
-    nvimGPS = {
-        provider = function()
-            return gps.get_location()
-        end,
-        condition = function()
-            return gps.is_available()
-        end,
-        highlight = {colors.gps}
-    }
-}
-
+-- gls.left[12] = {
+--     nvimGPS = {
+--         provider = function()
+--             return gps.get_location()
+--         end,
+--         condition = function()
+--             return gps.is_available()
+--         end,
+--         highlight = {colors.gps}
+--     }
+-- }
 gls.right[3] = {
     LspIcon = {
         provider = function()
@@ -333,7 +302,9 @@ gls.right[3] = {
                 return icons.gears .. " "
             end
         end,
-        highlight = {colors.lsp_icon, colors.substrate}
+        highlight = {colors.lsp_icon, colors.substrate},
+        separator = icons.sep.right_filled,
+        separator_highlight = {colors.substrate}
     }
 }
 gls.right[4] = {
@@ -354,13 +325,6 @@ gls.right[5] = {
         highlight = {colors.error, colors.substrate}
     }
 }
-gls.right[6] = {
-    Space = {
-        provider = function()
-            return ""
-        end
-    }
-}
 gls.right[7] = {
     DiagnosticWarn = {
         provider = "DiagnosticWarn",
@@ -369,6 +333,21 @@ gls.right[7] = {
     }
 }
 gls.right[8] = {
+    DiagnosticHint = {
+        provider = 'DiagnosticHint',
+        icon = ' ',
+        highlight = {colors.hint, colors.substrate}
+    }
+}
+
+gls.right[9] = {
+    DiagnosticInfo = {
+        provider = 'DiagnosticInfo',
+        icon = ' ',
+        highlight = {colors.info, colors.substrate}
+    }
+}
+gls.right[10] = {
     RightSepNested = {
         provider = function()
             return icons.sep.right_filled
@@ -376,7 +355,7 @@ gls.right[8] = {
         highlight = "GalaxyViModeInvNested"
     }
 }
---[[ gls.right[7] = {
+gls.right[11] = {
   FileFormat = {
     provider = function()
       if not utils.buffer_not_empty() or not utils.wide_enough(80) then
@@ -387,16 +366,8 @@ gls.right[8] = {
     end,
     highlight = "GalaxyViModeNested",
   },
-} ]]
---[[ gls.right[10] = {
-  RightSep = {
-    provider = function()
-      return icons.sep.right_filled
-    end,
-    highlight = "GalaxyViModeInv",
-  },
-} ]]
-gls.right[11] = {
+}
+gls.right[12] = {
     PositionInfo = {
         provider = function()
             if not utils.buffer_not_empty() or not utils.wide_enough(70) then
@@ -408,18 +379,9 @@ gls.right[11] = {
         highlight = "GalaxyViModeNested"
     }
 }
-gls.right[12] = {
+gls.right[13] = {
     PercentInfo = {
-        provider = function()
-            if not utils.buffer_not_empty() or not utils.wide_enough(75) then
-                return ""
-            end
-
-            local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-            local lines = vim.api.nvim_buf_line_count(0)
-
-            return string.format(" %s %d%% ", icons.page, math.floor(100 * curr_line / lines))
-        end,
+        provider = 'LinePercent',
         highlight = "GalaxyViMode",
         separator = icons.sep.right,
         separator_highlight = "GalaxyViMode"
