@@ -34,8 +34,8 @@ set pumblend=15
 set wrap!
 set noswapfile
 set nobackup
+set shada = "NONE"
 set nowritebackup
-set shada="NONE"
 set cmdheight=1
 set updatetime=300
 

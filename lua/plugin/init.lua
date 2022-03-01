@@ -53,15 +53,15 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim")
 
 	-- Theme
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
 	use({
 		"rebelot/kanagawa.nvim",
 	})
-    use('Mofiqul/vscode.nvim')
-    -- use({"themercorp/themer.lua"})
+	-- use("Mofiqul/vscode.nvim")
+	-- use({"themercorp/themer.lua"})
 
 	-- Icon
 	use("kyazdani42/nvim-web-devicons")
@@ -86,10 +86,12 @@ return packer.startup(function(use)
 	-- Lsp
 	use({
 		"neovim/nvim-lspconfig",
+		module = "lspconfig",
 		requires = { "hrsh7th/cmp-nvim-lsp" },
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
+        module = "null-ls",
 	})
 
 	-- Progress
@@ -137,18 +139,18 @@ return packer.startup(function(use)
 		},
 		module = "cmp",
 	})
-	use({'github/copilot.vim', event = 'InsertCharPre'})
+	use({ "github/copilot.vim", event = "InsertCharPre" })
 
 	use({
-		"windwp/nvim-autopairs"
-		, event = "InsertCharPre",
+		"windwp/nvim-autopairs",
+		event = "InsertCharPre",
 		config = function()
 			require("plugin.config.auto-pairs")
 		end,
 	})
 	use({
 		"windwp/nvim-ts-autotag",
-        after = "nvim-treesitter"
+		after = "nvim-treesitter",
 	})
 
 	-- Action menu
@@ -210,11 +212,11 @@ return packer.startup(function(use)
 
 	--Git
 	use({
-		'lewis6991/gitsigns.nvim',
+		"lewis6991/gitsigns.nvim",
 		requires = {
-			'nvim-lua/plenary.nvim',
+			"nvim-lua/plenary.nvim",
 		},
-		module = 'gitsigns',
+		module = "gitsigns",
 	})
 
 	use({
@@ -236,7 +238,7 @@ return packer.startup(function(use)
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
-        module = "todo-comments"
+		module = "todo-comments",
 	})
 
 	-- Document generate
@@ -253,31 +255,24 @@ return packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-		otp = true,
+		module = "telescope",
+		cmd = "Telescope",
 	})
 
 	use({
 		"nvim-telescope/telescope-file-browser.nvim",
-		otp = true,
+		after = "telescope-fzf-native.nvim",
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		require = {
-			"telescope-fzf-native.nvim",
-			"telescope-file-browser.nvim"
-		},
-		after = {
-			"telescope-fzf-native.nvim",
-			"telescope-file-browser.nvim"
-		},
-		module = "telescope",
-		cmd = "Telescope",
+		after = "telescope-fzf-native.nvim",
 	})
 
 	-- Tree sitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		after = "impatient.nvim",
 	})
 
 	use({
@@ -304,15 +299,15 @@ return packer.startup(function(use)
 
 	-- Cursor
 	use({
-        "yamatsum/nvim-cursorline",
-        event = 'BufWinEnter'
-    })
+		"yamatsum/nvim-cursorline",
+		event = "BufWinEnter",
+	})
 
 	-- Scrollbar
 	use({
-        "dstein64/nvim-scrollview",
-        after = 'nvim-cursorline'
-    })
+		"dstein64/nvim-scrollview",
+		after = "nvim-cursorline",
+	})
 
 	-- Show color code
 	use({

@@ -28,6 +28,29 @@ telescope.setup({
 			},
 		},
 	},
+	pickers = {
+		commands = {
+			layout_strategies = "vertical",
+			layout_config = {
+				prompt_position = "top",
+				anchor = "N",
+				height = function(_, _, max_lines)
+					return math.min(max_lines, 20)
+				end,
+			},
+		},
+        lsp_references = {
+            theme = "cursor"
+        }
+	},
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		},
+	},
 })
 
 telescope.load_extension("notify")

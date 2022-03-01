@@ -33,6 +33,8 @@ map("n", "<leader>fb", ":Telescope buffers<cr>")
 map("n", "<leader>fh", ":Telescope help_tags<cr>")
 map("n", "<C-e>", ":Telescope file_browser<cr>")
 map("n", "<leader>fc", ":Telescope colorscheme<cr>")
+-- map("n", "<S-F12>", ":Telescope lsp_references<cr>", {silent = true})
+map("n", "<C-p>", ":Telescope commands<cr>", {silent = true})
 
 -- Buffer line
 map("n", "<C-PageDown>", ":BufferLineCycleNext<CR>", { silent = true })
@@ -47,7 +49,7 @@ map("n", "<leader>gw", ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folder
 map("n", "<F12>", ":lua vim.lsp.buf.definition()<CR>", { silent = true })
 
 --Lspsaga
-map("n", "<leader>gh", ":Lspsaga lsp_finder<CR>", { silent = true })
+map("n", "<>", ":Lspsaga lsp_finder<CR>", { silent = true })
 map("n", "<F2>", ":Lspsaga rename<cr>", { silent = true })
 map("n", "ca", ":Lspsaga code_action<cr>", { silent = true })
 map("n", "ca", ":<c-u>Lspsaga range_code_action<cr>", { silent = true })
