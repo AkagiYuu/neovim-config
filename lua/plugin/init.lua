@@ -91,7 +91,7 @@ return packer.startup(function(use)
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-        module = "null-ls",
+		module = "null-ls",
 	})
 
 	-- Progress
@@ -113,16 +113,15 @@ return packer.startup(function(use)
 		requires = {
 			{
 				"L3MON4D3/LuaSnip",
-				module = "luasnip",
 				after = "nvim-cmp",
 			},
 			{
 				"saadparwaiz1/cmp_luasnip",
-				after = "LuaSnip",
+                after = "nvim-cmp",
 			},
 			{
 				"rafamadriz/friendly-snippets",
-				after = "LuaSnip",
+                after = "nvim-cmp",
 			},
 			{
 				"hrsh7th/cmp-cmdline",

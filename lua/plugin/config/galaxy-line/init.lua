@@ -1,3 +1,4 @@
+-- https://github.com/CosmicNvim/CosmicNvim
 local galaxy = require('galaxyline')
 local gls = galaxy.section
 local diag = require('galaxyline.providers.diagnostic')
@@ -5,27 +6,159 @@ local condition = require('galaxyline.condition')
 local fileinfo = require('galaxyline.providers.fileinfo')
 local u = require("plugin.config.galaxy-line.util")
 
-local theme = require('catppuccin.core.color_palette')
-local colors = {
-    white = theme.white,
-    bg = theme.gray2,
-    bg_highlight = theme.black4,
-    normal = theme.maroon,
-    insert = theme.pink,
-    command = theme.red,
-    visual = theme.yellow,
-    replace = theme.flamingo,
-    diffAdd = theme.blue,
-    diffModified = theme.teal,
-    diffDeleted = theme.red,
-    trace = theme.red,
-    hint = theme.white,
-    info = theme.teal,
-    error = theme.flamingo,
-    warn = theme.red,
-    floatBorder = theme.black4,
-    selection_caret = theme.maroon,
-}
+-- local theme = require('catppuccin.core.color_palette')
+-- local colors = {
+--     white = theme.white,
+--     bg = theme.gray2,
+--     bg_highlight = theme.black4,
+--     normal = theme.maroon,
+--     insert = theme.pink,
+--     command = theme.red,
+--     visual = theme.yellow,
+--     replace = theme.flamingo,
+--     diffAdd = theme.blue,
+--     diffModified = theme.teal,
+--     diffDeleted = theme.red,
+--     trace = theme.red,
+--     hint = theme.white,
+--     info = theme.teal,
+--     error = theme.flamingo,
+--     warn = theme.red,
+--     floatBorder = theme.black4,
+--     selection_caret = theme.maroon,
+-- }
+-- local theme_colors = require('kanagawa.colors').setup()
+
+-- local colors = {
+--   white = theme_colors.fujiWhite,
+--   bg = theme_colors.sumiInk0,
+--   bg_highlight = theme_colors.sumiInk2,
+--   normal = theme_colors.sumiInk4,
+--   insert = theme_colors.waveBlue2,
+--   command = theme_colors.boatYellow2,
+--   visual = theme_colors.dragonBlue,
+--   replace = theme_colors.autumnRed,
+--   diffAdd = theme_colors.autumnGreen,
+--   diffModified = theme_colors.autumnYellow,
+--   diffDeleted = theme_colors.autumnRed,
+--   trace = theme_colors.surimiOrange,
+--   hint = theme_colors.dragonBlue,
+--   info = theme_colors.waveAqua1,
+--   error = theme_colors.samuraiRed,
+--   warn = theme_colors.roninYellow,
+--   floatBorder = theme_colors.sumiInk4,
+--   selection_caret = theme_colors.oniViolet,
+-- }
+  local theme_colors = {
+    -- Background Colors
+    bg = '#22272e',
+    bg2 = '#1e2228',
+
+    -- foreground colors
+    fg = '#adbac7',
+    fg_dark = '#636e7b',
+    fg_gutter = '#768390',
+    fg_light = '#adbac7',
+    fg_term = '#768390',
+
+    -- Background Highlights Colors
+    bg_highlight = '#2d333b',
+    bg_search = '#3f3e30',
+    -- bg_visual = '#444c56',
+    bg_visual_selection = '#264466',
+    border = '#444c56',
+
+    -- Cursor & LineNumber Colors
+    cursor = '#6cb6ff',
+    cursor_line_nr = '#adbac7',
+    line_nr = '#768390',
+
+    -- LSP & Diagnostic Colors
+    error = '#e5534b',
+    -- warning = '#cca700',
+    -- info = '#75beff',
+    -- hint = '#eeeeb3',
+    lsp = { ref_txt = '#28575d' },
+
+    -- Auto-Complication Colors
+    pmenu = { bg = '#2d333b', sbar = '#363b44' },
+
+    -- Git & Diff Colors
+    git = {
+      add = '#6bc46d',
+      change = '#daaa3f',
+      delete = '#b34642',
+      conflict = '#daaa3f',
+      ignore = '#545d68',
+      --   renamed = '#73c991',
+    },
+    -- diff = {
+    --   add = '#293d34',
+    --   add_fg = '#6bc46d',
+    --   change = '#452700',
+    --   change_fg = '#daaa3f',
+    --   delete = '#432b30',
+    --   delete_fg = '#e5534b',
+    -- },
+
+    -- Syntax Colors
+    syntax = {
+      comment = '#768390',
+      constant = '#6cb6ff',
+      string = '#96d0ff',
+      variable = '#6cb6ff',
+      keyword = '#f47067',
+      func = '#dcbdfb',
+      func_param = '#adbac7',
+      match_paren_bg = '#266a70',
+      tag = '#8ddb8c',
+      html_arg = '#ff938a',
+      param = '#f69d50',
+      json_label = '#6cb6ff',
+    },
+
+    -- Terminal Colors
+    -- orange = '#d18616',
+    black = '#545d68',
+    bright_black = '#636e7b',
+    white = '#909dab',
+    bright_white = '#cdd9e5',
+    red = '#f47067',
+    bright_red = '#ff938a',
+    green = '#57ab5a',
+    bright_green = '#6bc46d',
+    yellow = '#c69026',
+    bright_yellow = '#daaa3f',
+    blue = '#539bf5',
+    bright_blue = '#6cb6ff',
+    magenta = '#b083f0',
+    bright_magenta = '#dcbdfb',
+    cyan = '#39c5cf',
+    bright_cyan = '#56d4dd',
+
+    -- Plugin Colors
+    git_signs = { add = '#2b6a30', change = '#966600', delete = '#ad2e2c' },
+  }
+  local colors = {
+    white = theme_colors.bright_white,
+    bg = theme_colors.bg,
+    bg_highlight = theme_colors.bg_highlight,
+    normal = theme_colors.blue,
+    insert = theme_colors.green,
+    command = theme_colors.bright_magenta,
+    visual = theme_colors.yellow,
+    replace = theme_colors.red,
+    diffAdd = theme_colors.git.add,
+    diffModified = theme_colors.git.change,
+    diffDeleted = theme_colors.git.delete,
+    trace = theme_colors.orange,
+    hint = theme_colors.hint,
+    info = theme_colors.info,
+    error = theme_colors.error,
+    warn = theme_colors.warn,
+    floatBorder = theme_colors.border,
+    selection_caret = theme_colors.magenta,
+  }
 local set_highlight = function(hi, colors)
     local hi_str = ''
 
@@ -69,11 +202,11 @@ local icons = {
     diff_add = ' ',
     diff_modified = ' ',
     diff_remove = ' ',
-    linux = "   ",
+    main = "💫",
     vs = ''
 }
 
-local main_icon = icons.linux
+local main_icon = icons.main
 
 local get_mode = function()
     local mode_colors = {

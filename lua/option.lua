@@ -10,6 +10,7 @@ g.loaded_tarPlugin = 1
 g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1
 g.loaded_vimball = 1
+
 g.loaded_vimballPlugin = 1
 g.loaded_2html_plugin = 1
 
@@ -22,75 +23,65 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 g.loaded_netrwSettings = 1
 g.loaded_netrwFileHandlers = 1
+
+opt.termguicolors = true
+opt.guicursor = ''
+opt.mouse = 'a'
+opt.pumblend = 15 -- Opacity
+
+opt.wrap = false
+opt.backup = true
+opt.backupdir = 'E:/nvim/backup//'
+opt.directory = 'E:/nvim/swap//'
+opt.undofile = true
+opt.undodir = 'E:/nvim/undo//'
+opt.shada = ''
+opt.cmdheight = 1
+opt.updatetime = 300
+
+opt.showmode = false
+
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = 'number'
+
+opt.smarttab = true
+opt.softtabstop = 4
+opt.cindent = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+
+-- https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
 opt.fillchars = "fold: "
+opt.foldnestmax = 3
+opt.foldminlines = 1
+opt.foldenable = false
+
+opt.scrolloff = 7
 vim.cmd([[
-" UI
-set termguicolors
-set guicursor=
-set mouse=a
-" Opacity
-set pumblend=15
+    autocmd User LightspeedLeave opt.scrolloff=7
+    " Lsp
+    " highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+    " highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+    " highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+    " highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+    " highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+    " highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+    " highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+    " highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+    " highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+    " highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+    " highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
 
-set wrap!
-set noswapfile
-set nobackup
-set shada = "NONE"
-set nowritebackup
-set cmdheight=1
-set updatetime=300
+    " highlight LspFloatWinNormal guibg=NONE
 
-" Line number
-set number
-set relativenumber
-set signcolumn=number
+    hi rainbowcol1 guifg=LightBlue
 
-" let &shell = 'pwsh'
-" let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-" let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-" let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-" set shellquote= shellxquote=
+    highlight Todo gui=NONE
 
-set smarttab
-set cindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
-set foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set foldnestmax=3
-set foldminlines=1
-set nofoldenable
-
-set scrolloff=7
-autocmd User LightspeedLeave set scrolloff=7
-
-" Highlight
-
-" Lsp
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-
-" Lspsaga
-highlight LspFloatWinNormal guibg=NONE
-
-" Rainbow brackets
-hi rainbowcol1 guifg=LightBlue
-
-highlight Todo gui=NONE
-
-highlight NormalFloat guibg=NONE
-
-highlight DashboardHeader guifg=LightBlue
+    highlight NormalFloat guibg=NONE
 ]])

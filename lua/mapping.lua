@@ -12,9 +12,6 @@ map("x", "$", "g_")
 map("n", "<C-Left>", "20zh")
 map("n", "<C-Right>", "20zl")
 
--- Fix search highlighting in the current buffer.
-map("n", "i", ":noh<cr>i")
-
 -- Naivigate between window
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
@@ -42,6 +39,8 @@ map("n", "<C-PageUp>", ":BufferLineCyclePrev<CR>", { silent = true })
 map("n", "<C-T>", ":BufferLinePick<CR>", { silent = true })
 map("n", "<A-Right>", ":BufferLineMoveNext<CR>", { silent = true })
 map("n", "<A-Left>", ":BufferLineMovePrev<CR>", { silent = true })
+map("n", "<Tab>", ":bnext<CR>", { silent = true } )
+map("n", "<S-Tab>", ":bprevious<CR>", { silent = true } )
 
 -- Lsp
 map("n", "<C-F12>", ":lua vim.lsp.buf.implementation()<CR>", { silent = true })

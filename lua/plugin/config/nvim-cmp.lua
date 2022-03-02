@@ -37,7 +37,7 @@ cmp.setup({
 	-- REQUIRED
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	documentation = {
@@ -65,7 +65,7 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 		["<C-D>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(1) then
+			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
@@ -108,3 +108,4 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=] },
 	}),
 })
+require("luasnip.loaders.from_vscode").load()

@@ -13,14 +13,14 @@
 --     },
 -- })
 -- vim.cmd("colorscheme kanagawa")
--- vim.g.vscode_style = "dark"
--- vim.g.vscode_transparent = 1
--- vim.g.vscode_disable_nvimtree_bg = true
--- vim.cmd[[colorscheme vscode]]
 local catppuccin = require("catppuccin")
 catppuccin.setup({
     transparent_background = true,
     term_colors = true,
+    styles = {
+		comments = "bold",
+		variables = "NONE",
+	},
     integration = {
         lsp_trouble = true,
         lsp_saga = true,
