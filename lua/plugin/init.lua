@@ -86,8 +86,8 @@ return packer.startup(function(use)
 	-- Lsp
 	use({
 		"neovim/nvim-lspconfig",
-		module = "lspconfig",
 		requires = { "hrsh7th/cmp-nvim-lsp" },
+		module = "lspconfig",
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
@@ -279,18 +279,13 @@ return packer.startup(function(use)
 		after = "nvim-treesitter",
 	})
 
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		requires = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
-		config = function()
-			require("refactoring").setup({})
-		end,
-		event = "BufWinEnter",
-	})
-
 	-- use({
-	-- 	"SmiteshP/nvim-gps",
-	-- 	requires = "nvim-treesitter/nvim-treesitter",
+	-- 	"ThePrimeagen/refactoring.nvim",
+	-- 	requires = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
+	-- 	config = function()
+	-- 		require("refactoring").setup({})
+	-- 	end,
+	-- 	event = "BufWinEnter",
 	-- })
 
 	-- Colab
