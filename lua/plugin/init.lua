@@ -68,9 +68,13 @@ return packer.startup(function(use)
 	use("onsails/lspkind-nvim")
 
 	use({
-		"NTBBloodbath/galaxyline.nvim",
+        "feline-nvim/feline.nvim",
 		event = "BufWinEnter",
 	})
+ --    use({
+	-- 	"NTBBloodbath/galaxyline.nvim",
+	-- 	event = "BufWinEnter",
+	-- })
 
 	use({
 		"akinsho/bufferline.nvim",
@@ -87,7 +91,6 @@ return packer.startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		requires = { "hrsh7th/cmp-nvim-lsp" },
-		module = "lspconfig",
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",

@@ -12,12 +12,12 @@ require("alpha").setup(require("alpha.themes.startify").config)
 
 require("plugin.config.lspconfig")
 
-require("plugin.config.galaxy-line")
-
 local main
 main = uv.new_async(vim.schedule_wrap(function()
 	require("plugin")
 
+	require("feline").setup()
+	-- require("plugin.config.galaxy-line")
 	require("plugin.config.bufferline")
 	require("plugin.config.notify")
 	require("plugin.config.treesitter")
