@@ -1,13 +1,17 @@
+-- vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
+-- vim.cmd([[
+-- 	filetype off
+--     filetype plugin indent off
+-- ]])
 require("impatient")
-vim.g.did_load_filetypes = 1
-vim.cmd([[
-	filetype off
-  filetype plugin indent off
-]])
+
+
 require("option")
+require("mapping")
 require("theme")
 
-require("mapping")
+
 
 
 
@@ -18,22 +22,17 @@ main = vim.loop.new_async(vim.schedule_wrap(function()
 	require("feline").setup()
 	-- require("plugin.config.galaxy-line")
 	require("plugin.config.bufferline")
-
-
-
-
 	require("plugin.config.telescope")
-	require("plugin.config.indent")
-	require("plugin.config.lspsaga_config")
-	require("plugin.config.whichkey")
+	
+
 
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()
 		vim.cmd([[
                 rshada!
                 doautocmd BufRead
-                filetype on
-                filetype plugin indent on
+                " filetype on
+                " filetype plugin indent on
                 silent! bufdo e
             ]])
 	end, 15)

@@ -63,7 +63,7 @@ opt.foldenable = false
 
 opt.scrolloff = 7
 vim.cmd([[
-    autocmd User LightspeedLeave opt.scrolloff=7
+    autocmd User LightspeedLeave set scrolloff=7
     " Lsp
     " highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
     " highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080

@@ -14,21 +14,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	print("Installing packer close and reopen Neovim...")
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
---   augroup end
--- ]])
-
--- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
 	return
 end
 
--- Have packer use a popup window
 packer.init({
 	display = {
 		open_fn = function()
@@ -53,22 +43,20 @@ return packer.startup(function(use)
 	})
 
 	-- Theme
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
 	use({
 		"rebelot/kanagawa.nvim",
 	})
 	-- use("Mofiqul/vscode.nvim")
 	-- use({"themercorp/themer.lua"})
 
-	-- Icon
 	use({
 		"kyazdani42/nvim-web-devicons",
-		event = "UIEnter",
+		event = "BufRead",
 	})
-	use("onsails/lspkind-nvim")
 
 	use({
 		"feline-nvim/feline.nvim",
@@ -119,6 +107,7 @@ return packer.startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
+			{ "onsails/lspkind-nvim"},
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
 			{
 				"L3MON4D3/LuaSnip",
@@ -133,7 +122,7 @@ return packer.startup(function(use)
 		config = function () require("plugin.config.nvim-cmp") end,
 		after = { "LuaSnip", "nvim-treesitter" } ,
 	})
-	use({ "github/copilot.vim", event = "InsertCharPre" })
+	use({ "github/copilot.vim", event = "InsertEnter" })
 
 
 	use({
@@ -164,17 +153,18 @@ return packer.startup(function(use)
 
 	use({
 		"windwp/nvim-autopairs",
-		event = "InsertCharPre",
+		event = "InsertEnter",
 		config = function() require("plugin.config.auto-pairs") end,
 	})
 
 	-- Action menu
 	use({
 		"tami5/lspsaga.nvim",
-		module = "lspsaga",
+		config = function() require("plugin.config.lspsaga_config") end,
+		event = "InsertEnter",
 	})
 
-	-- Lint
+
 	use({
 		"quick-lint/quick-lint-js",
 		rtp = "plugin/vim/quick-lint-js.vim",
@@ -193,7 +183,8 @@ return packer.startup(function(use)
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		module = "indent_blankline",
+		config = function() require("plugin.config.indent") end,
+		event = "BufRead"
 	})
 
 	-- Zen mode
@@ -205,7 +196,10 @@ return packer.startup(function(use)
 	})
 
 	-- Better cursor move
-	use("ggandor/lightspeed.nvim")
+	use({
+		"ggandor/lightspeed.nvim",
+		event = "BufRead"
+	})
 
 	-- File explorer
 	use({
@@ -235,8 +229,10 @@ return packer.startup(function(use)
 	use({
 		"numToStr/Comment.nvim",
 		keys = {
-			"gc",
-			"gcc",
+			{ "n", "gcc" },
+			{ "n", "gbc" },
+			{ "v", "gc" },
+			{ "v", "gb" },
 		},
 		config = function()
 			require("Comment").setup()
@@ -297,7 +293,8 @@ return packer.startup(function(use)
 
 	use({
 		"folke/which-key.nvim",
-		module = "which-key"
+		config = function() require("plugin.config.whichkey") end,
+		opt = true,
 	})
 	use({
 		"kevinhwang91/nvim-hlslens",

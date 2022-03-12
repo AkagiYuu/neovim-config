@@ -9,7 +9,8 @@ require('kanagawa').setup({
     specialException = true,    -- special highlight for exception handling keywords
     transparent = true,        -- do not set background color
     overrides = {
-        CursorLine = { bg = "NONE" }
+        CursorLine = { bg = "NONE" },
+        TelescopeBorder = { bg = "NONE" }
     },
 })
 vim.cmd("colorscheme kanagawa")
