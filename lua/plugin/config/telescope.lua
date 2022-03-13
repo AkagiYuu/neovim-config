@@ -39,6 +39,16 @@ telescope.setup({
 				end,
 			},
 		},
+		keymaps = {
+			layout_strategies = "vertical",
+			layout_config = {
+				prompt_position = "top",
+				anchor = "N",
+				height = function(_, _, max_lines)
+					return math.min(max_lines, 20)
+				end,
+			},
+		},
         lsp_references = {
             theme = "cursor"
         }

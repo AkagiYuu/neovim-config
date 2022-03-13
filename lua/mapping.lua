@@ -82,15 +82,15 @@ map("n", "<A-f>", ":lua vim.lsp.buf.formatting_sync()<CR>")
 map("v", "<A-f>", ":lua vim.lsp.buf.range_formatting()<CR>")
 
 --Moving line
-map("n", "<A-j>", ":m .+1<CR>==")
-map("n", "<A-k>", ":m .-2<CR>==")
+map("n", "<A-j>", ":m .+1<CR>==", {silent = true})
+map("n", "<A-k>", ":m .-2<CR>==", {silent = true})
 map("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
-map("s", "<A-j>", ":m '>+1<CR>gv=gv")
-map("s", "<A-k>", ":m '<-2<CR>gv=gv")
+map("v", "<A-j>", ":m '>+1<CR>gv=gv")
+map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Refactor
-map("v", "<Leader>re", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>")
-map("v", "<Leader>rf", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>")
-map("v", "<Leader>ri", "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>")
-map("v", "<Leader>rv", "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>")
+-- map("v", "<Leader>re", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>")
+-- map("v", "<Leader>rf", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>")
+-- map("v", "<Leader>ri", "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>")
+-- map("v", "<Leader>rv", "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>")

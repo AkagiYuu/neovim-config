@@ -43,10 +43,10 @@ return packer.startup(function(use)
 	})
 
 	-- Theme
-	use({
-		"catppuccin/nvim",
-		as = "catppuccin",
-	})
+	-- use({
+	-- 	"catppuccin/nvim",
+	-- 	as = "catppuccin",
+	-- })
 	use({
 		"rebelot/kanagawa.nvim",
 	})
@@ -75,6 +75,7 @@ return packer.startup(function(use)
 	use({
 		"rcarriga/nvim-notify",
 		config = function() require("plugin.config.notify") end,
+		event = "BufRead",
 	})
 
 
@@ -88,11 +89,7 @@ return packer.startup(function(use)
 	use({
 		"j-hui/fidget.nvim",
 		config = function()
-			require("fidget").setup({
-				window = {
-					blend = 0,
-				},
-			})
+            require("plugin.config.fidget")
 		end,
 		after = "nvim-lspconfig" ,
 		event = { "BufRead", "BufNewFile", "InsertEnter" },
@@ -120,9 +117,9 @@ return packer.startup(function(use)
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 		},
 		config = function () require("plugin.config.nvim-cmp") end,
-		after = { "LuaSnip", "nvim-treesitter" } ,
+		after = "LuaSnip" ,
 	})
-	use({ "github/copilot.vim", event = "InsertEnter" })
+	use({ "github/copilot.vim", event = "InsertCharPre" })
 
 
 	use({
@@ -153,7 +150,7 @@ return packer.startup(function(use)
 
 	use({
 		"windwp/nvim-autopairs",
-		event = "InsertEnter",
+		event = "InsertCharPre",
 		config = function() require("plugin.config.auto-pairs") end,
 	})
 
@@ -161,7 +158,7 @@ return packer.startup(function(use)
 	use({
 		"tami5/lspsaga.nvim",
 		config = function() require("plugin.config.lspsaga_config") end,
-		event = "InsertEnter",
+		cmd = "Lspsaga"
 	})
 
 
@@ -275,12 +272,12 @@ return packer.startup(function(use)
 
 	use({
 		"yamatsum/nvim-cursorline",
-		event = "BufWinEnter",
+		event = "BufRead",
 	})
 
 	use({
 		"dstein64/nvim-scrollview",
-		after = "nvim-cursorline",
+		event = "BufRead",
 	})
 
 	use({
@@ -294,7 +291,7 @@ return packer.startup(function(use)
 	use({
 		"folke/which-key.nvim",
 		config = function() require("plugin.config.whichkey") end,
-		opt = true,
+		event = "BufWinEnter"
 	})
 	use({
 		"kevinhwang91/nvim-hlslens",
