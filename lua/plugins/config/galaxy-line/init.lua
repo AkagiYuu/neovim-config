@@ -4,7 +4,7 @@ local gls = galaxy.section
 local diag = require('galaxyline.providers.diagnostic')
 local condition = require('galaxyline.condition')
 local fileinfo = require('galaxyline.providers.fileinfo')
-local u = require("plugin.config.galaxy-line.util")
+local u = require("plugins.config.galaxy-line.util")
 
 -- local theme = require('catppuccin.core.color_palette')
 -- local colors = {

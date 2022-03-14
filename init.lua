@@ -5,26 +5,17 @@ vim.g.did_load_filetypes = 0
 --     filetype plugin indent off
 -- ]])
 require("impatient")
-
-
 require("option")
 require("mapping")
 require("theme")
 
-
-
-
-
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
-	require("plugin")
-
+	require("plugins")
 	require("feline").setup()
 	-- require("plugin.config.galaxy-line")
-	require("plugin.config.bufferline")
-	require("plugin.config.telescope")
-	
-
+	require("plugins.config.bufferline")
+	require("plugins.config.telescope")
 
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()

@@ -56,7 +56,7 @@ end
 
 vim.cmd("augroup Signature")
 vim.cmd("autocmd! * <buffer>")
-vim.cmd("autocmd InsertCharPre * lua require'plugin.config.lspsaga_config'.lspsaga_open_signature_help()")
+vim.cmd("autocmd InsertCharPre * lua require'plugins.config.lspsaga_config'.lspsaga_open_signature_help()")
 vim.cmd("augroup end")
 
 return M

@@ -1,5 +1,6 @@
 local g = vim.g
 local opt = vim.opt
+local OS = vim.loop.os_uname().version
 
 g.loaded_gzip = 1
 g.loaded_zip = 1
@@ -30,11 +31,11 @@ opt.mouse = 'a'
 opt.pumblend = 15 -- Opacity
 
 opt.wrap = false
-opt.backup = true
-opt.backupdir = 'E:/nvim/backup//'
-opt.directory = 'E:/nvim/swap//'
-opt.undofile = true
-opt.undodir = 'E:/nvim/undo//'
+if OS:match 'Windows' then
+    opt.directory = 'E:/nvim/swap//'
+    opt.undofile = true
+    opt.undodir = 'E:/nvim/undo//'
+end
 opt.shada = ''
 opt.cmdheight = 1
 opt.updatetime = 300

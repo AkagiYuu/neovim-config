@@ -74,7 +74,7 @@ return packer.startup(function(use)
 
 	use({
 		"rcarriga/nvim-notify",
-		config = function() require("plugin.config.notify") end,
+		config = function() require("plugins.config.notify") end,
 		event = "BufRead",
 	})
 
@@ -82,21 +82,21 @@ return packer.startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		requires = "hrsh7th/cmp-nvim-lsp",
-		config = function() require("plugin.config.lspconfig") end,
+		config = function() require("plugins.config.lspconfig") end,
 		after = "nvim-cmp",
       	event = { "BufRead", "BufNewFile", "InsertEnter" },
 	})
 	use({
 		"j-hui/fidget.nvim",
 		config = function()
-            require("plugin.config.fidget")
+            require("plugins.config.fidget")
 		end,
 		after = "nvim-lspconfig" ,
 		event = { "BufRead", "BufNewFile", "InsertEnter" },
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-		config = function() require("plugin.config.null-ls") end,
+		config = function() require("plugins.config.null-ls") end,
 		after = "nvim-lspconfig"
 	})
 
@@ -116,7 +116,7 @@ return packer.startup(function(use)
 			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 		},
-		config = function () require("plugin.config.nvim-cmp") end,
+		config = function () require("plugins.config.nvim-cmp") end,
 		after = "LuaSnip" ,
 	})
 	use({ "github/copilot.vim", event = "InsertCharPre" })
@@ -125,7 +125,7 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-		config = function() require("plugin.config.treesitter") end,
+		config = function() require("plugins.config.treesitter") end,
 		event = "BufRead"
 	})
 
@@ -151,13 +151,13 @@ return packer.startup(function(use)
 	use({
 		"windwp/nvim-autopairs",
 		event = "InsertCharPre",
-		config = function() require("plugin.config.auto-pairs") end,
+		config = function() require("plugins.config.auto-pairs") end,
 	})
 
 	-- Action menu
 	use({
 		"tami5/lspsaga.nvim",
-		config = function() require("plugin.config.lspsaga_config") end,
+		config = function() require("plugins.config.lspsaga_config") end,
 		cmd = "Lspsaga"
 	})
 
@@ -180,7 +180,7 @@ return packer.startup(function(use)
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		config = function() require("plugin.config.indent") end,
+		config = function() require("plugins.config.indent") end,
 		event = "BufRead"
 	})
 
@@ -207,7 +207,7 @@ return packer.startup(function(use)
 
 	use({
 		"sidebar-nvim/sidebar.nvim",
-		config = function() require("plugin.config.sidebar") end,
+		config = function() require("plugins.config.sidebar") end,
 		cmd = { "SidebarNvimToggle", "SidebarNvimOpen", "SidebarNvimUpdate", "SidebarNvimFocus" },
 	})
 
@@ -290,7 +290,7 @@ return packer.startup(function(use)
 
 	use({
 		"folke/which-key.nvim",
-		config = function() require("plugin.config.whichkey") end,
+		config = function() require("plugins.config.whichkey") end,
 		event = "BufWinEnter"
 	})
 	use({

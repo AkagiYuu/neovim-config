@@ -1,0 +1,101 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.080  000.080: --- NVIM STARTING ---
+063.875  063.795: locale set
+066.006  002.131: inits 1
+066.206  000.200: window checked
+077.363  011.158: parsing arguments
+077.788  000.425: expanding arguments
+077.924  000.136: inits 2
+087.699  009.774: init highlight
+087.725  000.026: waiting for UI
+102.505  014.780: done waiting for UI
+102.568  000.063: init screen for UI
+102.666  000.098: init default mappings
+103.512  000.846: init default autocommands
+117.157  000.639  000.639: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\ftplugin.vim
+119.768  000.466  000.466: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\indent.vim
+181.327  007.297  007.297: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\start\kanagawa.nvim\colors\kanagawa.vim
+181.487  058.667  051.370: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim\init.lua
+181.727  018.443: sourcing vimrc file(s)
+183.476  000.345  000.345: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\start\filetype.nvim\filetype.vim
+185.912  000.454  000.454: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\filetype.lua
+186.947  000.221  000.221: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\filetype.vim
+193.218  000.498  000.498: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\syntax\synload.vim
+193.664  003.154  002.655: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\syntax\syntax.vim
+219.680  000.354  000.354: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\gzip.vim
+220.715  000.279  000.279: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\health.vim
+221.780  000.447  000.447: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\man.vim
+222.687  000.295  000.295: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\matchit.vim
+223.586  000.241  000.241: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\matchparen.vim
+224.904  000.553  000.553: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\netrwPlugin.vim
+229.413  000.430  000.430: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data/rplugin.vim
+229.553  003.718  003.288: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\rplugin.vim
+231.066  000.575  000.575: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\shada.vim
+232.178  000.417  000.417: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\spellfile.vim
+233.161  000.251  000.251: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\tarPlugin.vim
+234.078  000.232  000.232: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\tohtml.vim
+235.254  000.368  000.368: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\tutor.vim
+236.120  000.285  000.285: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\plugin\zipPlugin.vim
+246.062  007.819  007.819: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim\plugin\packer_compiled.lua
+249.244  047.510: loading rtp plugins
+258.967  000.788  000.788: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\start\plenary.nvim\plugin\plenary.vim
+261.162  011.130: loading packages
+284.737  001.657  001.657: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\start\cmp-nvim-lsp\after\plugin\cmp_nvim_lsp.lua
+284.803  021.984: loading after plugins
+284.827  000.024: inits 3
+295.080  001.071  001.071: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\ftplugin\lua.vim
+303.554  000.846  000.846: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\indent\lua.vim
+311.785  003.503  003.503: sourcing C:\tools\neovim\nvim-win64\share\nvim\runtime\syntax\lua.vim
+325.265  005.647  005.647: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-scrollview\plugin\scrollview.vim
+881.266  525.904  525.904: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\indent-blankline.nvim\plugin\indent_blankline.vim
+899.976  009.962  009.962: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\plugin\nvim-treesitter.vim
+910.984  000.436  000.436: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\fusion.vim
+912.100  000.426  000.426: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\gdresource.vim
+913.380  000.519  000.519: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\gdscript.vim
+915.306  000.874  000.874: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\glimmer.vim
+916.852  000.627  000.627: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\glsl.vim
+918.517  000.502  000.502: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\gowork.vim
+919.718  000.459  000.459: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\graphql.vim
+921.046  000.683  000.683: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\hack.vim
+922.033  000.359  000.359: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\hcl.vim
+922.984  000.332  000.332: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\heex.vim
+924.167  000.584  000.584: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\hjson.vim
+925.520  000.422  000.422: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\json5.vim
+926.510  000.393  000.393: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\ledger.vim
+927.526  000.367  000.367: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\nix.vim
+928.884  000.718  000.718: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\prisma.vim
+930.092  000.419  000.419: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\pug.vim
+931.212  000.423  000.423: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\ql.vim
+932.508  000.676  000.676: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\query.vim
+933.600  000.375  000.375: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\surface.vim
+934.816  000.474  000.474: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\teal.vim
+936.261  000.762  000.762: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\tlaplus.vim
+937.221  000.354  000.354: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\ftdetect\yang.vim
+982.433  002.103  002.103: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-ts-rainbow\plugin\rainbow.vim
+990.897  001.848  001.848: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-ts-autotag\plugin\nvim-ts-autotag.vim
+1000.403  003.170  003.170: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-lspconfig\plugin\lspconfig.vim
+1122.154  000.593  000.593: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-cursorline\plugin\nvim-cursorline.vim
+1134.852  005.495  005.495: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\LuaSnip\plugin\luasnip.vim
+1141.186  000.891  000.891: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\LuaSnip\ftdetect\snippets.vim
+1160.811  011.463  011.463: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-cmp\plugin\cmp.lua
+1216.966  001.123  001.123: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\cmp_luasnip\after\plugin\cmp_luasnip.lua
+1222.369  001.298  001.298: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\cmp-cmdline\after\plugin\cmp_cmdline.lua
+1229.038  002.281  002.281: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\cmp-buffer\after\plugin\cmp_buffer.lua
+1234.229  001.053  001.053: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\cmp-path\after\plugin\cmp_path.lua
+1246.565  004.414  004.414: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\lightspeed.nvim\plugin\lightspeed.vim
+1252.718  000.519  000.519: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-web-devicons\plugin\nvim-web-devicons.vim
+1266.344  000.406  000.406: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\which-key.nvim\plugin\which-key.vim
+1295.961  000.953  000.953: sourcing C:\Users\HUYNH MINH KHANG\AppData\Local\nvim-data\site\pack\packer\opt\nvim-treesitter\autoload\nvim_treesitter.vim
+1326.542  445.983: opening buffers
+1326.564  000.022: BufEnter autocommands
+1326.571  000.007: editing files in windows
+1355.592  029.021: VimEnter autocommands
+1355.614  000.022: UIEnter autocommands
+1355.634  000.020: before starting main loop
+1374.967  019.333: first screen update
+1374.991  000.024: --- NVIM STARTED ---
