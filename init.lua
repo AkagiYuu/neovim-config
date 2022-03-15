@@ -12,9 +12,6 @@ require("theme")
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
 	require("plugins")
-	require("feline").setup()
-	-- require("plugin.config.galaxy-line")
-	require("plugins.config.bufferline")
 	require("plugins.config.telescope")
 
 	vim.opt.shadafile = ""

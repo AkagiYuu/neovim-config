@@ -60,15 +60,18 @@ return packer.startup(function(use)
 
 	use({
 		"feline-nvim/feline.nvim",
+		config = function() require("plugins.config.feline") end,
 		after = "nvim-web-devicons",
 	})
 
 	use({
 		"akinsho/bufferline.nvim",
+		config = function() require("plugins.config.bufferline") end,
 		after = "nvim-web-devicons",
 	})
 	--    use({
 	-- 	"NTBBloodbath/galaxyline.nvim",
+	--  config = function() require("plugin.config.galaxy-line") end,
 	-- 	event = "BufWinEnter",
 	-- })
 
