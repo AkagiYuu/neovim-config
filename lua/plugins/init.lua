@@ -242,7 +242,7 @@ return packer.startup(function(use)
 	use({
 		"folke/todo-comments.nvim",
 		config = function() require("todo-comments").setup() end,
-		disable = true,
+		event = "BufRead",
 	})
 
 	-- Document generate

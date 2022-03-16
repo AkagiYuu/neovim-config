@@ -59,16 +59,6 @@ map("n", "<leader>gd", ":Lspsaga show_line_diagnostics<CR>", { silent = true })
 map("n", "[e", ":Lspsaga diagnostic_jump_next<CR>", { silent = true })
 map("n", "]e", ":Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 
---Snippets
--- map("i", "<Tab>", "luasnip#jumpable(1)   ? '<cmd>lua require'luasnip'.jump(1)<Cr>'     : '<Tab>'", { expr = true })
--- map("s", "<Tab>", "luasnip#jumpable(1)   ? '<cmd>lua require'luasnip'.jump(1)<Cr>'     : '<Tab>'", { expr = true })
--- map("i", "<S-Tab>", "luasnip#jumpable(-1) ? '<cmd>lua require'luasnip'.jump(-1)<Cr>'     : '<S-Tab>'", { expr = true })
--- map("s", "<S-Tab>", "luasnip#jumpable(-1) ? '<cmd>lua require'luasnip'.jump(-1)<Cr>'     : '<S-Tab>'", { expr = true })
--- map("i", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", { silent = true })
--- map("s", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", { silent = true })
--- map("i", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<CR>", { silent = true })
--- map("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>", { silent = true })
-
 --Trouble
 map("n", "<leader>xx", ":TroubleToggle<cr>")
 map("n", "<leader>xw", ":TroubleToggle workspace_diagnostics<cr>")
@@ -88,9 +78,3 @@ map("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
-
--- Refactor
--- map("v", "<Leader>re", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>")
--- map("v", "<Leader>rf", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>")
--- map("v", "<Leader>ri", "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>")
--- map("v", "<Leader>rv", "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>")

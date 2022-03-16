@@ -8,8 +8,6 @@ require("indent_blankline").setup {
         "lspinfo",
         "packer",
         "checkhealth",
-        "alpha",
-        "NvimTree",
         "telescope",
         "",
     },
