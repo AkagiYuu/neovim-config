@@ -1,47 +1,38 @@
 local cmp = require("cmp")
-local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-
-lspkind.init({
-	mode = "symbol_text",
-	symbol_map = {
-		Text = "  ",
-		Method = "  ",
-		Function = "  ",
-		Constructor = "  ",
-		Field = "  ",
-		Variable = "  ",
-		Class = "  ",
-		Interface = "  ",
-		Module = "  ",
-		Property = "  ",
-		Unit = "  ",
-		Value = "  ",
-		Enum = "  ",
-		Keyword = "  ",
-		Snippet = "  ",
-		Color = "  ",
-		File = "  ",
-		Reference = "  ",
-		Folder = "  ",
-		EnumMember = "  ",
-		Constant = "  ",
-		Struct = "  ",
-		Event = "  ",
-		Operator = "  ",
-		TypeParameter = "  ",
-	},
-})
-
+local cmp_kinds = {
+	Text = "  ",
+	Method = "  ",
+	Function = "  ",
+	Constructor = "  ",
+	Field = "  ",
+	Variable = "  ",
+	Class = "  ",
+	Interface = "  ",
+	Module = "  ",
+	Property = "  ",
+	Unit = "  ",
+	Value = "  ",
+	Enum = "  ",
+	Keyword = "  ",
+	Snippet = "  ",
+	Color = "  ",
+	File = "  ",
+	Reference = "  ",
+	Folder = "  ",
+	EnumMember = "  ",
+	Constant = "  ",
+	Struct = "  ",
+	Event = "  ",
+	Operator = "  ",
+	TypeParameter = "  ",
+}
 cmp.setup({
 	-- REQUIRED
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
-	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
 	mapping = {
 		["<C-n>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -56,14 +47,14 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { "i", "c" }),
 		["<Up>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { "i", "c" }),
 		["<C-D>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
@@ -87,25 +78,28 @@ cmp.setup({
 		{ name = "buffer" },
 	}),
 	formatting = {
-		format = lspkind.cmp_format({
-			maxwidth = 50,
-		}),
+		fields = { "kind", "abbr" },
+		format = function(_, vim_item)
+			vim_item.kind = cmp_kinds[vim_item.kind] or ""
+			return vim_item
+		end,
 	},
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
 	sources = {
 		{ name = "buffer" },
 	},
+	view = {
+		entries = { name = "wildmenu", separator = "|" },
+	},
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
-		{ name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=] },
+		{ name = "cmdline" },
 	}),
 })
 require("luasnip.loaders.from_vscode").load()

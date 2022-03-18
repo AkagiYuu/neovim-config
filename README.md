@@ -2,12 +2,6 @@
 
 ## Features
 
-- Fast startup time
-  - Linux: ~61s (virtual machine with 2gb ram, 2 cores)
-  ![Linux](./media/image/Linux%20Startup%20Time.PNG)
-  - Windows: ~250s (4gb ram, 4 cores)
-  ![Windows](./media/image/Windows%20Startup%20Time.PNG)
-
 - LSP code completion
 ![CodeCompletion](/media/image/Completion.PNG)
 

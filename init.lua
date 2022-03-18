@@ -17,12 +17,12 @@ main = vim.loop.new_async(vim.schedule_wrap(function()
 	vim.opt.shadafile = ""
 	vim.defer_fn(function()
 		vim.cmd([[
-                rshada!
-                doautocmd BufRead
-                " filetype on
-                " filetype plugin indent on
-                silent! bufdo e
-            ]])
+            rshada!
+            doautocmd BufRead
+            " filetype on
+            " filetype plugin indent on
+            silent! bufdo e
+        ]])
 	end, 15)
 
 	main:close()
