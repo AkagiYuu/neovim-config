@@ -17,9 +17,6 @@
 - [Sidebar](https://github.com/sidebar-nvim/sidebar.nvim)
 ![Sidebar](/media/image/Sidebar.PNG)
 
-- [Whichkey](https://github.com/folke/which-key.nvim)
-![Wichkey](./media/image/Whichkey.PNG)
-
 ## Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)

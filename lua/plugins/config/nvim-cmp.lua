@@ -89,10 +89,7 @@ cmp.setup({
 cmp.setup.cmdline("/", {
 	sources = {
 		{ name = "buffer" },
-	},
-	view = {
-		entries = { name = "wildmenu", separator = "|" },
-	},
+	}
 })
 
 cmp.setup.cmdline(":", {
@@ -100,6 +97,6 @@ cmp.setup.cmdline(":", {
 		{ name = "path" },
 	}, {
 		{ name = "cmdline" },
-	}),
+	})
 })
 require("luasnip.loaders.from_vscode").load()
