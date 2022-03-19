@@ -43,10 +43,10 @@ return packer.startup(function(use)
 	})
 
 	-- Theme
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
 	use({
 		"rebelot/kanagawa.nvim",
 	})
@@ -204,7 +204,7 @@ return packer.startup(function(use)
 	-- File explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
-		config = function() require("nvim-tree").setup() end,
+		config = function() require("plugins.config.nvim-tree") end,
 		cmd = { "NvimTreeOpen", "NvimTreeFocus", "NvimTreeToggle" },
 	})
 

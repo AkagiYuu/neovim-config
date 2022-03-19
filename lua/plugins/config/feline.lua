@@ -1,6 +1,14 @@
 local lsp = require('feline.providers.lsp')
 local vi_mode_utils = require('feline.providers.vi_mode')
 
+local bo = vim.bo
+local o = vim.o
+local icons = {
+  unix = ' ',
+  dos = ' ',
+  mac = ' ',
+}
+
 local force_inactive = {
   filetypes = {},
   buftypes = {},
@@ -124,33 +132,14 @@ components.active[1][2] = {
 }
 -- filename
 components.active[1][3] = {
-  provider = function()
-    return vim.fn.expand("%:F")
-  end,
-  hl = {
-    fg = 'white',
-    bg = 'bg',
-    style = 'bold'
-  },
---   right_sep = {
---     str = ' > ',
---     hl = {
---       fg = 'white',
---       bg = 'bg',
---       style = 'bold'
---     },
---   }
+  -- provider = {
+  --   name = 'file_info',
+  --   opts = {
+  --     type = 'unique-short'
+  --   }
+  -- }
+  provider = 'file_info'
 }
--- nvimGps
--- components.active[1][4] = {
---   provider = function() return gps.get_location() end,
---   enabled = function() return gps.is_available() end,
---   hl = {
---     fg = 'white',
---     bg = 'bg',
---     style = 'bold'
---   }
--- }
 
 -- MID
 
@@ -239,54 +228,8 @@ components.active[3][1] = {
   },
   right_sep = ' '
 }
--- fileIcon
-components.active[3][2] = {
-  provider = function()
-    local filename = vim.fn.expand('%:t')
-    local extension = vim.fn.expand('%:e')
-    local icon  = require'nvim-web-devicons'.get_icon(filename, extension)
-    if icon == nil then
-      icon = ''
-    end
-    return icon
-  end,
-  hl = function()
-    local val = {}
-    local filename = vim.fn.expand('%:t')
-    local extension = vim.fn.expand('%:e')
-    local icon, name  = require'nvim-web-devicons'.get_icon(filename, extension)
-    if icon ~= nil then
-      val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
-    else
-      val.fg = 'white'
-    end
-    val.bg = 'bg'
-    val.style = 'bold'
-    return val
-  end,
-  right_sep = ' '
-}
--- fileType
-components.active[3][3] = {
-  provider = 'file_type',
-  hl = function()
-    local val = {}
-    local filename = vim.fn.expand('%:t')
-    local extension = vim.fn.expand('%:e')
-    local icon, name  = require'nvim-web-devicons'.get_icon(filename, extension)
-    if icon ~= nil then
-      val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
-    else
-      val.fg = 'white'
-    end
-    val.bg = 'bg'
-    val.style = 'bold'
-    return val
-  end,
-  right_sep = ' '
-}
 -- fileSize
-components.active[3][4] = {
+components.active[3][2] = {
   provider = 'file_size',
   enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
   hl = {
@@ -297,8 +240,12 @@ components.active[3][4] = {
   right_sep = ' '
 }
 -- fileFormat
-components.active[3][5] = {
-  provider = function() return '' .. vim.bo.fileformat:upper() .. '' end,
+components.active[3][3] = {
+  provider = function()
+    local os = (bo.fileformat ~= '' and bo.fileformat) or o.fileformat
+    local encoding = (bo.fenc ~= '' and bo.fenc) or o.enc
+    return icons[os:lower()] .. encoding
+  end,
   hl = {
     fg = 'white',
     bg = 'bg',
@@ -306,30 +253,8 @@ components.active[3][5] = {
   },
   right_sep = ' '
 }
--- fileEncode
-components.active[3][6] = {
-  provider = 'file_encoding',
-  hl = {
-    fg = 'white',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
-}
--- RVMrubyVersion
--- components.active[3][7] = {
---   provider = function()
---     return ' '..vim.fn['rvm#string']()
---   end,
---   hl = {
---     fg = 'red',
---     bg = 'bg',
---     style = 'bold'
---   },
---   right_sep = ' '
--- }
 -- lineInfo
-components.active[3][8] = {
+components.active[3][4] = {
   provider = 'position',
   hl = {
     fg = 'white',
@@ -339,7 +264,7 @@ components.active[3][8] = {
   right_sep = ' '
 }
 -- linePercent
-components.active[3][9] = {
+components.active[3][5] = {
   provider = 'line_percentage',
   hl = {
     fg = 'white',
@@ -349,7 +274,7 @@ components.active[3][9] = {
   right_sep = ' '
 }
 -- scrollBar
-components.active[3][10] = {
+components.active[3][6] = {
   provider = 'scroll_bar',
   hl = {
     fg = 'yellow',
