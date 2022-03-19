@@ -20,7 +20,7 @@ require("bufferline").setup({
 			{ filetype = "NvimTree", text = "File Explorer", text_align = "center", highlight = "Directory" },
 		},
 		show_buffer_close_icons = true,
-		show_close_icon = true,
+		show_close_icon = false,
 		show_tab_indicators = false,
 		persist_buffer_sort = true,
 		separator_style = "thin",

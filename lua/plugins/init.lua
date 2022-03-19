@@ -107,7 +107,6 @@ return packer.startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
-			{ "onsails/lspkind-nvim"},
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
 			{
 				"L3MON4D3/LuaSnip",
@@ -162,14 +161,6 @@ return packer.startup(function(use)
 		"tami5/lspsaga.nvim",
 		config = function() require("plugins.config.lspsaga_config") end,
 		cmd = "Lspsaga"
-	})
-
-
-	use({
-		"quick-lint/quick-lint-js",
-		rtp = "plugin/vim/quick-lint-js.vim",
-		tag = "1.0.0",
-		opt = true,
 	})
 
 	-- Diagnostic
@@ -295,10 +286,6 @@ return packer.startup(function(use)
 		"folke/which-key.nvim",
 		config = function() require("plugins.config.whichkey") end,
 		event = "BufWinEnter"
-	})
-	use({
-		"kevinhwang91/nvim-hlslens",
-		keys = "/",
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim

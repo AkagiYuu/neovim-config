@@ -72,28 +72,10 @@ local vi_mode_text = {
   NONE = '<>'
 }
 
-local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
-  end
-  return false
-end
-
-local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
-
 force_inactive.filetypes = {
   'NvimTree',
-  'dbui',
   'packer',
-  'startify',
-  'fugitive',
-  'fugitiveblame'
+  'Telescope'
 }
 
 force_inactive.buftypes = {
@@ -231,7 +213,7 @@ components.active[3][1] = {
 -- fileSize
 components.active[3][2] = {
   provider = 'file_size',
-  enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
+  -- enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
   hl = {
     fg = 'skyblue',
     bg = 'bg',
