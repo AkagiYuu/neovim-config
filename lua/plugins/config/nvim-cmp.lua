@@ -47,14 +47,14 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, { "i", "c" }),
+		end, { "i" }),
 		["<Up>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			else
 				fallback()
 			end
-		end, { "i", "c" }),
+		end, { "i" }),
 		["<C-D>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
