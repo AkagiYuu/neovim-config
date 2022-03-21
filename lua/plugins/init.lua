@@ -159,8 +159,8 @@ return packer.startup(function(use)
 	-- Action menu
 	use({
 		"tami5/lspsaga.nvim",
+		event = "InsertCharPre",
 		config = function() require("plugins.config.lspsaga_config") end,
-		cmd = "Lspsaga"
 	})
 
 	-- Diagnostic

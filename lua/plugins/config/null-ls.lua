@@ -8,11 +8,7 @@ null_ls.setup({
     sources = {
         formatting.uncrustify,
         formatting.stylua,
-        formatting.ptop,
         diagnostics.codespell,
-        -- diagnostics.write_good,
-        -- codeactions.refactoring,
         codeactions.eslint_d,
-        completion.spell
     },
 })
