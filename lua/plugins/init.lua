@@ -270,11 +270,6 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"dstein64/nvim-scrollview",
-		event = "BufRead",
-	})
-
-	use({
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()

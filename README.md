@@ -50,7 +50,7 @@ git clone https://github.com/AkagiYuu/neovim-config ~/AppData/Local/nvim
 nvim +PackerSync
 ```
 
-## Plugins (48)
+## Plugins
 
 - [Packer](https://github.com/wbthomason/packer.nvim)
 - [Impatient](https://github.com/lewis6991/impatient.nvim)
@@ -89,16 +89,16 @@ nvim +PackerSync
 - [Lightspeed](https://github.com/ggandor/lightspeed.nvim)
 - [Indent blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [Cursorline](https://github.com/yamatsum/nvim-cursorline)
-- [Scrollview](https://github.com/dstein64/nvim-scrollview)
 - [Colorizer](https://github.com/norcalli/nvim-colorizer.lua)
 - [Zenmode](https://github.com/folke/zen-mode.nvim)
   - [Twilight](https://github.com/folke/twilight.nvim)
 - [Git signs](https://github.com/lewis6991/gitsigns.nvim)
 - [Hlslens](https://github.com/kevinhwang91/nvim-hlslens)
-- [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
+- Theme
+  - [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
+  - [Catppuccin](https://github.com/catppuccin/nvim)
 - Icon
   - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-  - [Lspkind](https://github.com/onsails/lspkind-nvim)
 - [Notify](https://github.com/rcarriga/nvim-notify)
 - [Whichkey](https://github.com/folke/which-key.nvim)
 - [Startup time](https://github.com/dstein64/vim-startuptime)
