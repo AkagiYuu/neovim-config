@@ -1,303 +1,344 @@
-local lsp = require('feline.providers.lsp')
-local vi_mode_utils = require('feline.providers.vi_mode')
+local feline = require("feline")
+local lsp = require("feline.providers.lsp")
+local lsp_severity = vim.diagnostic.severity
+local b = vim.b
 
-local bo = vim.bo
-local o = vim.o
-local icons = {
-  unix = ' ',
-  dos = ' ',
-  mac = ' ',
+local assets = {
+	left_semicircle = "",
+	right_semicircle = "",
+	right_semicircle_cut = "",
+	left_semicircle_cut = "",
+	vertical_bar_chubby = "█",
+	vertical_bar_medium = "┃",
+	vertical_bar_thin = "│",
+	left_arrow_thin = "",
+	right_arrow_thin = "",
+	left_arrow_filled = "",
+	right_arrow_filled = "",
+	slant_left = "",
+	slant_left_thin = "",
+	slant_right = "",
+	slant_right_thin = "",
+	slant_left_2 = "",
+	slant_left_2_thin = "",
+	slant_right_2 = "",
+	slant_right_2_thin = "",
+	chubby_dot = "●",
+	slim_dot = '•',
 }
 
-local force_inactive = {
-  filetypes = {},
-  buftypes = {},
-  bufnames = {}
+local clrs = {
+  rosewater = "#F5E0DC", -- Rosewater
+	flamingo = "#F2CDCD", -- Flamingo
+	mauve = "#DDB6F2", -- Mauve
+	pink = "#F5C2E7", -- Pink
+	red = "#F28FAD", -- Red
+	maroon = "#E8A2AF", -- Maroon
+	peach = "#F8BD96", -- Peach
+	yellow = "#FAE3B0", -- Yellow
+	green = "#ABE9B3", -- Green
+	blue = "#96CDFB", -- Blue
+	sky = "#89DCEB", -- Sky
+	teal = "#B5E8E0", -- Teal
+	lavender = "#C9CBFF", -- Lavender
+	white = "#D9E0EE", -- White
+	gray2 = "#C3BAC6", -- Gray2
+	gray1 = "#988BA2", -- Gray1
+	gray0 = "#6E6C7E", -- Gray0
+	black4 = "#575268", -- Black4
+	black3 = "#302D41", -- Black3
+	black2 = "#1E1E2E", -- Black2
+	black1 = "#1A1826", -- Black1
+	black0 = "#161320", -- Black0
+}
+
+local sett = {
+	bkg = clrs.black3,
+	diffs = clrs.mauve,
+	extras = clrs.gray1,
+	curr_file = clrs.maroon,
+	curr_dir = clrs.flamingo,
+}
+
+local mode_colors = {
+	["n"] = { "NORMAL", clrs.lavender },
+	["no"] = { "N-PENDING", clrs.lavender },
+	["i"] = { "INSERT", clrs.green },
+	["ic"] = { "INSERT", clrs.green },
+	["t"] = { "TERMINAL", clrs.green },
+	["v"] = { "VISUAL", clrs.flamingo },
+	["V"] = { "V-LINE", clrs.flamingo },
+	[""] = { "V-BLOCK", clrs.flamingo },
+	["R"] = { "REPLACE", clrs.maroon },
+	["Rv"] = { "V-REPLACE", clrs.maroon },
+	["s"] = { "SELECT", clrs.maroon },
+	["S"] = { "S-LINE", clrs.maroon },
+	[""] = { "S-BLOCK", clrs.maroon },
+	["c"] = { "COMMAND", clrs.peach },
+	["cv"] = { "COMMAND", clrs.peach },
+	["ce"] = { "COMMAND", clrs.peach },
+	["r"] = { "PROMPT", clrs.teal },
+	["rm"] = { "MORE", clrs.teal },
+	["r?"] = { "CONFIRM", clrs.mauve },
+	["!"] = { "SHELL", clrs.green },
 }
 
 local components = {
-  active = {{}, {}, {}},
-  inactive = {{}, {}, {}},
+	active = {},
+	inactive = {},
 }
 
-local colors = {
-  bg = '#282828',
-  black = '#282828',
-  yellow = '#d8a657',
-  cyan = '#89b482',
-  oceanblue = '#45707a',
-  green = '#a9b665',
-  orange = '#e78a4e',
-  violet = '#d3869b',
-  magenta = '#c14a4a',
-  white = '#a89984',
-  fg = '#a89984',
-  skyblue = '#7daea3',
-  red = '#ea6962',
+table.insert(components.active, {})
+table.insert(components.active, {})
+table.insert(components.active, {})
+
+local invi_sep = {
+	str = " ",
+	hl = {
+		fg = sett.bkg,
+		bg = sett.bkg
+	},
 }
 
-local vi_mode_colors = {
-  NORMAL = 'green',
-  OP = 'green',
-  INSERT = 'red',
-  VISUAL = 'skyblue',
-  LINES = 'skyblue',
-  BLOCK = 'skyblue',
-  REPLACE = 'violet',
-  ['V-REPLACE'] = 'violet',
-  ENTER = 'cyan',
-  MORE = 'cyan',
-  SELECT = 'orange',
-  COMMAND = 'green',
-  SHELL = 'green',
-  TERM = 'green',
-  NONE = 'yellow'
-}
+local function any_git_changes()
+	local gst = b.gitsigns_status_dict
+	if gst then
+		if gst["added"] and gst["added"] > 0 or gst["removed"] and gst["removed"] > 0 or gst["changed"] and gst["changed"] > 0 then
+			return true
+		end
+	end
+	return false
+end
 
-local vi_mode_text = {
-  NORMAL = '<|',
-  OP = '<|',
-  INSERT = '|>',
-  VISUAL = '<>',
-  LINES = '<>',
-  BLOCK = '<>',
-  REPLACE = '<>',
-  ['V-REPLACE'] = '<>',
-  ENTER = '<>',
-  MORE = '<>',
-  SELECT = '<>',
-  COMMAND = '<|',
-  SHELL = '<|',
-  TERM = '<|',
-  NONE = '<>'
-}
+-- Left
+local vi_mode_hl = function()
+	return {
+		fg = sett.bkg,
+		bg = mode_colors[vim.fn.mode()][2],
+		style = "bold"
+	}
+end
 
-force_inactive.filetypes = {
-  'NvimTree',
-  'packer',
-  'Telescope'
-}
-
-force_inactive.buftypes = {
-  'terminal'
-}
-
--- LEFT
-
--- vi-mode
 components.active[1][1] = {
-  provider = ' NVIM ',
-  hl = function()
-    local val = {}
-
-    val.bg = vi_mode_utils.get_mode_color()
-    val.fg = 'black'
-    val.style = 'bold'
-
-    return val
-  end,
-  right_sep = ' '
+	provider = " ",
+	hl = function()
+		return {
+			fg = sett.bkg,
+			bg = mode_colors[vim.fn.mode()][2],
+		}
+	end,
 }
--- vi-symbol
+
 components.active[1][2] = {
-  provider = function()
-    return vi_mode_text[vi_mode_utils.get_vim_mode()]
-  end,
-  hl = function()
-    local val = {}
-    val.fg = vi_mode_utils.get_mode_color()
-    val.bg = 'bg'
-    val.style = 'bold'
-    return val
-  end,
-  right_sep = ' '
+	provider = function()
+		return " " .. mode_colors[vim.fn.mode()][1] .. " "
+	end,
+	hl = vi_mode_hl,
 }
--- filename
+
 components.active[1][3] = {
-  -- provider = {
-  --   name = 'file_info',
-  --   opts = {
-  --     type = 'unique-short'
-  --   }
-  -- }
-  provider = 'file_info'
+	provider = assets.right_arrow_filled,
+	hl = function()
+		return {
+			fg = mode_colors[vim.fn.mode()][2],
+			bg = sett.bkg
+		}
+	end,
+	enabled = function()
+		return not any_git_changes()
+	end
 }
 
--- MID
-
--- gitBranch
-components.active[2][1] = {
-  provider = 'git_branch',
-  hl = {
-    fg = 'yellow',
-    bg = 'bg',
-    style = 'bold'
-  }
-}
--- diffAdd
-components.active[2][2] = {
-  provider = 'git_diff_added',
-  hl = {
-    fg = 'green',
-    bg = 'bg',
-    style = 'bold'
-  }
-}
--- diffModfified
-components.active[2][3] = {
-  provider = 'git_diff_changed',
-  hl = {
-    fg = 'orange',
-    bg = 'bg',
-    style = 'bold'
-  }
-}
--- diffRemove
-components.active[2][4] = {
-  provider = 'git_diff_removed',
-  hl = {
-    fg = 'red',
-    bg = 'bg',
-    style = 'bold'
-  },
-}
--- diagnosticErrors
-components.active[2][5] = {
-  provider = 'diagnostic_errors',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR) end,
-  hl = {
-    fg = 'red',
-    style = 'bold'
-  }
-}
--- diagnosticWarn
-components.active[2][6] = {
-  provider = 'diagnostic_warnings',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.WARN) end,
-  hl = {
-    fg = 'yellow',
-    style = 'bold'
-  }
-}
--- diagnosticHint
-components.active[2][7] = {
-  provider = 'diagnostic_hints',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.HINT) end,
-  hl = {
-    fg = 'cyan',
-    style = 'bold'
-  }
-}
--- diagnosticInfo
-components.active[2][8] = {
-  provider = 'diagnostic_info',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.INFO) end,
-  hl = {
-    fg = 'skyblue',
-    style = 'bold'
-  }
+components.active[1][4] = {
+	provider = assets.right_arrow_filled,
+	hl = function()
+		return {
+			fg = mode_colors[vim.fn.mode()][2],
+			bg = sett.diffs
+		}
+	end,
+	enabled = function()
+		return any_git_changes()
+	end
 }
 
--- RIGHT
+components.active[1][5] = {
+	provider = "git_diff_added",
+	hl = {
+		fg = sett.bkg,
+		bg = sett.diffs,
+	},
+	icon = "  ",
+}
 
--- LspName
-components.active[3][1] = {
-  provider = 'lsp_client_names',
-  hl = {
-    fg = 'yellow',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
+components.active[1][6] = {
+	provider = "git_diff_changed",
+	hl = {
+		fg = sett.bkg,
+		bg = sett.diffs,
+	},
+	icon = "  ",
 }
--- fileSize
-components.active[3][2] = {
-  provider = 'file_size',
-  -- enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
-  hl = {
-    fg = 'skyblue',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
+
+components.active[1][7] = {
+	provider = "git_diff_removed",
+	hl = {
+		fg = sett.bkg,
+		bg = sett.diffs,
+	},
+	icon = "  ",
 }
--- fileFormat
-components.active[3][3] = {
-  provider = function()
-    local os = (bo.fileformat ~= '' and bo.fileformat) or o.fileformat
-    local encoding = (bo.fenc ~= '' and bo.fenc) or o.enc
-    return icons[os:lower()] .. encoding
-  end,
-  hl = {
-    fg = 'white',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
+
+components.active[1][8] = {
+	provider = assets.right_arrow_filled,
+	hl = {
+		fg = sett.diffs,
+		bg = sett.bkg,
+	},
+	enabled = function()
+		return any_git_changes()
+	end
 }
--- lineInfo
-components.active[3][4] = {
-  provider = 'position',
-  hl = {
-    fg = 'white',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
+
+components.active[1][9] = {
+	provider = "git_branch",
+	-- enabled = shortline or function(winid)
+	-- 	return vim.api.nvim_win_get_width(winid) > 70
+	-- end,
+	hl = {
+		fg = sett.extras,
+		bg = sett.bkg
+	},
+	icon = "   ",
+	left_sep = invi_sep,
+	right_sep = invi_sep,
 }
--- linePercent
-components.active[3][5] = {
+
+components.active[1][10] = {
+	-- enabled = shortline or function(winid)
+	-- 	return vim.api.nvim_win_get_width(winid) > 90
+	-- end,
   provider = 'line_percentage',
-  hl = {
-    fg = 'white',
-    bg = 'bg',
-    style = 'bold'
-  },
-  right_sep = ' '
-}
--- scrollBar
-components.active[3][6] = {
-  provider = 'scroll_bar',
-  hl = {
-    fg = 'yellow',
-    bg = 'bg',
-  },
+	hl = {
+		fg = sett.extras,
+		bg = sett.bkg
+	},
+	left_sep = invi_sep,
 }
 
--- INACTIVE
+components.active[1][11] = {
+	provider = "position",
+	-- enabled = shortline or function(winid)
+	-- 	return vim.api.nvim_win_get_width(winid) > 90
+	-- end,
+	hl = {
+		fg = sett.extras,
+		bg = sett.bkg
+	},
+	left_sep = invi_sep,
+}
+-- Center
 
--- fileType
-components.inactive[1][1] = {
-  provider = 'file_type',
-  hl = {
-    fg = 'black',
-    bg = 'cyan',
-    style = 'bold'
-  },
-  left_sep = {
-    str = ' ',
-    hl = {
-      fg = 'NONE',
-      bg = 'cyan'
-    }
-  },
-  right_sep = {
-    {
-      str = ' ',
-      hl = {
-        fg = 'NONE',
-        bg = 'cyan'
-      }
-    },
-    ' '
-  }
+components.active[2][1] = {
+	provider = "diagnostic_errors",
+	enabled = function()
+		return lsp.diagnostics_exist(lsp_severity.ERROR)
+	end,
+
+	hl = {
+		fg = clrs.red,
+		bg = sett.bkg,
+	},
+	icon = "  ",
 }
 
-require('feline').setup({
-  theme = colors,
-  default_bg = bg,
-  default_fg = fg,
-  vi_mode_colors = vi_mode_colors,
-  components = components,
-  force_inactive = force_inactive,
+components.active[2][2] = {
+	provider = "diagnostic_warnings",
+	enabled = function()
+		return lsp.diagnostics_exist(lsp_severity.WARN)
+	end,
+	hl = {
+		fg = '#d8a657',
+		bg = sett.bkg,
+	},
+	icon = "  ",
+}
+
+components.active[2][3] = {
+	provider = "diagnostic_info",
+	enabled = function()
+		return lsp.diagnostics_exist(lsp_severity.INFO)
+	end,
+	hl = {
+		fg = clrs.sky,
+		bg = sett.bkg,
+	},
+	icon = "  ",
+}
+
+components.active[2][4] = {
+	provider = "diagnostic_hints",
+	enabled = function()
+		return lsp.diagnostics_exist(lsp_severity.HINT)
+	end,
+	hl = {
+		fg = clrs.rosewater,
+		bg = sett.bkg,
+	},
+	icon = "  ",
+}
+
+-- Right
+components.active[3][1] = {
+	provider = function()
+		local filename = vim.fn.expand("%:t")
+		local extension = vim.fn.expand("%:e")
+		local icon = require("nvim-web-devicons").get_icon(filename, extension)
+		if icon == nil then
+			icon = "   "
+			return icon
+		end
+		return " " .. icon .. " " .. filename .. " "
+	end,
+	-- enabled = shortline or function(winid)
+	-- 	return vim.api.nvim_win_get_width(winid) > 70
+	-- end,
+	hl = {
+		fg = sett.bkg,
+		bg = sett.curr_file,
+	},
+	left_sep = {
+		str = assets.left_arrow_filled,
+		hl = {
+			fg = sett.curr_file,
+			bg = sett.bkg,
+		},
+	},
+}
+
+components.active[3][2] = {
+	provider = function()
+		local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		return "  " .. dir_name .. " "
+	end,
+
+	-- enabled = shortline or function(winid)
+	-- 	return vim.api.nvim_win_get_width(winid) > 80
+	-- end,
+
+	hl = {
+		fg = sett.bkg,
+		bg = sett.curr_dir,
+	},
+	left_sep = {
+		str = assets.left_arrow_filled,
+		hl = {
+			fg = sett.curr_dir,
+			bg = sett.curr_file,
+		},
+	},
+}
+
+feline.setup({
+    components = components
 })
