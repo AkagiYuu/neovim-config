@@ -22,10 +22,7 @@ telescope.setup({
 			i = {
 				["<A-p>"] = action_layout.toggle_preview,
 				["<C-Up>"] = actions.preview_scrolling_up,
-				["<C-Down>"] = actions.preview_scrolling_down,
-				["<esc>"] = actions.close,
-				["<C-q>"] = actions.send_to_qflist,
-			},
+				["<C-Down>"] = actions.preview_scrolling_down,			},
 		},
 	},
 	pickers = {

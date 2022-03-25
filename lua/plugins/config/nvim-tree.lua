@@ -5,5 +5,4 @@ g.nvim_tree_group_empty = 1
 require("nvim-tree").setup({
 	auto_close = true,
 	hijack_cursor = true,
-	hijack_unnamed_buffer_when_opening = true,
 })
