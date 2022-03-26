@@ -29,6 +29,7 @@ opt.termguicolors = true
 opt.guicursor = ''
 opt.mouse = 'a'
 opt.pumblend = 15 -- Opacity
+-- opt.laststatus = 3
 
 opt.wrap = false
 if OS:match 'Windows' then
