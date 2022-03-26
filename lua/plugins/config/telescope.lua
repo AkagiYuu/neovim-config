@@ -6,7 +6,7 @@ local previewers = require("telescope.previewers")
 telescope.setup({
 	defaults = {
 		-- file_sorter = require("telescope.sorters").get_fzy_sorter,
-		-- prompt_prefix = "   ",
+		prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
 		file_previewer = previewers.vim_buffer_cat.new,

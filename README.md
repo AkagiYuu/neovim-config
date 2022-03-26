@@ -5,9 +5,6 @@
 - LSP code completion
 ![CodeCompletion](/media/image/Completion.PNG)
 
-- [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) based code highlighting
-![Treesitter](./media/image/Treesitter.PNG)
-
 - [NvimTree](https://github.com/kyazdani42/nvim-tree.lua) as file tree
 ![NvimTree](./media/image/Nvimtree.PNG)
 
