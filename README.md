@@ -1,6 +1,6 @@
 #
 
-## Features
+## Showcase
 
 - LSP code completion
 ![CodeCompletion](/media/image/Completion.PNG)
