@@ -50,6 +50,19 @@ git clone https://github.com/AkagiYuu/neovim-config ~/AppData/Local/nvim
 nvim +PackerSync
 ```
 
+## Bonus
+
+For windows terminal users, add the following line to settings.json for ctrl + space code completion:
+```json
+{
+  "command": {
+    "action": "sendInput",
+    "input": "\u001b[32;5u"
+  },
+  "keys": "ctrl+space"
+}
+```
+
 ## Plugins
 
 - [Packer](https://github.com/wbthomason/packer.nvim)
