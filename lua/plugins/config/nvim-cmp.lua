@@ -34,9 +34,10 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-n>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		["<C-o>"] = cmp.mapping.complete(),
+		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<C-D>"] = cmp.mapping(function(fallback)
+		["<Tab>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			else
@@ -44,7 +45,7 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 
-		["<C-A>"] = cmp.mapping(function(fallback)
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
