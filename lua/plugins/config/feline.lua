@@ -84,13 +84,9 @@ local mode_colors = {
 }
 
 local components = {
-	active = {},
-	inactive = {},
+	active = {{},{},{}},
+	inactive = {{},{},{}},
 }
-
-table.insert(components.active, {})
-table.insert(components.active, {})
-table.insert(components.active, {})
 
 local invi_sep = {
 	str = " ",
@@ -202,22 +198,21 @@ components.active[1][8] = {
 
 components.active[1][9] = {
 	provider = "git_branch",
-	-- enabled = shortline or function(winid)
-	-- 	return vim.api.nvim_win_get_width(winid) > 70
-	-- end,
+	enabled = function()
+		return vim.api.nvim_win_get_width(0) > 70
+	end,
 	hl = {
 		fg = sett.extras,
 		bg = sett.bkg
 	},
-	icon = "   ",
 	left_sep = invi_sep,
 	right_sep = invi_sep,
 }
 
 components.active[1][10] = {
-	-- enabled = shortline or function(winid)
-	-- 	return vim.api.nvim_win_get_width(winid) > 90
-	-- end,
+	enabled = function()
+		return vim.api.nvim_win_get_width(0) > 90
+	end,
   provider = 'line_percentage',
 	hl = {
 		fg = sett.extras,
@@ -228,9 +223,9 @@ components.active[1][10] = {
 
 components.active[1][11] = {
 	provider = "position",
-	-- enabled = shortline or function(winid)
-	-- 	return vim.api.nvim_win_get_width(winid) > 90
-	-- end,
+	enabled = function()
+		return vim.api.nvim_win_get_width(0) > 90
+	end,
 	hl = {
 		fg = sett.extras,
 		bg = sett.bkg
@@ -290,16 +285,7 @@ components.active[2][4] = {
 
 -- Right
 components.active[3][1] = {
-	provider = function()
-		local filename = vim.fn.expand("%:t")
-		local extension = vim.fn.expand("%:e")
-		local icon = require("nvim-web-devicons").get_icon(filename, extension)
-		if icon == nil then
-			icon = "   "
-			return icon
-		end
-		return " " .. icon .. " " .. filename .. " "
-	end,
+	provider = 'file_info',
 	-- enabled = shortline or function(winid)
 	-- 	return vim.api.nvim_win_get_width(winid) > 70
 	-- end,
@@ -322,9 +308,9 @@ components.active[3][2] = {
 		return "  " .. dir_name .. " "
 	end,
 
-	-- enabled = shortline or function(winid)
-	-- 	return vim.api.nvim_win_get_width(winid) > 80
-	-- end,
+	enabled = function()
+		return vim.api.nvim_win_get_width(0) > 80
+	end,
 
 	hl = {
 		fg = sett.bkg,
@@ -338,6 +324,31 @@ components.active[3][2] = {
 		},
 	},
 }
+components.inactive[1][1] = {
+	provider = 'file_type',
+	hl = {
+	  fg = 'black',
+	  bg = 'cyan',
+	  style = 'bold'
+	},
+	left_sep = {
+	  str = ' ',
+	  hl = {
+		fg = 'NONE',
+		bg = 'cyan'
+	  }
+	},
+	right_sep = {
+	  {
+		str = ' ',
+		hl = {
+		  fg = 'NONE',
+		  bg = 'cyan'
+		}
+	  },
+	  ' '
+	}
+  }
 
 feline.setup({
     components = components
