@@ -58,9 +58,15 @@ return packer.startup(function(use)
 		event = "BufRead",
 	})
 
+	-- use({
+	-- 	"feline-nvim/feline.nvim",
+	-- 	config = function() require("plugins.config.feline") end,
+	-- 	after = "nvim-web-devicons",
+	-- })
+
 	use({
-		"feline-nvim/feline.nvim",
-		config = function() require("plugins.config.feline") end,
+		"tamton-aquib/staline.nvim",
+		config = function() require("plugins.config.staline") end,
 		after = "nvim-web-devicons",
 	})
 
