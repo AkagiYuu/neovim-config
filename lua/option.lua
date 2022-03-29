@@ -34,8 +34,8 @@ opt.pumblend = 15 -- Opacity
 opt.wrap = false
 if OS:match 'Windows' then
     opt.directory = 'E:/nvim/swap//'
-    opt.undofile = true
     opt.undodir = 'E:/nvim/undo//'
+    opt.undofile = true
 end
 opt.shada = ''
 opt.cmdheight = 1
@@ -74,4 +74,6 @@ vim.cmd([[
     highlight Todo gui=NONE
 
     highlight NormalFloat guibg=NONE
+    set autoread
+    au CursorHold,FocusGained,FocusLost * :checktime
 ]])
