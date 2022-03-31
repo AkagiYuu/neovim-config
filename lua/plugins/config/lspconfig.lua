@@ -7,7 +7,7 @@ local on_attach = function(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local servers = {
 	"tsserver",
@@ -45,4 +45,11 @@ nvim_lsp.sumneko_lua.setup({
     },
 })
 
-
+-- require'lspconfig'.powershell_es.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     cmd = {
+--         'pwsh', '-NoLogo', '-NoProfile', '-Command',
+--         'E:/Program/Language Server Protocol/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1'
+--     },
+-- }

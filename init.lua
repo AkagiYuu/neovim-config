@@ -7,14 +7,14 @@ require("theme")
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
 	require("plugins")
-	require("plugins.config.telescope")
 
 	vim.defer_fn(function()
 		vim.cmd([[
             rshada!
             autocmd QuitPre * :wshada
         ]])
-	end, 500)
+        require("plugins.config.telescope")
+	end, 800)
 
 	main:close()
 end))

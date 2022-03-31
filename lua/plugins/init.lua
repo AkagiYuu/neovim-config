@@ -92,8 +92,7 @@ return packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		requires = "hrsh7th/cmp-nvim-lsp",
 		config = function() require("plugins.config.lspconfig") end,
-		after = "nvim-cmp",
-      	event = { "BufRead", "BufNewFile", "InsertEnter" },
+      	event = "BufReadPre"
 	})
 	use({
 		"j-hui/fidget.nvim",
@@ -115,8 +114,7 @@ return packer.startup(function(use)
 		requires = {
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
 			{
-				"L3MON4D3/LuaSnip",
-				event = { "BufRead", "BufNewFile", "InsertEnter" },
+				"L3MON4D3/LuaSnip", after = "nvim-cmp"
 			},
 			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 			{ "rafamadriz/friendly-snippets", after = "nvim-cmp" },
@@ -124,8 +122,8 @@ return packer.startup(function(use)
 			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 		},
-		config = function () require("plugins.config.nvim-cmp") end,
-		after = "LuaSnip" ,
+		config = function() require("plugins.config.nvim-cmp") end,
+		event = "BufRead",
 	})
 	use({ "github/copilot.vim", event = "InsertCharPre" })
 
