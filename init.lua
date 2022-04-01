@@ -13,7 +13,7 @@ main = vim.loop.new_async(vim.schedule_wrap(function()
             rshada!
             autocmd QuitPre * :wshada
         ]])
-        require("plugins.config.telescope")
+		require("plugins.config.telescope")
 	end, 800)
 
 	main:close()
@@ -21,10 +21,20 @@ end))
 main:send()
 
 -- User custom config
-if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/custom/init.lua") == 1 then
-   local ok, err = pcall(require, "custom")
-   if not ok then
-      vim.notify("Error loading custom/init.lua\n\n" .. err)
-   end
-   return
+if vim.fn.filereadable(vim.fn.stdpath("config") .. "/lua/custom/init.lua") == 1 then
+	local ok, err = pcall(require, "custom")
+	if not ok then
+		vim.notify("Error loading custom/init.lua\n\n" .. err)
+	end
+	return
+end
+
+
+if vim.g.nvui then
+	vim.opt.guifont = "CaskaydiaCove Nerd Font:h12"
+	vim.cmd([[
+      packadd nvui
+      NvuiOpacity 0.9
+      NvuiFrameless v:true
+   ]])
 end
