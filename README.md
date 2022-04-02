@@ -3,16 +3,16 @@
 ## Showcase
 
 - LSP code completion
-![CodeCompletion](/media/image/Completion.PNG)
+![CodeCompletion](screenshots/Completion.PNG)
 
 - [NvimTree](https://github.com/kyazdani42/nvim-tree.lua) as file tree
-![NvimTree](./media/image/Nvimtree.PNG)
+![NvimTree](screenshots/Nvimtree.PNG)
 
 - 🔭 [Fuzzy finder](https://github.com/nvim-telescope/telescope.nvim)
-![Telescope](./media/image/Telescope.PNG)
+![Telescope](screenshots/Telescope.PNG)
 
-- [Sidebar](https://github.com/sidebar-nvim/sidebar.nvim)
-![Sidebar](/media/image/Sidebar.PNG)
+- [ZenMode](https://github.com/folke/zen-mode.nvim)
+![ZenMode](screenshots/ZenMode.PNG)
 
 ## Requirements
 
@@ -50,6 +50,7 @@ nvim +PackerSync
 ## Bonus
 
 For windows terminal users, add the following line to settings.json for ctrl + space code completion:
+
 ```json
 {
   "command": {

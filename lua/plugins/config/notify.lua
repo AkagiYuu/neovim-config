@@ -1,10 +1,10 @@
 local notify = require("notify")
 
 notify.setup({
-	stages = "static",
+	stages = "slide",
 	render = "minimal",
 	timeout = 3000,
-	background_colour = "#000000ff",
+	background_colour = "NONE",
 })
 
 vim.notify = notify
