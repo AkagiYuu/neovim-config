@@ -55,7 +55,7 @@ return packer.startup(function(use)
 
 	use({
 		"kyazdani42/nvim-web-devicons",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	-- use({
@@ -84,7 +84,7 @@ return packer.startup(function(use)
 	use({
 		"rcarriga/nvim-notify",
 		config = function() require("plugins.config.notify") end,
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 
@@ -92,7 +92,7 @@ return packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		requires = "hrsh7th/cmp-nvim-lsp",
 		config = function() require("plugins.config.lspconfig") end,
-      	event = "BufReadPre"
+      	event = { "BufReadPre" , "BufNewFile" },
 	})
 	use({
 		"j-hui/fidget.nvim",
@@ -100,7 +100,7 @@ return packer.startup(function(use)
             require("plugins.config.fidget")
 		end,
 		after = "nvim-lspconfig" ,
-		event = { "BufRead", "BufNewFile", "InsertEnter" },
+		event = { "BufRead", "BufNewFile" },
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
@@ -113,9 +113,7 @@ return packer.startup(function(use)
 		"hrsh7th/nvim-cmp",
 		requires = {
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-			{
-				"L3MON4D3/LuaSnip", after = "nvim-cmp"
-			},
+			{ "L3MON4D3/LuaSnip", after = "nvim-cmp" },
 			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 			{ "rafamadriz/friendly-snippets", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
@@ -123,7 +121,7 @@ return packer.startup(function(use)
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 		},
 		config = function() require("plugins.config.nvim-cmp") end,
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	})
 	use({ "github/copilot.vim", event = "InsertCharPre" })
 
@@ -132,7 +130,7 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		config = function() require("plugins.config.treesitter") end,
-		event = "BufRead"
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	use({
@@ -163,7 +161,7 @@ return packer.startup(function(use)
 	-- Action menu
 	use({
 		"tami5/lspsaga.nvim",
-		event = "InsertCharPre",
+		event = { "BufRead", "BufNewFile" },
 		config = function() require("plugins.config.lspsaga_config") end,
 	})
 
@@ -179,7 +177,7 @@ return packer.startup(function(use)
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function() require("plugins.config.indent") end,
-		event = "BufRead"
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	-- Zen mode
@@ -193,14 +191,15 @@ return packer.startup(function(use)
 	-- Better cursor move
 	use({
 		"ggandor/lightspeed.nvim",
-		event = "BufRead"
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	-- File explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
 		config = function() require("plugins.config.nvim-tree") end,
-		cmd = { "NvimTreeOpen", "NvimTreeFocus", "NvimTreeToggle" },
+		-- cmd = { "NvimTreeOpen", "NvimTreeFocus", "NvimTreeToggle" },
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -213,7 +212,7 @@ return packer.startup(function(use)
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function() require("gitsigns").setup() end,
-		event = { "BufNewFile", "BufRead" },
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -237,7 +236,7 @@ return packer.startup(function(use)
 	use({
 		"folke/todo-comments.nvim",
 		config = function() require("todo-comments").setup() end,
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	-- Document generate
@@ -254,7 +253,7 @@ return packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-		module = "telescope",
+		event = { "BufRead", "BufNewFile" },
 		cmd = "Telescope",
 	})
 
@@ -265,12 +264,13 @@ return packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		after = "telescope-fzf-native.nvim",
+		config = function() require("plugins.config.telescope") end,
 	})
 
 
 	use({
 		"yamatsum/nvim-cursorline",
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -284,7 +284,7 @@ return packer.startup(function(use)
 	use({
 		"folke/which-key.nvim",
 		config = function() require("plugins.config.whichkey") end,
-		event = "BufWinEnter"
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
