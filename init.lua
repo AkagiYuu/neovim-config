@@ -13,9 +13,8 @@ main = vim.loop.new_async(vim.schedule_wrap(function()
             rshada!
             autocmd QuitPre * :wshada
         ]])
-		require("plugins.config.telescope")
-	end, 800)
 
+	end, 800)
 	main:close()
 end))
 main:send()
@@ -29,12 +28,4 @@ if vim.fn.filereadable(vim.fn.stdpath("config") .. "/lua/custom/init.lua") == 1 
 	return
 end
 
-
-if vim.g.nvui then
-	vim.opt.guifont = "CaskaydiaCove Nerd Font:h12"
-	vim.cmd([[
-      packadd nvui
-      NvuiOpacity 0.9
-      NvuiFrameless v:true
-   ]])
-end
+require('ginit')
