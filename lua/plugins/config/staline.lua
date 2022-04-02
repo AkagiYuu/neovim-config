@@ -46,7 +46,7 @@ require('staline').setup {
     },
     special_table = {
         NvimTree = {'NvimTree', ' '},
-        packer = {'Packer', ' '} -- etc
+        packer = {'Packer', ' '}
     },
     lsp_symbols = {
         Error = " ",

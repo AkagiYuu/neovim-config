@@ -5,7 +5,7 @@ local previewers = require("telescope.previewers")
 
 telescope.setup({
 	defaults = {
-		-- file_sorter = require("telescope.sorters").get_fzy_sorter,
+		file_sorter = require("telescope.sorters").get_fzy_sorter,
 		prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
@@ -14,15 +14,20 @@ telescope.setup({
 		qflist_previewer = previewers.vim_buffer_qflist.new,
 
 		mappings = {
-			n = {
-				["<A-p>"] = action_layout.toggle_preview,
-				["<C-Up>"] = actions.preview_scrolling_up,
-				["<C-Down>"] = actions.preview_scrolling_down,
-			},
+			-- n = {
+			-- 	["<A-p>"] = action_layout.toggle_preview,
+			-- 	["<C-Up>"] = actions.preview_scrolling_up,
+			-- 	["<C-Down>"] = actions.preview_scrolling_down,
+			-- },
 			i = {
 				["<A-p>"] = action_layout.toggle_preview,
 				["<C-Up>"] = actions.preview_scrolling_up,
-				["<C-Down>"] = actions.preview_scrolling_down,			},
+				["<C-Down>"] = actions.preview_scrolling_down,
+				["<Esc>"] = actions.close,
+            },
+		},
+		preview = {
+			timeout = 1000,
 		},
 	},
 	pickers = {
