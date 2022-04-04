@@ -9,9 +9,6 @@ telescope.setup({
 		prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
-		file_previewer = previewers.vim_buffer_cat.new,
-		grep_previewer = previewers.vim_buffer_vimgrep.new,
-		qflist_previewer = previewers.vim_buffer_qflist.new,
 
 		mappings = {
 			-- n = {
@@ -65,6 +62,4 @@ telescope.setup({
 	},
 })
 
-telescope.load_extension("notify")
-telescope.load_extension("fzf")
 telescope.load_extension("file_browser")

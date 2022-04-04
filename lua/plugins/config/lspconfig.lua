@@ -1,12 +1,5 @@
 local nvim_lsp = require("lspconfig")
 
-local on_attach = function(client, bufnr)
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-end
-
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local servers = {
@@ -21,7 +14,6 @@ local servers = {
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
-		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
@@ -29,12 +21,10 @@ end
 local pid = vim.fn.getpid()
 nvim_lsp.omnisharp.setup({
 	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
-	on_attach = on_attach,
 	capabilities = capabilities,
 })
 
 nvim_lsp.sumneko_lua.setup({
-	on_attach = on_attach,
 	capabilities = capabilities,
     settings = {
         Lua = {
@@ -44,12 +34,3 @@ nvim_lsp.sumneko_lua.setup({
         },
     },
 })
-
--- require'lspconfig'.powershell_es.setup{
---     on_attach = on_attach,
---     capabilities = capabilities,
---     cmd = {
---         'pwsh', '-NoLogo', '-NoProfile', '-Command',
---         'E:/Program/Language Server Protocol/PowerShellEditorServices/PowerShellEditorServices/Start-EditorServices.ps1'
---     },
--- }
