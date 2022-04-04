@@ -37,32 +37,18 @@ return packer.startup(function(use)
 
 	use("wbthomason/packer.nvim")
 
-	use({
-		"dstein64/vim-startuptime",
-		cmd = { "StartupTime" }
-	})
+	use({ "dstein64/vim-startuptime", cmd = { "StartupTime" } })
 
 	-- Theme
-	use({
-		"catppuccin/nvim",
-		as = "catppuccin",
-	})
-	use({
-		"rebelot/kanagawa.nvim",
-	})
-	-- use("Mofiqul/vscode.nvim")
-	-- use({"themercorp/themer.lua"})
+	use({ "catppuccin/nvim", as = "catppuccin" })
+	use({ "rebelot/kanagawa.nvim" })
+
+
 
 	use({
 		"kyazdani42/nvim-web-devicons",
 		event = { "BufRead", "BufNewFile" },
 	})
-
-	-- use({
-	-- 	"feline-nvim/feline.nvim",
-	-- 	config = function() require("plugins.config.feline") end,
-	-- 	after = "nvim-web-devicons",
-	-- })
 
 	use({
 		"tamton-aquib/staline.nvim",
@@ -75,11 +61,6 @@ return packer.startup(function(use)
 		config = function() require("plugins.config.bufferline") end,
 		after = "nvim-web-devicons",
 	})
-	--    use({
-	-- 	"NTBBloodbath/galaxyline.nvim",
-	--  config = function() require("plugin.config.galaxy-line") end,
-	-- 	event = "BufWinEnter",
-	-- })
 
 	use({
 		"rcarriga/nvim-notify",
@@ -96,10 +77,7 @@ return packer.startup(function(use)
 	})
 	use({
 		"j-hui/fidget.nvim",
-		config = function()
-            require("plugins.config.fidget")
-		end,
-		after = "nvim-lspconfig" ,
+		config = function() require("plugins.config.fidget") end,
 		event = { "BufRead", "BufNewFile" },
 	})
 	use({
@@ -108,7 +86,7 @@ return packer.startup(function(use)
 		after = "nvim-lspconfig"
 	})
 
-	-- Auto completion
+
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -124,7 +102,6 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 	use({ "github/copilot.vim", event = "InsertCharPre" })
-
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -142,30 +119,18 @@ return packer.startup(function(use)
 		after = "nvim-treesitter",
 	})
 
-	-- use({
-	-- 	"ThePrimeagen/refactoring.nvim",
-	-- 	requires = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
-	-- 	config = function()
-	-- 		require("refactoring").setup({})
-	-- 	end,
-	-- 	event = "BufWinEnter",
-	-- })
-
-
 	use({
 		"windwp/nvim-autopairs",
-		event = "InsertCharPre",
 		config = function() require("plugins.config.auto-pairs") end,
+		event = "InsertCharPre",
 	})
 
-	-- Action menu
 	use({
 		"tami5/lspsaga.nvim",
-		event = { "BufRead", "BufNewFile" },
 		config = function() require("plugins.config.lspsaga_config") end,
+		event = { "BufRead", "BufNewFile" },
 	})
 
-	-- Diagnostic
 	use({
 		"folke/trouble.nvim",
 		config = function()
@@ -183,22 +148,18 @@ return packer.startup(function(use)
 	-- Zen mode
 	use({
 		"folke/zen-mode.nvim",
-		-- https://github.com/folke/twilight.nvim/issues/15
 		requires = { { "folke/twilight.nvim", after = "zen-mode.nvim" } },
 		cmd = "ZenMode",
 	})
 
-	-- Better cursor move
 	use({
 		"ggandor/lightspeed.nvim",
 		event = { "BufRead", "BufNewFile" }
 	})
 
-	-- File explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
 		config = function() require("plugins.config.nvim-tree") end,
-		-- cmd = { "NvimTreeOpen", "NvimTreeFocus", "NvimTreeToggle" },
 		event = { "BufRead", "BufNewFile" },
 	})
 
@@ -208,7 +169,6 @@ return packer.startup(function(use)
 		cmd = { "SidebarNvimToggle", "SidebarNvimOpen", "SidebarNvimUpdate", "SidebarNvimFocus" },
 	})
 
-	--Git
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function() require("gitsigns").setup() end,
@@ -222,63 +182,35 @@ return packer.startup(function(use)
 
 	use({
 		"numToStr/Comment.nvim",
-		keys = {
-			{ "n", "gcc" },
-			{ "n", "gbc" },
-			{ "v", "gc" },
-			{ "v", "gb" },
-		},
-		config = function()
-			require("Comment").setup()
-		end,
+		config = function() require("Comment").setup() end,
+		event = "BufRead",
 	})
-
-	use({
-		"folke/todo-comments.nvim",
-		config = function() require("todo-comments").setup() end,
-		event = { "BufRead", "BufNewFile" },
-	})
-
-	-- Document generate
-	-- use({
-	-- 	'danymat/neogen',
-	-- 	config = function()
-	-- 		require('neogen').setup({
-	-- 			enabled = true,
-	-- 		})
-	-- 	end,
-	-- 	requires = 'nvim-treesitter/nvim-treesitter',
-	-- })
 
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-		event = { "BufRead", "BufNewFile" },
-		cmd = "Telescope",
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	use({
 		"nvim-telescope/telescope-file-browser.nvim",
-		after = "telescope-fzf-native.nvim",
+		after = "telescope-fzf-native.nvim"
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		after = "telescope-fzf-native.nvim",
-		config = function() require("plugins.config.telescope") end,
+		config = function() require("plugins.config.telescope") end
 	})
-
 
 	use({
 		"yamatsum/nvim-cursorline",
-		event = { "BufRead", "BufNewFile" },
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	use({
 		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-		cmd = "ColorizerToggle",
+		config = function() require("colorizer").setup() end,
+		event = { "BufRead", "BufNewFile" }
 	})
 
 	use({
