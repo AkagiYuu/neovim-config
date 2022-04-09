@@ -2,7 +2,9 @@ vim.g.did_load_filetypes = 0
 require("impatient")
 require("option")
 require("mapping")
+require("autocmd")
 require("theme")
+require("highlight")
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()

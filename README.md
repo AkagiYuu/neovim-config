@@ -17,7 +17,7 @@
 ## Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- [Neovim 0.6+](https://github.com/neovim/neovim/releases/tag/v0.6.1)
+- [Neovim nightly](https://github.com/neovim/neovim/releases/tag/nightly)
 - [Node.js](https://nodejs.org)
 - [Lua language server](https://github.com/sumneko/lua-language-server)
 

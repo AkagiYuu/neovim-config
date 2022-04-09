@@ -36,6 +36,7 @@ end
 opt.shada = ''
 opt.cmdheight = 1
 opt.updatetime = 300
+opt.autoread = true
 
 opt.showmode = false
 
@@ -60,16 +61,3 @@ opt.foldminlines = 1
 opt.foldenable = false
 
 opt.scrolloff = 7
-vim.cmd([[
-    autocmd User LightspeedLeave set scrolloff=7
-
-    " highlight LspFloatWinNormal guibg=NONE
-
-    hi rainbowcol1 guifg=LightBlue
-
-    highlight Todo gui=NONE
-
-    highlight NormalFloat guibg=NONE
-    set autoread
-    au CursorHold,FocusGained,FocusLost * :checktime
-]])
