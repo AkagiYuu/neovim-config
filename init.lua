@@ -1,10 +1,17 @@
-vim.g.did_load_filetypes = 0
-require("impatient")
-require("option")
-require("mapping")
-require("autocmd")
-require("theme")
-require("highlight")
+local present, impatient = pcall(require, "impatient")
+local modules = {
+	"option",
+	"autocmd",
+	"mapping",
+ }
+
+ for _, module in ipairs(modules) do
+	local ok, err = pcall(require, module)
+	if not ok then
+	   error("Error loading " .. module .. "\n\n" .. err)
+	end
+ end
+ require("theme")
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()

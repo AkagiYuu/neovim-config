@@ -26,8 +26,8 @@ map("n", "<S-e>", ":NvimTreeToggle<CR>")
 map("i", "<S-e>", ":NvimTreeToggle<CR>")
 
 -- Terminal
--- map("n", "<C-\\>", ":ToggleTerm<CR>")
--- map("i", "<C-\\>", ":ToggleTerm<CR>")
+map("n", "<C-\\>", ":ToggleTerm<CR>")
+map("i", "<C-\\>", ":ToggleTerm<CR>")
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<cr>")
