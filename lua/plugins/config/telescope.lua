@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
-local previewers = require("telescope.previewers")
 
 telescope.setup({
 	defaults = {

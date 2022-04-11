@@ -34,9 +34,7 @@ if OS:match 'Windows' then
     opt.undofile = true
 end
 opt.shada = ''
-opt.cmdheight = 1
 opt.updatetime = 300
-opt.autoread = true
 
 opt.showmode = false
 
@@ -44,7 +42,6 @@ opt.number = true
 opt.relativenumber = true
 opt.signcolumn = 'number'
 
-opt.smarttab = true
 opt.softtabstop = 4
 opt.cindent = true
 opt.tabstop = 4
