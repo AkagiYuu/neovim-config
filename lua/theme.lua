@@ -13,7 +13,7 @@ require('kanagawa').setup({
         TelescopeBorder = { bg = "NONE" }
     },
 })
-vim.cmd("colorscheme kanagawa")
+pcall(vim.cmd, "colorscheme kanagawa")
 -- local catppuccin = require("catppuccin")
 -- catppuccin.setup({
 --     transparent_background = true,

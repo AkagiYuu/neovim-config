@@ -13,9 +13,8 @@ nvim_create_autocmd({
     command = "checktime",
 })
 
-local signature = require('plugins.config.lspsaga_config').lspsaga_open_signature_help
 nvim_create_autocmd("InsertCharPre", {
     callback = function()
-        signature()
+        require('plugins.config.lspsaga_config').lspsaga_open_signature_help()
     end
 })
