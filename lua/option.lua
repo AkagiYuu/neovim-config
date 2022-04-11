@@ -1,7 +1,7 @@
 local g = vim.g
 local opt = vim.opt
 
--- g.loaded_gzip = 1
+g.loaded_gzip = 1
 g.loaded_zip = 1
 g.loaded_zipPlugin = 1
 g.loaded_tar = 1
@@ -27,12 +27,7 @@ opt.pumblend = 15 -- Opacity
 -- opt.laststatus = 3
 
 opt.wrap = false
-local OS = vim.loop.os_uname().version
-if OS:match 'Windows' then
-    opt.directory = 'E:/nvim/swap//'
-    opt.undodir = 'E:/nvim/undo//'
-    opt.undofile = true
-end
+opt.undofile = true
 opt.shada = ''
 opt.updatetime = 300
 

@@ -18,3 +18,12 @@ nvim_create_autocmd("InsertCharPre", {
         require('plugins.config.lspsaga_config').lspsaga_open_signature_help()
     end
 })
+
+nvim_create_autocmd("TermOpen",{
+    command = "setlocal nonumber nospell",
+    pattern = "term://*"
+})
+
+nvim_create_autocmd("QuitPre", {
+    command = "wshada",
+})
