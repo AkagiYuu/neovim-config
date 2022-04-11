@@ -93,7 +93,6 @@ For windows terminal users, add the following line to settings.json for ctrl + s
   - [Path](https://github.com/hrsh7th/cmp-path)
   - [Copilot](https://github.com/github/copilot.vim)
 - [Comment](https://github.com/numToStr/Comment.nvim)
-- [Todo comment](https://github.com/folke/todo-comments.nvim)
 - [Auto pair](https://github.com/windwp/nvim-autopairs)
 - [Terminal](https://github.com/akinsho/toggleterm.nvim)
 - [Trouble](https://github.com/folke/trouble.nvim)
@@ -104,7 +103,6 @@ For windows terminal users, add the following line to settings.json for ctrl + s
 - [Zenmode](https://github.com/folke/zen-mode.nvim)
   - [Twilight](https://github.com/folke/twilight.nvim)
 - [Git signs](https://github.com/lewis6991/gitsigns.nvim)
-- [Hlslens](https://github.com/kevinhwang91/nvim-hlslens)
 - Theme
   - [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
   - [Catppuccin](https://github.com/catppuccin/nvim)
