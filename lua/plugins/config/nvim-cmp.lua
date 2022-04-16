@@ -1,5 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
 local cmp_kinds = {
     Text = "  ",
     Method = "  ",
@@ -103,8 +105,14 @@ cmp.setup({
         }
     },
     sources = cmp.config.sources({
-		{ name = "nvim_lsp" }, { name = "luasnip"}
+		{ name = "nvim_lsp" },
 	}),
+    source_priority = {
+        nvim_lsp = 1000,
+        luasnip = 750,
+        buffer = 500,
+        path = 250,
+    },
     formatting = {
         fields = {"kind", "abbr"},
         format = function(_, vim_item)
@@ -121,10 +129,9 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({{
-        name = "path"
-    }}, {{
-        name = "cmdline"
-    }})
+    sources = cmp.config.sources({
+        { name = "path"}, { name = "cmdline" }
+    })
 })
-require("luasnip.loaders.from_vscode").load()
+
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
