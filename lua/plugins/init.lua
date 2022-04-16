@@ -51,8 +51,8 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"tamton-aquib/staline.nvim",
-		config = function() require("plugins.config.staline") end,
+		'feline-nvim/feline.nvim',
+		config = function() require("plugins.config.feline") end,
 		after = "nvim-web-devicons",
 	})
 
@@ -136,7 +136,7 @@ return packer.startup(function(use)
 		config = function()
 			require("trouble").setup()
 		end,
-		cmd = { "TroubleToggle", "Trouble", "TroubleRefresh" },
+		cmd = { "TroubleToggle", "Trouble" }
 	})
 
 	use({
@@ -166,7 +166,7 @@ return packer.startup(function(use)
 	use({
 		"sidebar-nvim/sidebar.nvim",
 		config = function() require("plugins.config.sidebar") end,
-		cmd = { "SidebarNvimToggle", "SidebarNvimOpen", "SidebarNvimUpdate", "SidebarNvimFocus" },
+		cmd = { "SidebarNvimToggle" },
 	})
 
 	use({
@@ -218,10 +218,4 @@ return packer.startup(function(use)
 		config = function() require("plugins.config.whichkey") end,
 		event = { "BufRead", "BufNewFile" }
 	})
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
 end)
