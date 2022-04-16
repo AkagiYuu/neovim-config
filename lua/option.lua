@@ -21,21 +21,21 @@ g.loaded_netrwSettings = 1
 g.loaded_netrwFileHandlers = 1
 
 opt.termguicolors = true
-opt.guicursor = ''
-opt.mouse = 'a'
+opt.guicursor = ""
+opt.mouse = "a"
 opt.pumblend = 15 -- Opacity
 -- opt.laststatus = 3
 
 opt.wrap = false
 opt.undofile = true
-opt.shada = ''
+opt.shada = ""
 opt.updatetime = 300
 
 opt.showmode = false
 
 opt.number = true
 opt.relativenumber = true
-opt.signcolumn = 'number'
+opt.signcolumn = "number"
 
 opt.softtabstop = 4
 opt.cindent = true

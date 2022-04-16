@@ -1,7 +1,7 @@
 require("fidget").setup({
-    text = {
-        spinner = "dots",
-    },
+	text = {
+		spinner = "dots",
+	},
 	window = {
 		blend = 0,
 	},

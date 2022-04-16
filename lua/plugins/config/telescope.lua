@@ -20,7 +20,7 @@ telescope.setup({
 				["<C-Up>"] = actions.preview_scrolling_up,
 				["<C-Down>"] = actions.preview_scrolling_down,
 				["<Esc>"] = actions.close,
-            },
+			},
 		},
 		preview = {
 			timeout = 1000,
@@ -47,9 +47,9 @@ telescope.setup({
 				end,
 			},
 		},
-        lsp_references = {
-            theme = "cursor"
-        }
+		lsp_references = {
+			theme = "cursor",
+		},
 	},
 	extensions = {
 		fzf = {

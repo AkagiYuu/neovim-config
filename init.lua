@@ -2,47 +2,47 @@ local present, impatient = pcall(require, "impatient")
 local modules = {
 	"option",
 	"autocmd",
-	"mapping"
+	"mapping",
 }
 
 for _, module in ipairs(modules) do
-    local ok, err = pcall(require, module)
-    if not ok then
-        error("Error loading " .. module .. "\n\n" .. err)
-    end
+	local ok, err = pcall(require, module)
+	if not ok then
+		error("Error loading " .. module .. "\n\n" .. err)
+	end
 end
 require("theme")
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
+	require("plugins")
 
-    require("plugins")
-
-    vim.defer_fn(function()
-        vim.cmd([[
+	vim.defer_fn(function()
+		vim.cmd([[
             rshada!
         ]])
-        if vim.loop.os_uname().version:match 'Windows' then
-            local opt = vim.opt
-            opt.shell = 'pwsh'
-		    opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-		    opt.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-		    opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-            opt.shellquote = ''
-            opt.shellxquote = ''
-        end
-    end, 800)
+		if vim.loop.os_uname().version:match("Windows") then
+			local opt = vim.opt
+			opt.shell = "pwsh"
+            -- stylua: ignore
+			opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+			opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+			opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+			opt.shellquote = ""
+			opt.shellxquote = ""
+		end
+	end, 800)
 
-    require('ginit')
-    main:close()
+	require("ginit")
+	main:close()
 end))
 main:send()
 
 -- User custom config
 if vim.fn.filereadable(vim.fn.stdpath("config") .. "/lua/custom/init.lua") == 1 then
-    local ok, err = pcall(require, "custom")
-    if not ok then
-        vim.notify("Error loading custom/init.lua\n\n" .. err)
-    end
-    return
+	local ok, err = pcall(require, "custom")
+	if not ok then
+		vim.notify("Error loading custom/init.lua\n\n" .. err)
+	end
+	return
 end

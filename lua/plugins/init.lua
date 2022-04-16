@@ -43,49 +43,57 @@ return packer.startup(function(use)
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "rebelot/kanagawa.nvim" })
 
-
-
 	use({
 		"kyazdani42/nvim-web-devicons",
 		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
-		'feline-nvim/feline.nvim',
-		config = function() require("plugins.config.feline") end,
+		"feline-nvim/feline.nvim",
+		config = function()
+			require("plugins.config.feline")
+		end,
 		after = "nvim-web-devicons",
 	})
 
 	use({
 		"akinsho/bufferline.nvim",
-		config = function() require("plugins.config.bufferline") end,
+		config = function()
+			require("plugins.config.bufferline")
+		end,
 		after = "nvim-web-devicons",
 	})
 
 	use({
 		"rcarriga/nvim-notify",
-		config = function() require("plugins.config.notify") end,
+		config = function()
+			require("plugins.config.notify")
+		end,
 		event = { "BufRead", "BufNewFile" },
 	})
-
 
 	use({
 		"neovim/nvim-lspconfig",
 		requires = "hrsh7th/cmp-nvim-lsp",
-		config = function() require("plugins.config.lspconfig") end,
-      	event = { "BufReadPre" , "BufNewFile" },
+		config = function()
+			require("plugins.config.lspconfig")
+		end,
+		event = { "BufReadPre", "BufNewFile" },
 	})
 	use({
 		"j-hui/fidget.nvim",
-		config = function() require("plugins.config.fidget") end,
+		config = function()
+			require("plugins.config.fidget")
+		end,
 		event = { "BufRead", "BufNewFile" },
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-		config = function() require("plugins.config.null-ls") end,
-		after = "nvim-lspconfig"
+		config = function()
+			require("plugins.config.null-ls")
+		end,
+		after = "nvim-lspconfig",
 	})
-
 
 	use({
 		"hrsh7th/nvim-cmp",
@@ -98,7 +106,9 @@ return packer.startup(function(use)
 			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 		},
-		config = function() require("plugins.config.nvim-cmp") end,
+		config = function()
+			require("plugins.config.nvim-cmp")
+		end,
 		event = { "BufRead", "BufNewFile" },
 	})
 	use({ "github/copilot.vim", event = "InsertCharPre" })
@@ -106,8 +116,10 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-		config = function() require("plugins.config.treesitter") end,
-		event = { "BufRead", "BufNewFile" }
+		config = function()
+			require("plugins.config.treesitter")
+		end,
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -121,13 +133,17 @@ return packer.startup(function(use)
 
 	use({
 		"windwp/nvim-autopairs",
-		config = function() require("plugins.config.auto-pairs") end,
+		config = function()
+			require("plugins.config.auto-pairs")
+		end,
 		event = "InsertCharPre",
 	})
 
 	use({
 		"tami5/lspsaga.nvim",
-		config = function() require("plugins.config.lspsaga_config") end,
+		config = function()
+			require("plugins.config.lspsaga_config")
+		end,
 		event = { "BufRead", "BufNewFile" },
 	})
 
@@ -136,13 +152,15 @@ return packer.startup(function(use)
 		config = function()
 			require("trouble").setup()
 		end,
-		cmd = { "TroubleToggle", "Trouble" }
+		cmd = { "TroubleToggle", "Trouble" },
 	})
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		config = function() require("plugins.config.indent") end,
-		event = { "BufRead", "BufNewFile" }
+		config = function()
+			require("plugins.config.indent")
+		end,
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	-- Zen mode
@@ -154,24 +172,30 @@ return packer.startup(function(use)
 
 	use({
 		"ggandor/lightspeed.nvim",
-		event = { "BufRead", "BufNewFile" }
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
 		"kyazdani42/nvim-tree.lua",
-		config = function() require("plugins.config.nvim-tree") end,
+		config = function()
+			require("plugins.config.nvim-tree")
+		end,
 		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
 		"sidebar-nvim/sidebar.nvim",
-		config = function() require("plugins.config.sidebar") end,
+		config = function()
+			require("plugins.config.sidebar")
+		end,
 		cmd = { "SidebarNvimToggle" },
 	})
 
 	use({
 		"lewis6991/gitsigns.nvim",
-		config = function() require("gitsigns").setup() end,
+		config = function()
+			require("gitsigns").setup()
+		end,
 		event = { "BufRead", "BufNewFile" },
 	})
 
@@ -182,40 +206,48 @@ return packer.startup(function(use)
 
 	use({
 		"numToStr/Comment.nvim",
-		config = function() require("Comment").setup() end,
+		config = function()
+			require("Comment").setup()
+		end,
 		event = "BufRead",
 	})
 
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-		event = { "BufRead", "BufNewFile" }
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
 		"nvim-telescope/telescope-file-browser.nvim",
-		after = "telescope-fzf-native.nvim"
+		after = "telescope-fzf-native.nvim",
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		after = "telescope-fzf-native.nvim",
-		config = function() require("plugins.config.telescope") end
+		config = function()
+			require("plugins.config.telescope")
+		end,
 	})
 
 	use({
 		"yamatsum/nvim-cursorline",
-		event = { "BufRead", "BufNewFile" }
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
 		"norcalli/nvim-colorizer.lua",
-		config = function() require("colorizer").setup() end,
-		event = { "BufRead", "BufNewFile" }
+		config = function()
+			require("colorizer").setup()
+		end,
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
 		"folke/which-key.nvim",
-		config = function() require("plugins.config.whichkey") end,
-		event = { "BufRead", "BufNewFile" }
+		config = function()
+			require("plugins.config.whichkey")
+		end,
+		event = { "BufRead", "BufNewFile" },
 	})
 end)

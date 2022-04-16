@@ -1,6 +1,6 @@
 local nvim_lsp = require("lspconfig")
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local servers = {
 	"tsserver",
@@ -10,7 +10,7 @@ local servers = {
 	"emmet_ls",
 	"html",
 	"jsonls",
-	"vimls"
+	"vimls",
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
@@ -26,11 +26,11 @@ nvim_lsp.omnisharp.setup({
 
 nvim_lsp.sumneko_lua.setup({
 	capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = {"vim"},
-            },
-        },
-    },
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
 })

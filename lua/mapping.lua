@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map("x", "$", "g_",{ silent = true})
+map("x", "$", "g_", { silent = true })
 
 -- Horizontal Scroll
 map("n", "<C-Left>", "20zh")
@@ -12,18 +12,32 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
-map({ "n", "i" }, "<S-e>", function() require'nvim-tree'.toggle(false) end)
+map({ "n", "i" }, "<S-e>", function()
+	require("nvim-tree").toggle(false)
+end)
 
 -- Terminal
 map("n", "<C-\\>", ":ToggleTerm<CR>")
 
 -- Telescope
-map("n", "<leader>ff", function() require('telescope.builtin').find_files() end)
-map("n", "<C-f>", function() require('telescope.builtin').current_buffer_fuzzy_find() end)
-map("n", "<F1>", function() require('telescope.builtin').help_tags() end)
-map("n", "<C-e>", function() require('telescope.builtin').file_browser() end)
-map({ "n", "i" }, "<S-F12>", function() require('telescope.builtin').lsp_references() end)
-map("n", "<C-p>", function() require('telescope.builtin').commands() end)
+map("n", "<leader>ff", function()
+	require("telescope.builtin").find_files()
+end)
+map("n", "<C-f>", function()
+	require("telescope.builtin").current_buffer_fuzzy_find()
+end)
+map("n", "<F1>", function()
+	require("telescope.builtin").help_tags()
+end)
+map("n", "<C-e>", function()
+	require("telescope.builtin").file_browser()
+end)
+map({ "n", "i" }, "<S-F12>", function()
+	require("telescope.builtin").lsp_references()
+end)
+map("n", "<C-p>", function()
+	require("telescope.builtin").commands()
+end)
 
 -- Buffer line
 map("n", "<Tab>", ":BufferLineCycleNext<CR>")
@@ -33,9 +47,15 @@ map("n", "<A-Right>", ":BufferLineMoveNext<CR>")
 map("n", "<A-Left>", ":BufferLineMovePrev<CR>")
 
 -- Lsp
-map("n", "<C-F12>", function() vim.lsp.buf.implementation() end)
-map("n", "<leader>gw", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
-map("n", "<F12>", function() vim.lsp.buf.definition() end)
+map("n", "<C-F12>", function()
+	vim.lsp.buf.implementation()
+end)
+map("n", "<leader>gw", function()
+	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end)
+map("n", "<F12>", function()
+	vim.lsp.buf.definition()
+end)
 
 --Lspsaga
 -- map("n", "<S-F12>", ":Lspsaga lsp_finder<CR>")
@@ -55,8 +75,12 @@ map("n", "<leader>xl", ":TroubleToggle loclist<cr>")
 -- map("n", "gR", ":TroubleToggle lsp_references<cr>")
 
 --Format
-map("n", "<A-f>", function() vim.lsp.buf.formatting() end)
-map("v", "<A-f>", function() vim.lsp.buf.range_formatting() end)
+map("n", "<A-f>", function()
+	vim.lsp.buf.formatting()
+end)
+map("v", "<A-f>", function()
+	vim.lsp.buf.range_formatting()
+end)
 
 --Moving line
 map("n", "<A-j>", ":m .+1<CR>==")
