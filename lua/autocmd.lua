@@ -27,3 +27,10 @@ nvim_create_autocmd("TermOpen", {
 nvim_create_autocmd("QuitPre", {
 	command = "wshada",
 })
+
+nvim_create_autocmd("User", {
+	callback = function()
+		vim.notify("packer.compile: Complete", vim.log.levels.INFO, { title = "packer.nvim" })
+	end,
+	pattern = "PackerCompileDone",
+})

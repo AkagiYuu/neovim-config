@@ -4,13 +4,13 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 local servers = {
 	"tsserver",
+	"gopls",
 	"pyright",
 	"clangd",
 	"cssls",
 	"emmet_ls",
 	"html",
 	"jsonls",
-	"vimls",
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({

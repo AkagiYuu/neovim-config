@@ -209,7 +209,7 @@ return packer.startup(function(use)
 		config = function()
 			require("Comment").setup()
 		end,
-		event = "BufRead",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -224,7 +224,7 @@ return packer.startup(function(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		after = "telescope-fzf-native.nvim",
+		after = "telescope-file-browser.nvim",
 		config = function()
 			require("plugins.config.telescope")
 		end,
