@@ -34,6 +34,18 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+		-- completion = {
+		--     border = 'single',
+		--     winhighlight = 'FloatBorder:Normal'
+		-- },
+		-- documentation = {
+		--     border = 'single',
+		--     winhighlight = 'FloatBorder:Normal'
+		-- },
+	},
 	mapping = {
 		["<Down>"] = {
 			i = cmp.mapping.select_next_item({

@@ -9,7 +9,7 @@ if ok then
 		variablebuiltinStyle = "italic",
 		specialReturn = true, -- special highlight for the return keyword
 		specialException = true, -- special highlight for exception handling keywords
-		transparent = true, -- do not set background color
+		-- transparent = true, -- do not set background color
 		overrides = {
 			CursorLine = {
 				bg = "NONE",

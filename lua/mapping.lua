@@ -12,7 +12,7 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
-map({ "n", "i" }, "<S-e>", function()
+map("n", "<S-e>", function()
 	require("nvim-tree").toggle(false)
 end)
 

@@ -13,6 +13,11 @@ nvim_create_autocmd({
 	command = "checktime",
 })
 
+-- nvim_create_autocmd('BufWritePost', {
+--     command = 'source <afile> | PackerCompile',
+--     pattern = 'init.lua'
+-- })
+
 nvim_create_autocmd("InsertCharPre", {
 	callback = function()
 		require("plugins.config.lspsaga_config").lspsaga_open_signature_help()
