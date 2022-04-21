@@ -49,9 +49,9 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"feline-nvim/feline.nvim",
+		"tamton-aquib/staline.nvim",
 		config = function()
-			require("plugins.config.feline")
+			require("plugins.config.staline")
 		end,
 		after = "nvim-web-devicons",
 	})

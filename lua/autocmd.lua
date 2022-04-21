@@ -38,5 +38,5 @@ nvim_create_autocmd("User", {
 		vim.notify("packer.compile: Complete", vim.log.levels.INFO, { title = "packer.nvim" })
 	end,
 	pattern = "PackerCompileDone",
-	desc = "Notify after packer.compile completes"
+	desc = "Notify after packer.compile completes",
 })
