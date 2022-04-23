@@ -1,16 +1,16 @@
-local present, impatient = pcall(require, "impatient")
-local modules = { "option", "autocmd", "mapping" }
-
-for _, module in ipairs(modules) do
-	local ok, err = pcall(require, module)
-	if not ok then
-		error("Error loading " .. module .. "\n\n" .. err)
+local load = function(modules)
+	for _, module in ipairs(modules) do
+		local ok, err = pcall(require, module)
+		if not ok then
+			error("Error loading " .. module .. "\n\n" .. err)
+		end
 	end
 end
-require("theme")
+load({ "impatient", "option", "theme" })
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
+	load({ "autocmd", "mapping" })
 	require("plugins")
 
 	vim.defer_fn(function()
