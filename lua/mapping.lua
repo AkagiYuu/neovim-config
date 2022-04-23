@@ -12,6 +12,12 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
+--Resize window
+map("n", "<C-Up>", ":resize -2<CR>")
+map("n", "<C-Down>", ":resize +2<CR>")
+map("n", "<C-Left>", ":vertical resize -2<CR>")
+map("n", "<C-Right>", ":vertical resize +2<CR>")
+
 map("n", "<F3>", function()
 	require("nvim-tree").toggle(false)
 end, { desc = "Toggle file tree" })
@@ -47,15 +53,11 @@ map("n", "<A-Right>", ":BufferLineMoveNext<CR>")
 map("n", "<A-Left>", ":BufferLineMovePrev<CR>")
 
 -- Lsp
-map("n", "<C-F12>", function()
-	vim.lsp.buf.implementation()
-end, { desc = "Search for implementation" })
+map("n", "<C-F12>", vim.lsp.buf.implementation, { desc = "Search for implementation" })
 map("n", "<leader>gw", function()
 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "Print current workspace" })
-map("n", "<F12>", function()
-	vim.lsp.buf.definition()
-end, { desc = "Search for definition" })
+map("n", "<F12>", vim.lsp.buf.definition, { desc = "Search for definition" })
 
 --Lspsaga
 -- map("n", "<S-F12>", ":Lspsaga lsp_finder<CR>")
@@ -75,12 +77,8 @@ map("n", "<leader>xl", ":TroubleToggle loclist<cr>")
 -- map("n", "gR", ":TroubleToggle lsp_references<cr>")
 
 --Format
-map("n", "<A-f>", function()
-	vim.lsp.buf.formatting()
-end, { desc = "Format" })
-map("v", "<A-f>", function()
-	vim.lsp.buf.range_formatting()
-end, { desc = "Format" })
+map("n", "<A-f>", vim.lsp.buf.formatting, { desc = "Format" })
+map("v", "<A-f>", vim.lsp.buf.range_formatting, { desc = "Format" })
 
 --Moving line
 map("n", "<A-j>", ":m .+1<CR>==")
