@@ -2,11 +2,11 @@ local _, impatient = pcall(require, "impatient")
 local util = require("util")
 
 util.disableBuiltins()
-util.load({ "option", "theme" })
+util.load({ "option", "theme", "autocmd" })
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
-	util.load({ "autocmd", "mapping" })
+	util.load({ "mapping" })
 	require("plugins")
 
 	vim.defer_fn(function()
