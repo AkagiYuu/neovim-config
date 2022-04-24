@@ -130,6 +130,11 @@ return packer.startup(function(use)
 		"windwp/nvim-ts-autotag",
 		after = "nvim-treesitter",
 	})
+	use ({
+		'm-demare/hlargs.nvim',
+		after = "nvim-treesitter",
+		config = function() require('hlargs').setup() end,
+	})
 
 	use({
 		"windwp/nvim-autopairs",

@@ -111,3 +111,4 @@ For windows terminal users, add the following line to settings.json for ctrl + s
 - [Notify](https://github.com/rcarriga/nvim-notify)
 - [Whichkey](https://github.com/folke/which-key.nvim)
 - [Startup time](https://github.com/dstein64/vim-startuptime)
+- [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
