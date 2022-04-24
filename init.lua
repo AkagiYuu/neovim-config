@@ -1,16 +1,11 @@
-local load = function(modules)
-	for _, module in ipairs(modules) do
-		local ok, err = pcall(require, module)
-		if not ok then
-			error("Error loading " .. module .. "\n\n" .. err)
-		end
-	end
-end
-load({ "impatient", "option", "theme" })
+local util = require("util")
+
+util.disableBuiltins()
+util.load({ "impatient", "option", "theme" })
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()
-	load({ "autocmd", "mapping" })
+	util.load({ "autocmd", "mapping" })
 	require("plugins")
 
 	vim.defer_fn(function()
@@ -32,13 +27,7 @@ main = vim.loop.new_async(vim.schedule_wrap(function()
 
 	require("ginit")
 	-- User custom config
-	if vim.fn.filereadable(vim.fn.stdpath("config") .. "/lua/custom/init.lua") == 1 then
-		local ok, err = pcall(require, "custom")
-		if not ok then
-			vim.notify("Error loading custom/init.lua\n\n" .. err)
-		end
-		return
-	end
+	util.loadUserSettings()
 	main:close()
 end))
 main:send()
