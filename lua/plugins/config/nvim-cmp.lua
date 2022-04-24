@@ -117,9 +117,9 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = 'calc' },
-		{ name = 'nvim_lsp_signature_help' },
-		{ name = 'rg' }
+		{ name = "calc" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "rg" },
 	}),
 	formatting = {
 		fields = { "kind", "abbr" },

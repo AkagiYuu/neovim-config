@@ -18,11 +18,11 @@ nvim_create_autocmd({
 --     pattern = 'init.lua'
 -- })
 
-nvim_create_autocmd("InsertCharPre", {
-	callback = function()
-		require("plugins.config.lspsaga_config").lspsaga_open_signature_help()
-	end,
-})
+-- nvim_create_autocmd("InsertCharPre", {
+-- 	callback = function()
+-- 		require("plugins.config.lspsaga_config").lspsaga_open_signature_help()
+-- 	end,
+-- })
 
 nvim_create_autocmd("TermOpen", {
 	command = "setlocal nonumber nospell",

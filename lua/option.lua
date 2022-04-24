@@ -2,8 +2,8 @@ local opt = vim.opt
 opt.termguicolors = true
 opt.guicursor = ""
 opt.mouse = "a"
-opt.pumblend = 15 -- Opacity
--- opt.laststatus = 3
+-- opt.pumblend = 15 -- Opacity
+opt.laststatus = 3
 
 opt.wrap = false
 opt.undofile = true
@@ -27,8 +27,6 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
 opt.fillchars = "fold: "
-opt.foldnestmax = 3
-opt.foldminlines = 1
 opt.foldenable = false
 
 opt.scrolloff = 7

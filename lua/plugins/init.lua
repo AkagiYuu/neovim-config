@@ -74,7 +74,6 @@ return packer.startup(function(use)
 
 	use({
 		"neovim/nvim-lspconfig",
-		requires = "hrsh7th/cmp-nvim-lsp",
 		config = function()
 			require("plugins.config.lspconfig")
 		end,
@@ -98,13 +97,16 @@ return packer.startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
-			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "L3MON4D3/LuaSnip", after = "nvim-cmp" },
 			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 			{ "rafamadriz/friendly-snippets", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+			{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 		},
 		config = function()
 			require("plugins.config.nvim-cmp")
@@ -130,10 +132,12 @@ return packer.startup(function(use)
 		"windwp/nvim-ts-autotag",
 		after = "nvim-treesitter",
 	})
-	use ({
-		'm-demare/hlargs.nvim',
+	use({
+		"m-demare/hlargs.nvim",
 		after = "nvim-treesitter",
-		config = function() require('hlargs').setup() end,
+		config = function()
+			require("hlargs").setup()
+		end,
 	})
 
 	use({

@@ -1,7 +1,8 @@
+local _, impatient = pcall(require, "impatient")
 local util = require("util")
 
 util.disableBuiltins()
-util.load({ "impatient", "option", "theme" })
+util.load({ "option", "theme" })
 
 local main
 main = vim.loop.new_async(vim.schedule_wrap(function()

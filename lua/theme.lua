@@ -21,22 +21,24 @@
 -- 	})
 -- 	vim.cmd("colorscheme kanagawa")
 -- end
-local catppuccin = require("catppuccin")
-catppuccin.setup({
-	-- transparent_background = true,
-	term_colors = true,
-	styles = {
-		comments = "bold",
-		variables = "NONE",
-	},
-	integration = {
-		lsp_trouble = true,
-		lsp_saga = true,
-		which_key = true,
-		dashboard = false,
-		lightspeed = true,
-		ts_rainbow = true,
-	},
-})
-catppuccin.remap({ CursorLine = { bg = "NONE" } })
-vim.cmd([[colorscheme catppuccin]])
+local ok, catppuccin = pcall(require, "catppuccin")
+if ok then
+	catppuccin.setup({
+		-- transparent_background = true,
+		term_colors = true,
+		styles = {
+			comments = "bold",
+			variables = "NONE",
+		},
+		integration = {
+			lsp_trouble = true,
+			lsp_saga = true,
+			which_key = true,
+			dashboard = false,
+			lightspeed = true,
+			ts_rainbow = true,
+		},
+	})
+	catppuccin.remap({ CursorLine = { bg = "NONE" } })
+	vim.cmd([[colorscheme catppuccin]])
+end
