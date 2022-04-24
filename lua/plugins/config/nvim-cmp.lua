@@ -117,13 +117,10 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = 'calc' },
+		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'rg' }
 	}),
-	source_priority = {
-		nvim_lsp = 1000,
-		luasnip = 750,
-		buffer = 500,
-		path = 250,
-	},
 	formatting = {
 		fields = { "kind", "abbr" },
 		format = function(_, vim_item)
