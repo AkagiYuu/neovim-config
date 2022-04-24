@@ -12,7 +12,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 		install_path,
 	})
 	print("Installing packer close and reopen Neovim...")
-	vim.cmd[[packadd packer.nvim]]
 end
 
 local status_ok, packer = pcall(require, "packer")
