@@ -2,7 +2,7 @@
 
 ## Showcase
 
-- LSP code completion
+- Code completion
 ![CodeCompletion](screenshots/Completion.PNG)
 
 - [NvimTree](https://github.com/kyazdani42/nvim-tree.lua) as file tree
@@ -29,23 +29,23 @@
 
 ## Installation
 
-***Please backup any existing configuration files***
+- ***Backup your previous configuration***
+- Clone the repository
+  - Windows
 
-### Clone the repository
+  ```powershell
+  git clone https://github.com/AkagiYuu/neovim-config ~/.config/nvim
+  ```
 
-#### Linux
+  - Linux
 
-```text
-git clone https://github.com/AkagiYuu/neovim-config ~/.config/nvim
-nvim +PackerSync
-```
+  ```bash
+  git clone https://github.com/AkagiYuu/neovim-config ~/.config/nvim
+  ```
 
-#### Windows
-
-```text
-git clone https://github.com/AkagiYuu/neovim-config ~/AppData/Local/nvim
-nvim +PackerSync
-```
+- Install packer.nvim (run `nvim` once and quit)
+- Run `:PackerSync`
+- Restart neovim
 
 ## Bonus
 
