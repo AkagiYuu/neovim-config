@@ -92,6 +92,7 @@ For windows terminal users, add the following line to settings.json for ctrl + s
   - [Buffer](https://github.com/hrsh7th/cmp-buffer)
   - [Path](https://github.com/hrsh7th/cmp-path)
   - [Copilot](https://github.com/github/copilot.vim)
+  - ...
 - [Comment](https://github.com/numToStr/Comment.nvim)
 - [Auto pair](https://github.com/windwp/nvim-autopairs)
 - [Terminal](https://github.com/akinsho/toggleterm.nvim)
