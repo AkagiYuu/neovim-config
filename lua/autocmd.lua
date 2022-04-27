@@ -9,10 +9,10 @@ nvim_create_autocmd({ "CursorHold", "FocusGained", "FocusLost" }, {
 	command = "checktime",
 })
 
--- nvim_create_autocmd('BufWritePost', {
---     command = 'source <afile> | PackerCompile',
---     pattern = 'init.lua'
--- })
+nvim_create_autocmd("BufWritePost", {
+	command = "source <afile> | PackerCompile",
+	pattern = "**/lua/plugins/init.lua",
+})
 
 nvim_create_autocmd("TermOpen", {
 	command = "setlocal nonumber nospell",
@@ -25,7 +25,7 @@ nvim_create_autocmd("QuitPre", {
 
 nvim_create_autocmd("User", {
 	callback = function()
-		vim.notify("packer.compile: Complete", vim.log.levels.INFO, { title = "packer.nvim", })
+		vim.notify("packer.compile: Complete", vim.log.levels.INFO, { title = "packer.nvim" })
 	end,
 	pattern = "PackerCompileDone",
 	desc = "Notify after packer.compile completes",
