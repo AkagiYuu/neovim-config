@@ -10,11 +10,6 @@ telescope.setup({
 		entry_prefix = "  ",
 
 		mappings = {
-			-- n = {
-			-- 	["<A-p>"] = action_layout.toggle_preview,
-			-- 	["<C-Up>"] = actions.preview_scrolling_up,
-			-- 	["<C-Down>"] = actions.preview_scrolling_down,
-			-- },
 			i = {
 				["<A-p>"] = action_layout.toggle_preview,
 				["<C-Up>"] = actions.preview_scrolling_up,

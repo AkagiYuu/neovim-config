@@ -37,14 +37,6 @@ cmp.setup({
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
-		-- completion = {
-		--     border = 'single',
-		--     winhighlight = 'FloatBorder:Normal'
-		-- },
-		-- documentation = {
-		--     border = 'single',
-		--     winhighlight = 'FloatBorder:Normal'
-		-- },
 	},
 	mapping = {
 		["<Down>"] = {
