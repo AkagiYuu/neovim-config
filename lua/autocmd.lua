@@ -30,3 +30,10 @@ nvim_create_autocmd("User", {
 	pattern = "PackerCompileDone",
 	desc = "Notify after packer.compile completes",
 })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  desc = "Highlight on yank"
+})

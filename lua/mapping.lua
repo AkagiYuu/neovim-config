@@ -12,6 +12,14 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
+-- move cursor within insert mode
+map("i", "<C-h>", "<Left>")
+map("i", "<C-e>", "<End>")
+map("i", "<C-l>", "<Right>")
+map("i", "<C-j>", "<Down>")
+map("i", "<C-k>", "<Up>")
+map("i", "<C-a>", "<ESC>^i")
+
 --Resize window
 map("n", "<C-Up>", ":resize -2<CR>")
 map("n", "<C-Down>", ":resize +2<CR>")
