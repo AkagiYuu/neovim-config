@@ -227,13 +227,13 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 
-	use({
-		"nvim-telescope/telescope-file-browser.nvim",
-		after = "telescope-fzf-native.nvim",
-	})
+	-- use({
+	-- 	"nvim-telescope/telescope-file-browser.nvim",
+	-- 	after = "telescope-fzf-native.nvim",
+	-- })
 	use({
 		"nvim-telescope/telescope.nvim",
-		after = "telescope-file-browser.nvim",
+		after = "telescope-fzf-native.nvim",
 		config = function()
 			require("plugins.config.telescope")
 		end,
@@ -244,13 +244,13 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 
-	use({
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-		event = { "BufRead", "BufNewFile" },
-	})
+	-- use({
+	-- 	"norcalli/nvim-colorizer.lua",
+	-- 	config = function()
+	-- 		require("colorizer").setup()
+	-- 	end,
+	-- 	event = { "BufRead", "BufNewFile" },
+	-- })
 
 	use({
 		"folke/which-key.nvim",
