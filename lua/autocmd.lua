@@ -32,8 +32,8 @@ nvim_create_autocmd("User", {
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  desc = "Highlight on yank"
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	desc = "Highlight on yank",
 })

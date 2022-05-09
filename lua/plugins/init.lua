@@ -253,6 +253,12 @@ return packer.startup(function(use)
 	-- })
 
 	use({
+		"nvim-orgmode/orgmode",
+		config = function()
+			require("plugins.config.orgmode")
+		end,
+	})
+	use({
 		"folke/which-key.nvim",
 		config = function()
 			require("plugins.config.whichkey")
