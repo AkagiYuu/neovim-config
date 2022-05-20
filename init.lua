@@ -1,4 +1,5 @@
-local _, impatient = pcall(require, "impatient")
+pcall(require, "impatient")
+
 local util = require("util")
 
 util.disableBuiltins()

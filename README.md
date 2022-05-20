@@ -11,9 +11,6 @@
 - 🔭 [Fuzzy finder](https://github.com/nvim-telescope/telescope.nvim)
 ![Telescope](screenshots/Telescope.PNG)
 
-- [ZenMode](https://github.com/folke/zen-mode.nvim)
-![ZenMode](screenshots/ZenMode.PNG)
-
 ## Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
