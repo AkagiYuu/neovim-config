@@ -41,7 +41,7 @@ return packer.startup(function(use)
 
 	-- Theme
 	use({ "catppuccin/nvim", as = "catppuccin" })
-	use({ "rebelot/kanagawa.nvim" })
+	use 'Mofiqul/vscode.nvim'
 
 	use({
 		"kyazdani42/nvim-web-devicons",
@@ -125,10 +125,6 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"p00f/nvim-ts-rainbow",
-		after = "nvim-treesitter",
-	})
-	use({
 		"windwp/nvim-ts-autotag",
 		after = "nvim-treesitter",
 	})
@@ -172,7 +168,6 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 
-	-- Zen mode
 	use({
 		"folke/zen-mode.nvim",
 		requires = { { "folke/twilight.nvim", after = "zen-mode.nvim" } },
@@ -227,10 +222,6 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 
-	-- use({
-	-- 	"nvim-telescope/telescope-file-browser.nvim",
-	-- 	after = "telescope-fzf-native.nvim",
-	-- })
 	use({
 		"nvim-telescope/telescope.nvim",
 		after = "telescope-fzf-native.nvim",
@@ -244,20 +235,6 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 
-	-- use({
-	-- 	"norcalli/nvim-colorizer.lua",
-	-- 	config = function()
-	-- 		require("colorizer").setup()
-	-- 	end,
-	-- 	event = { "BufRead", "BufNewFile" },
-	-- })
-
-	use({
-		"nvim-orgmode/orgmode",
-		config = function()
-			require("plugins.config.orgmode")
-		end,
-	})
 	use({
 		"folke/which-key.nvim",
 		config = function()

@@ -70,7 +70,6 @@ For windows terminal users, add the following line to settings.json for ctrl + s
 - [Feline](https://github.com/feline-nvim/feline.nvim)
 - [Bufferline](https://github.com/akinsho/bufferline.nvim)
 - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-  - [ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)
   - [ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [Nvimtree](https://github.com/kyazdani42/nvim-tree.lua)
 - [Telescope](https://github.com/nvim-telescope/telescope.nvim)
@@ -105,7 +104,6 @@ For windows terminal users, add the following line to settings.json for ctrl + s
   - [Twilight](https://github.com/folke/twilight.nvim)
 - [Git signs](https://github.com/lewis6991/gitsigns.nvim)
 - Theme
-  - [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
   - [Catppuccin](https://github.com/catppuccin/nvim)
 - Icon
   - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
