@@ -24,7 +24,7 @@ main = vim.loop.new_async(vim.schedule_wrap(function()
 			opt.shellquote = ""
 			opt.shellxquote = ""
 		end
-	end, 800)
+	end, 1000)
 
 	require("ginit")
 	-- User custom config

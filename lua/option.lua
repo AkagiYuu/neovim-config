@@ -1,4 +1,5 @@
 local opt = vim.opt
+
 opt.termguicolors = true
 opt.guicursor = ""
 opt.mouse = "a"
