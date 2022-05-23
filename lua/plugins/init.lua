@@ -68,8 +68,7 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.config.bufferline")
 		end,
-		opt = true
-		-- after = "nvim-web-devicons",
+		after = "nvim-web-devicons",
 	})
 
 	use({
