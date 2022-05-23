@@ -257,3 +257,4 @@ require("feline").setup({
 		bufnames = {},
 	},
 })
+require('feline').winbar.setup()

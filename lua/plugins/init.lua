@@ -48,20 +48,28 @@ return packer.startup(function(use)
 		event = { "BufRead", "BufNewFile" },
 	})
 
-	use({
-		"tamton-aquib/staline.nvim",
-		config = function()
-			require("plugins.config.staline")
-		end,
-		after = "nvim-web-devicons",
-	})
+	-- use({
+	-- 	"tamton-aquib/staline.nvim",
+	-- 	config = function()
+	-- 		require("plugins.config.staline")
+	-- 	end,
+	-- 	after = "nvim-web-devicons",
+	-- })
+    use({
+        'rebelot/heirline.nvim',
+        config = function()
+            require("plugins.config.heirline")
+        end,
+        after = 'nvim-web-devicons',
+    })
 
 	use({
 		"akinsho/bufferline.nvim",
 		config = function()
 			require("plugins.config.bufferline")
 		end,
-		after = "nvim-web-devicons",
+		opt = true
+		-- after = "nvim-web-devicons",
 	})
 
 	use({

@@ -5,6 +5,7 @@ opt.guicursor = ""
 opt.mouse = "a"
 -- opt.pumblend = 15 -- Opacity
 opt.laststatus = 3
+opt.fillchars= opt.fillchars + [[eob:\]]
 
 opt.wrap = false
 opt.undofile = true
