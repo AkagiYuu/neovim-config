@@ -41,7 +41,7 @@ return packer.startup(function(use)
 
 	-- Theme
 	use({ "catppuccin/nvim", as = "catppuccin" })
-	use 'Mofiqul/vscode.nvim'
+	use("Mofiqul/vscode.nvim")
 
 	use({
 		"kyazdani42/nvim-web-devicons",
@@ -55,13 +55,13 @@ return packer.startup(function(use)
 	-- 	end,
 	-- 	after = "nvim-web-devicons",
 	-- })
-    use({
-        'rebelot/heirline.nvim',
-        config = function()
-            require("plugins.config.heirline")
-        end,
-        after = 'nvim-web-devicons',
-    })
+	use({
+		"rebelot/heirline.nvim",
+		config = function()
+			require("plugins.config.heirline")
+		end,
+		after = "nvim-web-devicons",
+	})
 
 	use({
 		"akinsho/bufferline.nvim",

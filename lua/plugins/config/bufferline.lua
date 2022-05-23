@@ -1,8 +1,8 @@
-vim.cmd [[
+vim.cmd([[
  function! Quit_vim(a,b,c,d)
      qa
  endfunction
-]]
+]])
 require("bufferline").setup({
 	options = {
 		max_name_length = 10,
@@ -19,12 +19,12 @@ require("bufferline").setup({
 		show_close_icon = false,
 		persist_buffer_sort = true,
 		enforce_regular_tabs = true,
-        custom_areas = {
-         right = function()
-            return {
-               { text = "%@Quit_vim@ %X" },
-            }
-         end,
-      },
+		custom_areas = {
+			right = function()
+				return {
+					{ text = "%@Quit_vim@ %X" },
+				}
+			end,
+		},
 	},
 })

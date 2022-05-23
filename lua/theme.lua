@@ -22,7 +22,7 @@
 
 vim.g.vscode_style = "dark"
 if not vim.g.nvui then
-    vim.g.vscode_transparent = 1
-    vim.g.vscode_disable_nvimtree_bg = true
+	vim.g.vscode_transparent = 1
+	vim.g.vscode_disable_nvimtree_bg = true
 end
 pcall(vim.cmd, [[colorscheme vscode]])
