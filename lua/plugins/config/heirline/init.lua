@@ -98,23 +98,19 @@ local git = {
 	init = function(self)
 		self.status_dict = vim.b.gitsigns_status_dict
 	end,
-	heirline.make_flexible_component(
-		2,
+	heirline.make_flexible_component(2, {
 		{
-			{
-				provider = "  ",
-				hl = {
-					fg = util.colours.git.add,
-				},
-			},
-			{
-				provider = function(self)
-					return self.status_dict.head
-				end,
+			provider = "  ",
+			hl = {
+				fg = util.colours.git.add,
 			},
 		},
-		null
-	),
+		{
+			provider = function(self)
+				return self.status_dict.head
+			end,
+		},
+	}, null),
 	{
 		condition = function(self)
 			return self.has_changes == self.status_dict.added ~= 0
