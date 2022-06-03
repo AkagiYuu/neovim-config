@@ -1,3 +1,3 @@
 require("cybu").setup({
-    display_time = 1500,
+	display_time = 1500,
 })
