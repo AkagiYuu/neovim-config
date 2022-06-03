@@ -8,12 +8,6 @@ nvim_create_autocmd("User", {
 nvim_create_autocmd({ "CursorHold", "FocusGained", "FocusLost" }, {
 	command = "checktime",
 })
-nvim_create_autocmd({ "CursorHold" }, {
-	callback = function()
-		require("lspsaga.hover").render_hover_doc()
-	end,
-	desc = "Hover doc"
-})
 
 nvim_create_autocmd("BufWritePost", {
 	command = "source <afile> | PackerCompile",
@@ -37,7 +31,7 @@ nvim_create_autocmd("User", {
 	desc = "Notify after packer.compile completes",
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
+nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
