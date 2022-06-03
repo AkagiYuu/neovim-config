@@ -41,7 +41,10 @@ return packer.startup(function(use)
 
     -- Theme
     use({ "catppuccin/nvim", as = "catppuccin" })
-    use("Mofiqul/vscode.nvim")
+    use({
+        "Mofiqul/vscode.nvim",
+        opt = true
+    })
 
     use({
         "kyazdani42/nvim-web-devicons",

@@ -42,7 +42,6 @@ nvim_lsp.sumneko_lua.setup({
 
 --Diagnostic configuration
 vim.diagnostic.config({
-	-- virtual_text = false,
 	signs = true,
 })
 
