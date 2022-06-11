@@ -106,20 +106,16 @@ cmp.setup({
 			end,
 		},
 	},
-	sources = cmp.config.sources({
-		{
-			name = "nvim_lsp",
-		},
-		{
-			name = "calc",
-		},
-		{
-			name = "nvim_lsp_signature_help",
-		},
-		{
-			name = "rg",
-		},
-	}),
+	sources = {
+		{ name = "copilot", max_item_count = 2 },
+		{ name = "luasnip", max_item_count = 2 },
+		{ name = "nvim_lsp" },
+		{ name = "buffer" },
+		{ name = "path" },
+		{ name = "calc" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "rg", keyword_length = 5 },
+	},
 	formatting = {
 		fields = { "kind", "abbr" },
 		format = function(_, vim_item)
@@ -127,12 +123,15 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+	experimental = {
+		ghost_text = true,
+	},
 })
 
 cmp.setup.cmdline("/", {
-	sources = { {
-		name = "buffer",
-	} },
+	sources = {
+		{ name = "buffer" },
+	},
 })
 
 cmp.setup.cmdline(":", {

@@ -1,13 +1,12 @@
 local nvim_lsp = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.offsetEncoding = "utf-8"
 
 local servers = {
 	"tsserver",
 	"gopls",
+	"rust_analyzer",
 	"pyright",
-	"clangd",
 	"cssls",
 	"emmet_ls",
 	"html",
@@ -19,10 +18,15 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+capabilities.offsetEncoding = "utf-8"
+nvim_lsp.clangd.setup({
+	capabilities = capabilities,
+})
+
 local pid = vim.fn.getpid()
 nvim_lsp.omnisharp.setup({
 	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 })
 
 nvim_lsp.sumneko_lua.setup({
