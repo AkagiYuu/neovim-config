@@ -58,6 +58,7 @@ cmp.setup({
 			i = function(fallback)
 				if cmp.visible() then
 					cmp.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
 						select = true,
 					})
 				elseif luasnip.expand_or_jumpable() then
