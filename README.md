@@ -87,7 +87,7 @@ For windows terminal users, add the following line to settings.json for ctrl + s
   - [Cmdline](https://github.com/hrsh7th/cmp-cmdline)
   - [Buffer](https://github.com/hrsh7th/cmp-buffer)
   - [Path](https://github.com/hrsh7th/cmp-path)
-  - [Copilot](https://github.com/github/copilot.vim)
+  - [Copilot](https://github.com/zbirenbaum/copilot-cmp)
   - ...
 - [Comment](https://github.com/numToStr/Comment.nvim)
 - [Auto pair](https://github.com/windwp/nvim-autopairs)
@@ -108,3 +108,4 @@ For windows terminal users, add the following line to settings.json for ctrl + s
 - [Whichkey](https://github.com/folke/which-key.nvim)
 - [Startup time](https://github.com/dstein64/vim-startuptime)
 - [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
+- [winbar](https://github.com/fgheng/winbar.nvim)
