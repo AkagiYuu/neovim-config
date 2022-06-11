@@ -183,8 +183,3 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", {
 	silent = true,
 	desc = "Move line up",
 })
-
-map("i", "<C-cr>", ":Copilot<CR>", {
-	silent = true,
-	desc = "Open copilot window",
-})

@@ -29,7 +29,6 @@ packer.init({
 	},
 })
 
--- Plugin
 return packer.startup(function(use)
 	use("lewis6991/impatient.nvim")
 	use("nathom/filetype.nvim")
@@ -124,7 +123,14 @@ return packer.startup(function(use)
 		end,
 		event = { "BufRead", "BufNewFile" },
 	})
-	use({ "github/copilot.vim", event = "InsertCharPre" })
+	use({
+		"zbirenbaum/copilot-cmp",
+		requires = "zbirenbaum/copilot.lua",
+		config = function()
+			require("plugins.config.copilot")
+		end,
+		event = "InsertEnter",
+	})
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -252,5 +258,13 @@ return packer.startup(function(use)
 			require("plugins.config.whichkey")
 		end,
 		event = { "BufRead", "BufNewFile" },
+	})
+
+	use({
+		"fgheng/winbar.nvim",
+		requires = "SmiteshP/nvim-gps",
+		config = function()
+			require("plugins.config.winbar")
+		end,
 	})
 end)
