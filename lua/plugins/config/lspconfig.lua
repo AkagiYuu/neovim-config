@@ -11,6 +11,7 @@ local servers = {
 	"emmet_ls",
 	"html",
 	"jsonls",
+    "bashls"
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
