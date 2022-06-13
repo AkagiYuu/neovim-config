@@ -3,19 +3,16 @@ local opt = vim.opt
 opt.termguicolors = true
 opt.guicursor = ""
 opt.mouse = "a"
--- opt.pumblend = 15 -- Opacity
 opt.laststatus = 3
-opt.fillchars = opt.fillchars + [[eob:\]]
 
 opt.wrap = false
 opt.undofile = true
 opt.shada = ""
-opt.updatetime = 300
+opt.updatetime = 200
 
 opt.showmode = false
 
 opt.number = true
-opt.relativenumber = true
 opt.signcolumn = "number"
 
 opt.softtabstop = 4
@@ -32,3 +29,4 @@ opt.fillchars = "fold: "
 opt.foldenable = false
 
 opt.scrolloff = 7
+opt.fillchars = "eob: "
