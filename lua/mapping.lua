@@ -31,9 +31,7 @@ map("n", "<C-l>", "<C-w>l", {
 map("n", "<C-Up>", ":resize -2<CR>", { silent = true })
 map("n", "<C-Down>", ":resize +2<CR>", { silent = true })
 
-map("n", "<F3>", function()
-	require("nvim-tree").toggle(false)
-end, {
+map("n", "<F3>", ":NvimTreeToggle<cr>", {
 	desc = "Toggle file tree",
 	silent = true,
 })
@@ -56,12 +54,6 @@ end, {
 	desc = "Find in current buffer",
 	silent = true,
 })
-map("n", "<F1>", function()
-	require("telescope.builtin").help_tags()
-end, {
-	desc = "Help",
-	silent = true,
-})
 map("n", "<C-p>", function()
 	require("telescope.builtin").commands()
 end, {
@@ -69,16 +61,11 @@ end, {
 	silent = true,
 })
 
--- Buffer line
-map("n", "<Tab>", function()
-	require("cybu").cycle("next")
-end, {
+map("n", "<Tab>", ":CybuNext<cr>", {
 	desc = "Go to next tab",
 	silent = true,
 })
-map("n", "<S-Tab>", function()
-	require("cybu").cycle("prev")
-end, {
+map("n", "<S-Tab>", ":CybuPre<cr>", {
 	desc = "Go to previous tab",
 	silent = true,
 })
@@ -87,7 +74,6 @@ map("n", "<C-T>", ":BufferLinePick<CR>", {
 	desc = "Pick a buffer",
 })
 
--- Lsp
 map("n", "<C-F12>", vim.lsp.buf.implementation, {
 	desc = "Search for implementation",
 	silent = true,
@@ -97,7 +83,6 @@ map("n", "<F12>", vim.lsp.buf.definition, {
 	silent = true,
 })
 
---Lspsaga
 map("n", "<S-F12>", function()
 	require("lspsaga.provider").lsp_finder()
 end, {
@@ -110,6 +95,7 @@ end, {
 	desc = "Rename",
 	silent = true,
 })
+
 map("n", "<A-cr>", function()
 	require("lspsaga.codeaction").code_action()
 end, {
@@ -122,6 +108,7 @@ end, {
 	desc = "Code action",
 	silent = true,
 })
+
 map("n", "K", function()
 	require("lspsaga.hover").render_hover_doc()
 end, {

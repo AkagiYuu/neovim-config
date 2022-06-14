@@ -1,4 +1,5 @@
 local opt = vim.opt
+_G.config = {}
 
 opt.termguicolors = true
 opt.guicursor = ""
@@ -21,12 +22,12 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 
+opt.fillchars = "fold: ,eob: "
+--
 -- https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
-opt.fillchars = "fold: "
+opt.foldtext = [[substitute(getline(v:foldstart),'\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
 opt.foldenable = false
 
 opt.scrolloff = 7
-opt.fillchars = "eob: "
