@@ -3,20 +3,15 @@ pcall(require, "impatient")
 local util = require("util")
 
 util.disableBuiltins()
-util.load({ "option", "theme", "autocmd" })
+util.load({ "option", "autocmd", "theme" })
 
-local main
-main = vim.loop.new_async(vim.schedule_wrap(function()
-	util.load({ "mapping" })
+vim.defer_fn(function()
+	require("mapping")
 	require("plugins")
 
-	vim.cmd([[ rshada! ]])
-	util.setCursorPosition()
+	vim.cmd([[ rshada ]])
 
 	if vim.loop.os_uname().version:match("Windows") then
 		util.usePowerShell()
 	end
-
-	main:close()
-end))
-main:send()
+end, 1000)
