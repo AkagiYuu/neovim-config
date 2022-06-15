@@ -388,7 +388,7 @@ local active_right_segment = {
 			space,
 			{
 				provider = function()
-					return string.upper(vim.bo.filetype)
+					return vim.bo.filetype
 				end,
 			},
 		},

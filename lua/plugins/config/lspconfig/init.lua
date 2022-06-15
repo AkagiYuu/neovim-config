@@ -1,4 +1,4 @@
-local nvim_lsp = require("lspconfig")
+local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -11,26 +11,20 @@ local servers = {
 	"emmet_ls",
 	"html",
 	"jsonls",
-    "bashls"
+	"bashls",
 }
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
+	lspconfig[lsp].setup({
 		capabilities = capabilities,
 	})
 end
 
 capabilities.offsetEncoding = "utf-8"
-nvim_lsp.clangd.setup({
+lspconfig.clangd.setup({
 	capabilities = capabilities,
 })
 
-local pid = vim.fn.getpid()
-nvim_lsp.omnisharp.setup({
-	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
-	-- capabilities = capabilities,
-})
-
-nvim_lsp.sumneko_lua.setup({
+local sumneko = require("plugins.config.lspconfig.sumneko").setting({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -38,12 +32,13 @@ nvim_lsp.sumneko_lua.setup({
 				globals = { "vim" },
 			},
 			-- workspace = {
-			-- Make the server aware of Neovim runtime files
-			-- library = vim.api.nvim_get_runtime_file('', true),
+			-- -- Make the server aware of Neovim runtime files
+			-- 	library = vim.api.nvim_get_runtime_file('', true),
 			-- },
 		},
 	},
 })
+lspconfig.sumneko_lua.setup(sumneko)
 
 --Diagnostic configuration
 vim.diagnostic.config({
