@@ -37,7 +37,6 @@ M.load = function(modules)
 end
 
 M.setCursorPosition = function()
-
 	-- Return if the file doesn't exist, like a new and unsaved file
 	if fn.empty(fn.glob(fn.expand("%"))) ~= 0 then
 		return
