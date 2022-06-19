@@ -28,6 +28,15 @@ local cmp_kinds = {
 	Operator = "  ",
 	TypeParameter = "  ",
 }
+
+local source_map = {
+	buffer = "[buffer]",
+	cmp_tabnine = "[tabnine]",
+	copilot = "[copilot]",
+	path = "[path]",
+	rg = "[rg]",
+	calc = "[calc]",
+}
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -35,8 +44,12 @@ cmp.setup({
 		end,
 	},
 	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+		completion = cmp.config.window.bordered({
+			border = "single",
+		}),
+		documentation = cmp.config.window.bordered({
+			border = "single",
+		}),
 	},
 	mapping = {
 		["<Down>"] = {
@@ -54,11 +67,13 @@ cmp.setup({
 			c = cmp.mapping.close(),
 		},
 		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-d>"] = cmp.mapping.scroll_docs(5),
+		["<C-f>"] = cmp.mapping.scroll_docs(-5),
 		["<Tab>"] = {
 			i = function(fallback)
 				if cmp.visible() then
 					cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
+						behavior = cmp.ConfirmBehavior.Replace,
 						select = true,
 					})
 				elseif luasnip.expand_or_jumpable() then
@@ -107,20 +122,24 @@ cmp.setup({
 			end,
 		},
 	},
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "copilot", max_item_count = 2 },
+		{ name = "cmp_tabnine", max_item_count = 2 },
 		{ name = "luasnip", max_item_count = 2 },
 		{ name = "nvim_lsp" },
+		{ name = "crates" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "calc" },
+	}, {
 		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "calc" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "rg", keyword_length = 5 },
-	},
+		{ name = "rg" },
+	}),
 	formatting = {
-		fields = { "kind", "abbr" },
-		format = function(_, vim_item)
+		fields = { "kind", "abbr", "menu" },
+		format = function(entry, vim_item)
 			vim_item.kind = cmp_kinds[vim_item.kind] or ""
+			vim_item.menu = source_map[entry.source.name] or ""
 			return vim_item
 		end,
 	},
@@ -136,9 +155,8 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
-	sources = cmp.config.sources({ {
-		name = "path",
-	}, {
-		name = "cmdline",
-	} }),
+	sources = {
+		{ name = "cmdline" },
+		{ name = "path" },
+	},
 })

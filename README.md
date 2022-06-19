@@ -77,7 +77,6 @@ For windows terminal users, add the following line to settings.json for ctrl + s
   - [Lspconfig](https://github.com/neovim/nvim-lspconfig)
   - [Cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
   - [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim)
-  - [Fidget](https://github.com/j-hui/fidget.nvim)
   - [Lspsaga](https://github.com/tami5/lspsaga.nvim)
 - Completion
   - [Cmp](https://github.com/hrsh7th/nvim-cmp)
@@ -108,4 +107,4 @@ For windows terminal users, add the following line to settings.json for ctrl + s
 - [Whichkey](https://github.com/folke/which-key.nvim)
 - [Startup time](https://github.com/dstein64/vim-startuptime)
 - [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
-- [winbar](https://github.com/fgheng/winbar.nvim)
+- [focus.nvim](https://github.com/beauwilliams/focus.nvim)

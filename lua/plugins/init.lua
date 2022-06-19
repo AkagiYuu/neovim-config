@@ -36,14 +36,8 @@ return packer.startup(function(use)
 
 	use("wbthomason/packer.nvim")
 
-	use({ "dstein64/vim-startuptime", cmd = { "StartupTime" } })
-
-	-- Theme
 	use({ "catppuccin/nvim", as = "catppuccin" })
-	use({
-		"Mofiqul/vscode.nvim",
-		opt = true,
-	})
+	use({ "dstein64/vim-startuptime", cmd = { "StartupTime" } })
 
 	use({
 		"kyazdani42/nvim-web-devicons",
@@ -55,7 +49,7 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.config.heirline")
 		end,
-		after = "nvim-web-devicons",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -63,15 +57,7 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.config.bufferline")
 		end,
-		after = "nvim-web-devicons",
-	})
-
-	use({
-		"ghillb/cybu.nvim",
-		config = function()
-			require("plugins.config.cybu")
-		end,
-		after = "nvim-web-devicons",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -81,6 +67,21 @@ return packer.startup(function(use)
 		end,
 		event = { "BufRead", "BufNewFile" },
 	})
+	use({
+		"nacro90/numb.nvim",
+		config = function()
+			require("plugins.config.numb")
+		end,
+		keys = ":",
+	})
+
+	use({
+		"ghillb/cybu.nvim",
+		config = function()
+			require("plugins.config.cybu")
+		end,
+		cmd = { "CybuNext", "CybuPre" },
+	})
 
 	use({
 		"neovim/nvim-lspconfig",
@@ -89,13 +90,19 @@ return packer.startup(function(use)
 		end,
 		event = { "BufReadPre", "BufNewFile" },
 	})
+
 	use({
-		"j-hui/fidget.nvim",
-		config = function()
-			require("plugins.config.fidget")
-		end,
-		event = { "BufRead", "BufNewFile" },
+		"folke/lua-dev.nvim",
+		module = "lua-dev",
 	})
+	-- use({
+	-- 	"j-hui/fidget.nvim",
+	-- 	config = function()
+	-- 		require("plugins.config.fidget")
+	-- 	end,
+	-- 	-- event = { "BufRead", "BufNewFile" },
+	-- 	opt = true
+	-- })
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		config = function()
@@ -105,31 +112,76 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"hrsh7th/nvim-cmp",
+		"hrsh7th/cmp-nvim-lsp",
+		after = "nvim-lspconfig",
+	})
+	use({
+		"L3MON4D3/LuaSnip",
 		requires = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip", after = "nvim-cmp" },
-			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-			{ "rafamadriz/friendly-snippets", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-			{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
+			{ "rafamadriz/friendly-snippets" },
 		},
 		config = function()
-			require("plugins.config.nvim-cmp")
+			require("plugins.config.luasnip")
+		end,
+		event = { "BufRead", "BufNewFile" },
+	})
+
+	use({
+		"saadparwaiz1/cmp_luasnip",
+		module = "luasnip",
+	})
+
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			{ "hrsh7th/cmp-cmdline", event = { "BufRead", "BufNewFile" } },
+			{ "hrsh7th/cmp-buffer", event = { "BufRead", "BufNewFile" } },
+			{ "hrsh7th/cmp-path", event = { "BufRead", "BufNewFile" } },
+			{
+				"zbirenbaum/copilot-cmp",
+				requires = {
+					{ "zbirenbaum/copilot.lua", event = { "BufRead", "BufNewFile" } },
+				},
+				config = function()
+					require("plugins.config.copilot")
+				end,
+				event = { "BufRead", "BufNewFile" },
+			},
+		},
+		config = function()
+			require("plugins.config.cmp")
 		end,
 		event = { "BufRead", "BufNewFile" },
 	})
 	use({
+		"lukas-reineke/cmp-rg",
+		event = "InsertCharPre",
+	})
+	use({
+		"hrsh7th/cmp-nvim-lsp-signature-help",
+		event = "InsertCharPre",
+	})
+	use({
+		"hrsh7th/cmp-calc",
+		event = "InsertCharPre",
+	})
+	use({
+		"tzachar/cmp-tabnine",
+		run = "powershell ./install.ps1",
+		config = function()
+			require("plugins.config.tabnine")
+		end,
+		event = "InsertCharPre",
+	})
+	use({
 		"zbirenbaum/copilot-cmp",
-		requires = "zbirenbaum/copilot.lua",
+		requires = {
+			{ "zbirenbaum/copilot.lua", event = { "BufRead", "BufNewFile" } },
+		},
 		config = function()
 			require("plugins.config.copilot")
 		end,
-		event = "InsertEnter",
+		event = { "BufRead", "BufNewFile" },
 	})
 
 	use({
@@ -143,11 +195,11 @@ return packer.startup(function(use)
 
 	use({
 		"windwp/nvim-ts-autotag",
-		after = "nvim-treesitter",
+		event = { "BufRead", "BufNewFile" },
 	})
 	use({
 		"m-demare/hlargs.nvim",
-		after = "nvim-treesitter",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("hlargs").setup()
 		end,
@@ -164,7 +216,7 @@ return packer.startup(function(use)
 	use({
 		"tami5/lspsaga.nvim",
 		config = function()
-			require("plugins.config.lspsaga_config")
+			require("plugins.config.lspsaga")
 		end,
 		event = { "BufRead", "BufNewFile" },
 	})
@@ -201,7 +253,7 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.config.nvim-tree")
 		end,
-		event = { "BufRead", "BufNewFile" },
+		cmd = "NvimTreeToggle",
 	})
 
 	use({
@@ -209,7 +261,7 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.config.sidebar")
 		end,
-		cmd = { "SidebarNvimToggle" },
+		cmd = "SidebarNvimToggle",
 	})
 
 	use({
@@ -222,6 +274,9 @@ return packer.startup(function(use)
 
 	use({
 		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup()
+		end,
 		cmd = "ToggleTerm",
 	})
 
@@ -230,13 +285,17 @@ return packer.startup(function(use)
 		config = function()
 			require("Comment").setup()
 		end,
-		event = { "BufRead", "BufNewFile" },
+		keys = {
+			"gc",
+			"gb",
+		},
 	})
 
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
 		event = { "BufRead", "BufNewFile" },
+		cmd = "Telescope",
 	})
 
 	use({
@@ -261,10 +320,18 @@ return packer.startup(function(use)
 	})
 
 	use({
-		"fgheng/winbar.nvim",
-		requires = "SmiteshP/nvim-gps",
+		"beauwilliams/focus.nvim",
 		config = function()
-			require("plugins.config.winbar")
+			require("plugins.config.focus")
+		end,
+		event = { "BufRead", "BufNewFile" },
+	})
+
+	use({
+		"saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require("plugins.config.crates")
 		end,
 	})
 end)
