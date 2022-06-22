@@ -30,14 +30,9 @@ opt.fillchars = {
     msgsep = "‾",
     foldopen = "▾",
     foldclose = "▸",
-    foldsep = "│",
+    foldsep = " ",
 }
---
--- https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldtext = [[substitute(getline(v:foldstart),'\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
--- vim.opt.foldcolumn = "auto:1"
 opt.foldenable = false
+opt.foldlevel = 99
 
 opt.scrolloff = 7

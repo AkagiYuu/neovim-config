@@ -133,7 +133,7 @@ cmp.setup({
 	}, {
 		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "rg" },
+		{ name = "rg", keyword_length = 5 },
 	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },

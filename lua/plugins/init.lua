@@ -173,16 +173,6 @@ return packer.startup(function(use)
 		end,
 		event = "InsertCharPre",
 	})
-	use({
-		"zbirenbaum/copilot-cmp",
-		requires = {
-			{ "zbirenbaum/copilot.lua", event = { "BufRead", "BufNewFile" } },
-		},
-		config = function()
-			require("plugins.config.copilot")
-		end,
-		event = { "BufRead", "BufNewFile" },
-	})
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -333,5 +323,14 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.config.crates")
 		end,
+	})
+
+	use({
+		'kevinhwang91/nvim-ufo',
+		requires = 'kevinhwang91/promise-async',
+		config = function()
+			require("plugins.config.ufo")
+		end,
+		event = { "BufRead", "BufNewFile" },
 	})
 end)
