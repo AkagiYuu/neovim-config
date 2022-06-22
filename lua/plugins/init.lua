@@ -155,14 +155,6 @@ return packer.startup(function(use)
 		"hrsh7th/cmp-calc",
 		event = "InsertCharPre",
 	})
-	use({
-		"tzachar/cmp-tabnine",
-		run = "powershell ./install.ps1",
-		config = function()
-			require("plugins.config.tabnine")
-		end,
-		event = "InsertCharPre",
-	})
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
