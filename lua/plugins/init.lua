@@ -136,17 +136,7 @@ return packer.startup(function(use)
 		requires = {
 			{ "hrsh7th/cmp-cmdline", event = { "BufRead", "BufNewFile" } },
 			{ "hrsh7th/cmp-buffer", event = { "BufRead", "BufNewFile" } },
-			{ "hrsh7th/cmp-path", event = { "BufRead", "BufNewFile" } },
-			{
-				"zbirenbaum/copilot-cmp",
-				requires = {
-					{ "zbirenbaum/copilot.lua", event = { "BufRead", "BufNewFile" } },
-				},
-				config = function()
-					require("plugins.config.copilot")
-				end,
-				event = { "BufRead", "BufNewFile" },
-			},
+			{ "hrsh7th/cmp-path", event = { "BufRead", "BufNewFile" } }
 		},
 		config = function()
 			require("plugins.config.cmp")
