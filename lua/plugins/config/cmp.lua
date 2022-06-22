@@ -32,7 +32,6 @@ local cmp_kinds = {
 local source_map = {
 	buffer = "[buffer]",
 	cmp_tabnine = "[tabnine]",
-	copilot = "[copilot]",
 	path = "[path]",
 	rg = "[rg]",
 	calc = "[calc]",
@@ -123,7 +122,6 @@ cmp.setup({
 		},
 	},
 	sources = cmp.config.sources({
-		{ name = "copilot", max_item_count = 2 },
 		{ name = "cmp_tabnine", max_item_count = 2 },
 		{ name = "luasnip", max_item_count = 2 },
 		{ name = "nvim_lsp" },
