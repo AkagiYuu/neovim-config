@@ -10,8 +10,4 @@ vim.defer_fn(function()
 	require("plugins")
 
 	vim.cmd([[ rshada ]])
-
-	if vim.loop.os_uname().version:match("Windows") then
-		util.usePowerShell()
-	end
 end, 1000)

@@ -1,12 +1,9 @@
 local ok, catppuccin = pcall(require, "catppuccin")
 if ok then
+    vim.g.catppuccin_flavour = "frappe"
 	catppuccin.setup({
 		transparent_background = true,
 		term_colors = true,
-		styles = {
-			comments = "bold",
-			variables = "NONE",
-		},
 		integration = {
 			nvimtree = {
 				enabled = true,
@@ -22,6 +19,5 @@ if ok then
 		},
 	})
 	catppuccin.remap({ CursorLine = { bg = "NONE" } })
-	vim.g.catppuccin_flavour = "frappe"
 	vim.cmd([[colorscheme catppuccin]])
 end

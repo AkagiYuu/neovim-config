@@ -1,0 +1,5 @@
+require(... .. ".base")
+require(... .. ".plugins")
+require(... .. ".telescope")
+require(... .. ".buffer")
+require(... .. ".lsp")

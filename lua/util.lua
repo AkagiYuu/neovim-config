@@ -2,7 +2,6 @@ local M = {}
 local g = vim.g
 local api = vim.api
 local fn = vim.fn
-local opt = vim.opt
 
 M.disableBuiltins = function()
 	g.do_filetype_lua = 1 -- use filetype.lua
@@ -27,6 +26,8 @@ M.disableBuiltins = function()
 	g.loaded_netrwFileHandlers = 1
 end
 
+---Safely load modules.
+---@param modules table modules to load
 M.load = function(modules)
 	for _, module in ipairs(modules) do
 		local ok, err = pcall(require, module)
@@ -36,6 +37,7 @@ M.load = function(modules)
 	end
 end
 
+---Set cursor to previous position
 M.setCursorPosition = function()
 	-- Return if the file doesn't exist, like a new and unsaved file
 	if fn.empty(fn.glob(fn.expand("%"))) ~= 0 then
@@ -59,16 +61,6 @@ M.setCursorPosition = function()
 	if api.nvim_eval("foldclosed('.')") ~= -1 then
 		api.nvim_input("zvzz")
 	end
-end
-
-M.usePowerShell = function()
-	opt.shell = "pwsh"
-	-- stylua: ignore
-	opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-	opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-	opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-	opt.shellquote = ""
-	opt.shellxquote = ""
 end
 
 return M
