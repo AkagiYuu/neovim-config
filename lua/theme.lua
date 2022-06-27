@@ -1,4 +1,6 @@
 local ok, catppuccin = pcall(require, "catppuccin")
+local highlight = vim.api.nvim_set_hl
+
 if ok then
     vim.g.catppuccin_flavour = "frappe"
 	catppuccin.setup({
@@ -18,6 +20,8 @@ if ok then
 			ts_rainbow = true,
 		},
 	})
-	catppuccin.remap({ CursorLine = { bg = "NONE" } })
 	vim.cmd([[colorscheme catppuccin]])
 end
+
+highlight(0, "CursorLine", { bg = "NONE" })
+highlight(0, "WhichKeyFloat", { bg = "BLACK" })

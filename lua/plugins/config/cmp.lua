@@ -1,33 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-local cmp_kinds = {
-	Text = "  ",
-	Method = "  ",
-	Function = "  ",
-	Constructor = "  ",
-	Field = "  ",
-	Variable = "  ",
-	Class = "  ",
-	Interface = "  ",
-	Module = "  ",
-	Property = "  ",
-	Unit = "  ",
-	Value = "  ",
-	Enum = "  ",
-	Keyword = "  ",
-	Snippet = "  ",
-	Color = "  ",
-	File = "  ",
-	Reference = "  ",
-	Folder = "  ",
-	EnumMember = "  ",
-	Constant = "  ",
-	Struct = "  ",
-	Event = "  ",
-	Operator = "  ",
-	TypeParameter = "  ",
-}
+local cmp_kinds = require("util").cmp_kind
 
 local source_map = {
 	buffer = "[buffer]",
@@ -35,30 +9,26 @@ local source_map = {
 	rg = "[rg]",
 	calc = "[calc]",
 }
-cmp.setup({
+cmp.setup {
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
 	window = {
-		completion = cmp.config.window.bordered({
-			border = "single",
-		}),
-		documentation = cmp.config.window.bordered({
-			border = "single",
-		}),
+		completion = cmp.config.window.bordered { border = "single" },
+		documentation = cmp.config.window.bordered { border = "single" },
 	},
 	mapping = {
 		["<Down>"] = {
-			i = cmp.mapping.select_next_item({
+			i = cmp.mapping.select_next_item {
 				behavior = "select",
-			}),
+			},
 		},
 		["<Up>"] = {
-			i = cmp.mapping.select_prev_item({
+			i = cmp.mapping.select_prev_item {
 				behavior = "select",
-			}),
+			},
 		},
 		["<C-e>"] = {
 			i = cmp.mapping.abort(),
@@ -70,10 +40,10 @@ cmp.setup({
 		["<Tab>"] = {
 			i = function(fallback)
 				if cmp.visible() then
-					cmp.confirm({
+					cmp.confirm {
 						behavior = cmp.ConfirmBehavior.Replace,
 						select = true,
-					})
+					}
 				elseif luasnip.expand_or_jumpable() then
 					luasnip.expand_or_jump()
 				else
@@ -142,7 +112,7 @@ cmp.setup({
 	experimental = {
 		ghost_text = true,
 	},
-})
+}
 
 cmp.setup.cmdline("/", {
 	sources = {

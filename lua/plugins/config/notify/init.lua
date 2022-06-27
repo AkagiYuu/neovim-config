@@ -1,5 +1,5 @@
 local notify = require("notify")
-local lsp_handler = require("plugins.config.notify.lsp_handler")
+local lsp_handler = require(... .. ".lsp_handler")
 
 notify.setup({
 	stages = "fade_in_slide_out",

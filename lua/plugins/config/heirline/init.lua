@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local heirline = require("heirline.utils")
-local util = require("plugins.config.heirline.util")
+local util = require(... .. ".utils")
 
 local space = {
 	provider = " ",

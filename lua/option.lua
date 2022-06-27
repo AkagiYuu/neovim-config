@@ -7,10 +7,11 @@ opt.mouse = "a"
 opt.laststatus = 3
 opt.cmdheight = 0
 
+opt.shada = ""
 opt.wrap = false
 opt.undofile = true
-opt.shada = ""
-opt.updatetime = 200
+opt.updatetime = 400
+opt.timeoutlen = 500
 
 opt.showmode = false
 
@@ -32,7 +33,6 @@ opt.fillchars = {
     foldclose = "▸",
     foldsep = " ",
 }
-opt.foldenable = false
 opt.foldlevel = 99
 
 opt.scrolloff = 7

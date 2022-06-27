@@ -23,13 +23,13 @@ nvim_create_autocmd("QuitPre", {
 	command = "wshada",
 })
 
-nvim_create_autocmd("User", {
-	pattern = "PackerCompileDone",
-	callback = function()
-		vim.notify("packer.compile: Complete", vim.log.levels.INFO, { title = "packer.nvim" })
-	end,
-	desc = "Notify after packer.compile completes",
-})
+-- nvim_create_autocmd("User", {
+-- 	pattern = "PackerCompileDone",
+-- 	callback = function()
+-- 		vim.notify("packer.compile: Complete", vim.log.levels.INFO, { title = "packer.nvim" })
+-- 	end,
+-- 	desc = "Notify after packer.compile completes",
+-- })
 
 nvim_create_autocmd("TextYankPost", {
 	callback = function()

@@ -18,24 +18,24 @@ map("n", "<C-Right>", "20zl", {
 })
 --endregion
 
---#region Switch window
-map("n", "<C-h>", "<C-w>h", {
-	silent = true,
-	desc = "Move to left window",
-})
-map("n", "<C-j>", "<C-w>j", {
-	silent = true,
-	desc = "Move to window below",
-})
-map("n", "<C-k>", "<C-w>k", {
-	silent = true,
-	desc = "Move to window above",
-})
-map("n", "<C-l>", "<C-w>l", {
-	silent = true,
-	desc = "Move to right window",
-})
---#endregion
+-- --#region Switch window
+-- map("n", "<C-h>", "<C-w>h", {
+-- 	silent = true,
+-- 	desc = "Move to left window",
+-- })
+-- map("n", "<C-j>", "<C-w>j", {
+-- 	silent = true,
+-- 	desc = "Move to window below",
+-- })
+-- map("n", "<C-k>", "<C-w>k", {
+-- 	silent = true,
+-- 	desc = "Move to window above",
+-- })
+-- map("n", "<C-l>", "<C-w>l", {
+-- 	silent = true,
+-- 	desc = "Move to right window",
+-- })
+-- --#endregion
 
 --#region Move lines
 map("n", "<A-j>", ":m .+1<CR>==", {

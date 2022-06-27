@@ -1,5 +1,5 @@
 require(... .. ".base")
-require(... .. ".plugins")
+require(... .. ".others")
 require(... .. ".telescope")
 require(... .. ".buffer")
 require(... .. ".lsp")

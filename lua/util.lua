@@ -26,17 +26,6 @@ M.disableBuiltins = function()
 	g.loaded_netrwFileHandlers = 1
 end
 
----Safely load modules.
----@param modules table modules to load
-M.load = function(modules)
-	for _, module in ipairs(modules) do
-		local ok, err = pcall(require, module)
-		if not ok then
-			vim.notify("Error loading " .. module .. "\n\n" .. err)
-		end
-	end
-end
-
 ---Set cursor to previous position
 M.setCursorPosition = function()
 	-- Return if the file doesn't exist, like a new and unsaved file
@@ -62,5 +51,33 @@ M.setCursorPosition = function()
 		api.nvim_input("zvzz")
 	end
 end
+
+M.cmp_kind = {
+	Text = "  ",
+	Method = "  ",
+	Function = "  ",
+	Constructor = "  ",
+	Field = "  ",
+	Variable = "  ",
+	Class = "  ",
+	Interface = "  ",
+	Module = "  ",
+	Property = "  ",
+	Unit = "  ",
+	Value = "  ",
+	Enum = "  ",
+	Keyword = "  ",
+	Snippet = "  ",
+	Color = "  ",
+	File = "  ",
+	Reference = "  ",
+	Folder = "  ",
+	EnumMember = "  ",
+	Constant = "  ",
+	Struct = "  ",
+	Event = "  ",
+	Operator = "  ",
+	TypeParameter = "  ",
+}
 
 return M

@@ -1,13 +1,14 @@
 pcall(require, "impatient")
 
-local util = require("util")
+require("util").disableBuiltins()
 
-util.disableBuiltins()
-util.load({ "option", "autocmd", "theme" })
+require("plugins")
+require("option")
+require("autocmd")
+require("theme")
 
 vim.defer_fn(function()
 	require("mapping")
-	require("plugins")
-
 	vim.cmd([[ rshada ]])
+    vim.opt.spell = true
 end, 1000)

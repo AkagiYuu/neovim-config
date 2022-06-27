@@ -1,14 +1,13 @@
-require("which-key").setup({
+require("which-key").setup {
 	popup_mappings = {
-		scroll_down = "<Down>", -- binding to scroll down inside the popup
-		scroll_up = "<Up>", -- binding to scroll up inside the popup
+		scroll_down = "<Down>",
+		scroll_up = "<Up>",
 	},
-	window = {
-		border = "single", -- none, single, double, shadow
-		position = "bottom", -- bottom, top
-		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0,
-	},
-	ignore_missing = false,
-})
+	window = { border = "rounded" },
+	plugins = {
+		spelling = {
+			enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+			suggestions = 20, -- how many suggestions should be shown in the list?
+		},
+	}
+}
