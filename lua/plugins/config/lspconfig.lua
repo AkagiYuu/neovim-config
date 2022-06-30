@@ -2,8 +2,8 @@ local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+	dynamicRegistration = false,
+	lineFoldingOnly = true
 }
 
 local servers = {
@@ -18,17 +18,17 @@ local servers = {
 	"bashls",
 }
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
+	lspconfig[lsp].setup {
 		capabilities = capabilities,
-	})
+	}
 end
 
 capabilities.offsetEncoding = "utf-8"
-lspconfig.clangd.setup({
+lspconfig.clangd.setup {
 	capabilities = capabilities,
-})
+}
 
-local sumneko = require(... .. ".sumneko").setting({
+lspconfig.sumneko_lua.setup {
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -41,7 +41,4 @@ local sumneko = require(... .. ".sumneko").setting({
 			-- },
 		},
 	},
-})
-lspconfig.sumneko_lua.setup(sumneko)
-
-require(... .. ".diagnostic")
+}

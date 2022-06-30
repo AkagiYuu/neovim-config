@@ -3,9 +3,9 @@ pcall(require, "impatient")
 require("util").disableBuiltins()
 
 require("plugins")
+require("theme")
 require("option")
 require("autocmd")
-require("theme")
 
 vim.defer_fn(function()
 	require("mapping")

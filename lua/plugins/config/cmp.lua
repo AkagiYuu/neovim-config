@@ -1,9 +1,10 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-local cmp_kinds = require("util").cmp_kind
+local cmp_kinds = require("theme.icon").cmp_kind
 
 local source_map = {
+	cmp_tabnine = "[tabnine]",
 	buffer = "[buffer]",
 	path = "[path]",
 	rg = "[rg]",
@@ -91,7 +92,8 @@ cmp.setup {
 		},
 	},
 	sources = cmp.config.sources({
-		{ name = "luasnip", max_item_count = 2 },
+		{ name = "cmp_tabnine", max_item_count = 2 },
+        { name = "luasnip", max_item_count = 2 },
 		{ name = "nvim_lsp" },
 		{ name = "crates" },
 		{ name = "nvim_lsp_signature_help" },

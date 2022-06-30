@@ -1,7 +1,7 @@
 local M = {}
 local client_notifs = {}
 
-local function get_notif_data(client_id, token)
+local get_notif_data = function(client_id, token)
 	if not client_notifs[client_id] then
 		client_notifs[client_id] = {}
 	end
@@ -34,11 +34,11 @@ local function update_spinner(client_id, token)
 	end
 end
 
-local function format_title(title, client_name)
+local format_title = function(title, client_name)
 	return client_name .. (#title > 0 and ": " .. title or "")
 end
 
-local function format_message(message, percentage)
+local format_message = function(message, percentage)
 	return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 

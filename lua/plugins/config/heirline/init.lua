@@ -1,7 +1,10 @@
 local conditions = require("heirline.conditions")
 local heirline = require("heirline.utils")
-local util = require(... .. ".utils")
+local util = require("plugins.config.heirline.modules")
+local colors = require("plugins.config.heirline.colors")
+local icons = require("theme.icon").heirline
 
+--#region Components
 local space = {
 	provider = " ",
 }
@@ -12,37 +15,21 @@ local null = {
 	provider = "",
 }
 
-local inactive_left_slant = {
-	provider = util.separators.slant_right_2,
-	hl = {
-		fg = util.colours.short_bg,
-		bg = util.colours.mid_bg,
-	},
-}
-
-local inactive_right_slant = {
-	provider = util.separators.slant_right_2,
-	hl = {
-		fg = util.colours.mid_bg,
-		bg = util.colours.short_bg,
-	},
-}
-
 local vim_mode = {
 	init = function(self)
 		self.mode_ch = self.mode:sub(1, 1) -- get only the first mode character
 	end,
 	hl = function(self)
 		return {
-			fg = util.mode_colour(self.mode_ch),
+			fg = util.mode_color(self.mode_ch),
 			bold = true,
 		}
 	end,
 	{
 		hl = function(self)
 			return {
-				fg = util.colours.statusline_bg,
-				bg = util.mode_colour(self.mode_ch),
+				fg = colors.statusline_bg,
+				bg = util.mode_color(self.mode_ch),
 				bold = true,
 			}
 		end,
@@ -50,18 +37,16 @@ local vim_mode = {
 	},
 	{
 		provider = function(self)
-			return "  %2(" .. util.mode_names[self.mode][1] .. "%) "
+			return "  %2(" .. util.mode_name(self.mode) .. "%) "
 		end,
 	},
 }
 
 local fold_method = {
-	condition = function()
-		return vim.wo.foldenable
-	end,
+	condition = function() return vim.wo.foldenable end,
 	{
 		hl = {
-			fg = util.colours.green_pale,
+			fg = colors.green_pale,
 			bold = true,
 		},
 		{
@@ -73,25 +58,6 @@ local fold_method = {
 	},
 }
 
-local function git_count(prop, colour, icon)
-	return {
-		condition = function(self)
-			return self.status_dict[prop] and self.status_dict[prop] > 0
-		end,
-		{
-			provider = icon,
-			hl = {
-				fg = util.colours.git[colour],
-			},
-		},
-		{
-			provider = function(self)
-				return self.status_dict[prop]
-			end,
-		},
-	}
-end
-
 local git = {
 	condition = conditions.is_git_repo,
 
@@ -102,7 +68,7 @@ local git = {
 		{
 			provider = "  ",
 			hl = {
-				fg = util.colours.git.add,
+				fg = colors.git.add,
 			},
 		},
 		{
@@ -120,18 +86,18 @@ local git = {
 		heirline.make_flexible_component(
 			4,
 			{
-				git_count("added", "add", "  "),
-				git_count("removed", "del", "  "),
-				git_count("changed", "change", " 柳"),
+				util.git_count("added", "add", "  "),
+				util.git_count("removed", "del", "  "),
+				util.git_count("changed", "change", " 柳"),
 			},
-			{ git_count("removed", "del", "  "), git_count("changed", "change", " 柳") },
-			{ git_count("removed", "del", "  ") },
+			{ util.git_count("removed", "del", "  "), util.git_count("changed", "change", " 柳") },
+			{ util.git_count("removed", "del", "  ") },
 			null
 		),
 	},
 }
 
-local file_size = { -- Filesize {{{
+local file_size = {
 	provider = function(self)
 		local suffix = { "b", "k", "M", "G", "T", "P", "E" }
 		local index = 1
@@ -148,11 +114,11 @@ local file_size = { -- Filesize {{{
 		return string.format(index == 1 and "%g%s" or "%.2f%s", fsize, suffix[index])
 	end,
 	hl = {
-		fg = util.colours.grey_fg,
+		fg = colors.grey_fg,
 	},
 }
 
-local file_lock_info = { -- Modified / Readonly {{{
+local file_lock_info = {
 	{
 		provider = function()
 			if vim.bo.modified then
@@ -160,7 +126,7 @@ local file_lock_info = { -- Modified / Readonly {{{
 			end
 		end,
 		hl = {
-			fg = util.colours.green,
+			fg = colors.green,
 		},
 	},
 	{
@@ -170,11 +136,12 @@ local file_lock_info = { -- Modified / Readonly {{{
 			end
 		end,
 		hl = {
-			fg = util.colours.orange,
+			fg = colors.orange,
 		},
 	},
 }
-local file_name = { -- Filename {{{
+
+local file_name = {
 	init = function(self)
 		self.filename = vim.fn.fnamemodify(self.filename, ":.")
 		if self.filename == "" then
@@ -192,7 +159,7 @@ local file_name = { -- Filename {{{
 	}),
 }
 
-local file_icon = { -- File icon {{{
+local file_icon = {
 	provider = function(self)
 		return self.icon and (self.icon .. " ")
 	end,
@@ -208,9 +175,9 @@ local folder_name = {
 		return conditions.is_git_repo()
 	end,
 	{
-		provider = util.separators.folder_icon,
+		provider = icons.folder_icon,
 		hl = {
-			fg = util.colours.folder,
+			fg = colors.folder,
 		},
 	},
 	{
@@ -229,21 +196,6 @@ local fileinfo = {
 	),
 }
 
-local active_left_segment = {
-	hl = {
-		fg = util.colours.grey_fg,
-	},
-	vim_mode,
-	heirline.make_flexible_component(3, fold_method, null),
-	heirline.surround({ " ", " " }, util.colours.statusline_bg, git),
-}
-
-local active_middle_segment = {
-	condition = function()
-		return vim.fn.expand("%:t") ~= ""
-	end,
-	heirline.surround({ " ", " " }, util.colours.statusline_bg, fileinfo),
-}
 
 local locallist = {
 	provider = util.locallist_count,
@@ -251,7 +203,7 @@ local locallist = {
 		return #vim.fn.getloclist(0) > 0
 	end,
 	hl = {
-		fg = util.colours.purple,
+		fg = colors.purple,
 	},
 }
 
@@ -266,11 +218,29 @@ local cursor_location = {
 		provider = " %P",
 		hl = function(self)
 			return {
-				fg = util.mode_colour(self.mode),
-				bg = util.colours.mid_bg,
+				fg = util.mode_color(self.mode),
+				bg = colors.mid_bg,
 			}
 		end,
 	},
+}
+--#endregion
+
+--#region Active Status Line
+local active_left_segment = {
+	hl = {
+		fg = colors.grey_fg,
+	},
+	vim_mode,
+	heirline.make_flexible_component(3, fold_method, null),
+	heirline.surround({ " ", " " }, colors.statusline_bg, git),
+}
+
+local active_middle_segment = {
+	condition = function()
+		return vim.fn.expand("%:t") ~= ""
+	end,
+	heirline.surround({ " ", " " }, colors.statusline_bg, fileinfo),
 }
 
 local active_right_segment = {
@@ -278,7 +248,7 @@ local active_right_segment = {
 		return vim.fn.expand("%:t") ~= ""
 	end,
 	hl = {
-		fg = util.colours.grey_fg,
+		fg = colors.grey_fg,
 	},
 	{
 		static = {
@@ -330,7 +300,7 @@ local active_right_segment = {
 				return self.errors > 0 and (self.error_icon .. self.errors .. " ")
 			end,
 			hl = {
-				fg = util.colours.diag.error,
+				fg = colors.diag.error,
 			},
 		},
 		{
@@ -338,7 +308,7 @@ local active_right_segment = {
 				return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ")
 			end,
 			hl = {
-				fg = util.colours.diag.warn,
+				fg = colors.diag.warn,
 			},
 		},
 		{
@@ -346,7 +316,7 @@ local active_right_segment = {
 				return self.info > 0 and (self.info_icon .. self.info .. " ")
 			end,
 			hl = {
-				fg = util.colours.diag.info,
+				fg = colors.diag.info,
 			},
 		},
 		{
@@ -354,7 +324,7 @@ local active_right_segment = {
 				return self.hints > 0 and (self.hint_icon .. self.hints)
 			end,
 			hl = {
-				fg = util.colours.diag.hint,
+				fg = colors.diag.hint,
 			},
 		},
 	},
@@ -365,7 +335,7 @@ local active_right_segment = {
 			return vim.wo.spell
 		end,
 		hl = {
-			fg = util.colours.yellow,
+			fg = colors.yellow,
 			bold = true,
 		},
 	},
@@ -404,16 +374,16 @@ local active_right_segment = {
 	{ -- Cursor Location {{{
 		hl = function(self)
 			return {
-				fg = util.colours.light_bg,
-				bg = util.mode_colour(self.mode),
+				fg = colors.light_bg,
+				bg = util.mode_color(self.mode),
 			}
 		end,
 		{
-			provider = util.separators.left_rounded,
+			provider = icons.left_rounded,
 			hl = function(self)
 				return {
-					fg = util.mode_colour(self.mode),
-					bg = util.colours.light_bg,
+					fg = util.mode_color(self.mode),
+					bg = colors.light_bg,
 				}
 			end,
 		},
@@ -422,15 +392,6 @@ local active_right_segment = {
 		},
 
 		space,
-		{
-			provider = util.quickfix_count,
-			condition = function()
-				return #vim.fn.getqflist() > 0
-			end,
-			hl = {
-				fg = util.colours.red_dark,
-			},
-		},
 		locallist,
 		cursor_location,
 	},
@@ -443,34 +404,51 @@ local active_status_line = {
 		bg = heirline.get_highlight("StatusLine").bg,
 	},
 
-	heirline.surround({ "", util.separators.right_filled }, util.colours.statusline_bg, active_left_segment),
+	heirline.surround({ "", icons.right_filled }, colors.statusline_bg, active_left_segment),
 
 	spring,
 	heirline.surround(
-		{ util.separators.left_filled, util.separators.right_filled },
-		util.colours.statusline_bg,
+		{ icons.left_filled, icons.right_filled },
+		colors.statusline_bg,
 		active_middle_segment
 	),
 
 	spring,
-	heirline.surround({ util.separators.left_filled, "" }, util.colours.statusline_bg, active_right_segment),
+	heirline.surround({ icons.left_filled, "" }, colors.statusline_bg, active_right_segment),
+}
+--#endregion
+
+--#region Inactive Status Line
+local inactive_left_slant = {
+	provider = icons.slant_right_2,
+	hl = {
+		fg = colors.short_bg,
+		bg = colors.mid_bg,
+	},
 }
 
+local inactive_right_slant = {
+	provider = icons.slant_right_2,
+	hl = {
+		fg = colors.mid_bg,
+		bg = colors.short_bg,
+	},
+}
 local inactive_right_segment = {
 	condition = function()
 		return vim.fn.expand("%:t") ~= ""
 	end,
 
 	hl = {
-		fg = util.colours.mid_bg,
-		bg = util.colours.green_pale,
+		fg = colors.mid_bg,
+		bg = colors.green_pale,
 	},
 	{
 		{
-			provider = util.separators.slant_left,
+			provider = icons.slant_left,
 			hl = {
-				fg = util.colours.green_pale,
-				bg = util.colours.short_bg,
+				fg = colors.green_pale,
+				bg = colors.short_bg,
 			},
 		},
 		{
@@ -486,12 +464,12 @@ local inactive_status_line = {
 		return not conditions.is_active()
 	end,
 	hl = {
-		fg = util.colours.white,
-		bg = util.colours.short_bg,
+		fg = colors.white,
+		bg = colors.short_bg,
 	},
 	{
 		hl = {
-			bg = util.colours.mid_bg,
+			bg = colors.mid_bg,
 		},
 		git,
 		space,
@@ -503,7 +481,7 @@ local inactive_status_line = {
 		inactive_left_slant,
 		space,
 		hl = {
-			bg = util.colours.mid_bg,
+			bg = colors.mid_bg,
 		},
 		fileinfo,
 		space,
@@ -513,6 +491,7 @@ local inactive_status_line = {
 	spring,
 	inactive_right_segment,
 }
+--#endregion
 
 local disabled_buffers = {
 	condition = function()
@@ -533,7 +512,7 @@ local help_file_name = {
 		return vim.fn.fnamemodify(filename, ":t")
 	end,
 	hl = {
-		fg = util.colours.blue,
+		fg = colors.blue,
 	},
 }
 

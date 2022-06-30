@@ -63,3 +63,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", {
 	desc = "Move line up",
 })
 --#endregion
+
+--#region
+map("v", "<", "<gv", { silent = true })
+map("v", ">", ">gv", { silent = true })
