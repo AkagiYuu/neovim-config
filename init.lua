@@ -6,6 +6,7 @@ require("plugins")
 require("theme")
 require("option")
 require("autocmd")
+require("icons")
 
 vim.defer_fn(function()
 	require("mapping")

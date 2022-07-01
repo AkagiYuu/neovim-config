@@ -43,13 +43,6 @@ return packer.startup(function(use)
 
     use { "dstein64/vim-startuptime", cmd = { "StartupTime" } }
     use { "kyazdani42/nvim-web-devicons" }
-    use {
-        "yamatsum/nvim-nonicons",
-        branch = "feat/lua",
-        config = function()
-            require("nvim-nonicons").setup {}
-        end
-    }
 
     use {
         "lewis6991/gitsigns.nvim",

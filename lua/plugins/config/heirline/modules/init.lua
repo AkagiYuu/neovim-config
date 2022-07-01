@@ -1,8 +1,8 @@
-local mode = require("lua.plugins.config.heirline.modules.mode")
-local file = require("lua.plugins.config.heirline.modules.file")
-local git = require("lua.plugins.config.heirline.modules.git")
-local misc = require("lua.plugins.config.heirline.modules.misc")
-local lsp = require("lua.plugins.config.heirline.modules.lsp")
+local mode = require("plugins.config.heirline.modules.mode")
+local file = require("plugins.config.heirline.modules.file")
+local git = require("plugins.config.heirline.modules.git")
+local misc = require("plugins.config.heirline.modules.misc")
+local lsp = require("plugins.config.heirline.modules.lsp")
 
 return {
 	icons = require("theme.icon").heirline,
