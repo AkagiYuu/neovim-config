@@ -1,7 +1,7 @@
 require('kanagawa').setup {
     transparent = true,
 }
-vim.cmd[[
+vim.cmd([[
     colorscheme kanagawa
     hi TelescopeBorder guibg=NONE
-]]
+]])

@@ -7,6 +7,6 @@ local scroll = {
         { 'l', '5zl', { desc = '←/→' } },
         { 'H', 'zH' },
         { 'L', 'zL', { desc = 'half screen ←/→' } },
-    }
+    },
 }
 return scroll

@@ -16,8 +16,8 @@ local window = {
         invoke_on_body = true,
         hint = {
             border = 'rounded',
-            position = 'bottom'
-        }
+            position = 'bottom',
+        },
     },
     mode = 'n',
     body = '<C-w>',
@@ -42,9 +42,12 @@ local window = {
         -- { '=', '<C-w>=', { desc = 'equalize' } },
 
         -- { 'b', '<Cmd>BufExplorer<CR>', { exit = true, desc = 'choose buffer' } },
-        { 'q', [[<Cmd>try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry<CR>]],
-            { desc = 'close window' } },
-        { '<Esc>', nil, { exit = true, desc = false } }
-    }
+        {
+            'q',
+            [[<Cmd>try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry<CR>]],
+            { desc = 'close window' },
+        },
+        { '<Esc>', nil, { exit = true, desc = false } },
+    },
 }
 return window

@@ -10,16 +10,31 @@ local diagnostic = {
         invoke_on_body = true,
         hint = {
             position = 'bottom',
-            border = 'rounded'
+            border = 'rounded',
         },
     },
     mode = { 'n' },
     body = '<leader>d',
     heads = {
-        { 'l', function() require("lspsaga.diagnostic").show_line_diagnostics() end },
-        { 'd', function() require("lspsaga.diagnostic").goto_next() end },
-        { 'D', function() require("lspsaga.diagnostic").goto_prev() end },
-        { 'q', nil, { exit = true, nowait = true } }
-    }
+        {
+            'l',
+            function()
+                require('lspsaga.diagnostic').show_line_diagnostics()
+            end,
+        },
+        {
+            'd',
+            function()
+                require('lspsaga.diagnostic').goto_next()
+            end,
+        },
+        {
+            'D',
+            function()
+                require('lspsaga.diagnostic').goto_prev()
+            end,
+        },
+        { 'q', nil, { exit = true, nowait = true } },
+    },
 }
 return diagnostic

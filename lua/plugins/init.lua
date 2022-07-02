@@ -67,7 +67,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.notify')
         end,
-        event = { 'BufRead', 'BufNewFile' }
+        event = { 'BufRead', 'BufNewFile' },
     }
 
     use {
@@ -75,7 +75,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.hydra')
         end,
-        event = { 'BufRead', 'BufNewFile' }
+        event = { 'BufRead', 'BufNewFile' },
     }
     use {
         'folke/which-key.nvim',
@@ -159,7 +159,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.cmp')
         end,
-        event = { 'BufRead', 'BufNewFile' }
+        event = { 'BufRead', 'BufNewFile' },
     }
     use { 'hrsh7th/cmp-nvim-lsp', event = { 'BufReadPre', 'BufNewFile' } }
     use { 'hrsh7th/cmp-cmdline', event = { 'BufRead', 'BufNewFile' } }
@@ -192,14 +192,14 @@ return packer.startup(function(use)
     }
     use {
         'nvim-telescope/telescope-file-browser.nvim',
-        after = 'telescope-fzf-native.nvim'
+        after = 'telescope-fzf-native.nvim',
     }
     use {
         'nvim-telescope/telescope.nvim',
         config = function()
             require('plugins.config.telescope')
         end,
-        after = 'telescope-fzf-native.nvim'
+        after = 'telescope-fzf-native.nvim',
     }
     --#endregion
 
@@ -241,8 +241,8 @@ return packer.startup(function(use)
         end,
         keys = {
             'zc',
-            'zM'
-        }
+            'zM',
+        },
     }
 
     use {
@@ -296,7 +296,7 @@ return packer.startup(function(use)
         config = function()
             require('winshift').setup {}
         end,
-        cmd = 'WinShift'
+        cmd = 'WinShift',
     }
 
     use {
@@ -306,7 +306,6 @@ return packer.startup(function(use)
             require('crates').setup {}
         end,
     }
-
 
     use {
         'Maan2003/lsp_lines.nvim',
@@ -332,6 +331,6 @@ return packer.startup(function(use)
         config = function()
             require('refactoring').setup {}
         end,
-        event = { 'BufRead', 'BufNewFile' }
+        event = { 'BufRead', 'BufNewFile' },
     }
 end)

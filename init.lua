@@ -13,4 +13,3 @@ vim.defer_fn(function()
     vim.cmd([[ rshada ]])
     vim.opt.spell = true
 end, 1000)
-

@@ -24,21 +24,88 @@ local telescope = {
     mode = 'n',
     body = '<Leader>f',
     heads = {
-        { 'f', function() require("telescope.builtin").find_files() end },
-        { 'g', function() require("telescope.builtin").live_grep() end },
-        { 'h', function() require("telescope.builtin").help_tags() end, { desc = 'Vim help' } },
-        { 'o', function() require("telescope.builtin").oldfiles() end, { desc = 'Recently opened files' } },
-        { 'a', function() require("telescope.builtin").autocommands() end },
-        { 'k', function() require("telescope.builtin").keymaps() end },
-        { 'r', function() require("telescope.builtin").registers() end },
-        { 'b', ":Telescope file_browser<cr>", { desc = 'Projects', silent = true } },
-        { '/', function() require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = 'Search in file' } },
-        { '?', function() require("telescope.builtin").search_history() end, { desc = 'Search history' } },
-        { ';', function() require("telescope.builtin").command_history() end, { desc = 'Command-line history' } },
-        { 'c', function() require("telescope.builtin").commands() end, { desc = 'Execute command' } },
-        { '<Enter>', function() require("telescope.builtin").builtin() end, { exit = true, desc = 'List all pickers' } },
+        {
+            'f',
+            function()
+                require('telescope.builtin').find_files()
+            end,
+        },
+        {
+            'g',
+            function()
+                require('telescope.builtin').live_grep()
+            end,
+        },
+        {
+            'h',
+            function()
+                require('telescope.builtin').help_tags()
+            end,
+            { desc = 'Vim help' },
+        },
+        {
+            'o',
+            function()
+                require('telescope.builtin').oldfiles()
+            end,
+            { desc = 'Recently opened files' },
+        },
+        {
+            'a',
+            function()
+                require('telescope.builtin').autocommands()
+            end,
+        },
+        {
+            'k',
+            function()
+                require('telescope.builtin').keymaps()
+            end,
+        },
+        {
+            'r',
+            function()
+                require('telescope.builtin').registers()
+            end,
+        },
+        { 'b', ':Telescope file_browser<cr>', { desc = 'Projects', silent = true } },
+        {
+            '/',
+            function()
+                require('telescope.builtin').current_buffer_fuzzy_find()
+            end,
+            { desc = 'Search in file' },
+        },
+        {
+            '?',
+            function()
+                require('telescope.builtin').search_history()
+            end,
+            { desc = 'Search history' },
+        },
+        {
+            ';',
+            function()
+                require('telescope.builtin').command_history()
+            end,
+            { desc = 'Command-line history' },
+        },
+        {
+            'c',
+            function()
+                require('telescope.builtin').commands()
+            end,
+            { desc = 'Execute command' },
+        },
+        {
+            '<Enter>',
+            function()
+                require('telescope.builtin').builtin()
+            end,
+            { exit = true, desc = 'List all pickers' },
+        },
         { 'q', nil, { exit = true, nowait = true } },
-    }
+    },
 }
 
 return telescope

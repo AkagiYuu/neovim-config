@@ -1,40 +1,46 @@
 local map = vim.keymap.set
 
-map("n", "<F3>", ":NvimTreeToggle<cr>", {
-    desc = "Toggle file tree",
+map('n', '<F3>', ':NvimTreeToggle<cr>', {
+    desc = 'Toggle file tree',
     silent = true,
 })
 
-map("n", "<C-\\>", ":ToggleTerm<CR>", {
+map('n', '<C-\\>', ':ToggleTerm<CR>', {
     silent = true,
-    desc = "Open terminal",
+    desc = 'Open terminal',
 })
 
-map("v", "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {
+map('v', '<leader>re', [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {
     silent = true,
-    desc = "Extract function"
+    desc = 'Extract function',
 })
-map("v", "<leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {
+map('v', '<leader>rf', [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {
     silent = true,
-    desc = "Extract function to file"
+    desc = 'Extract function to file',
 })
-map("v", "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], {
+map('v', '<leader>rv', [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], {
     silent = true,
-    desc = "Extract variable"
+    desc = 'Extract variable',
 })
-map("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], {
+map('v', '<leader>ri', [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], {
     silent = true,
-    desc = "Inline variable"
+    desc = 'Inline variable',
 })
-map("n", "<leader>rb", function() require('refactoring').refactor('Extract Block') end, {
+map('n', '<leader>rb', function()
+    require('refactoring').refactor('Extract Block')
+end, {
     silent = true,
-    desc = "Extract block"
+    desc = 'Extract block',
 })
-map("n", "<leader>rbf", function() require('refactoring').refactor('Extract Block To File') end, {
+map('n', '<leader>rbf', function()
+    require('refactoring').refactor('Extract Block To File')
+end, {
     silent = true,
-    desc = "Extract block to file"
+    desc = 'Extract block to file',
 })
-map("n", "<leader>ri",function() require('refactoring').refactor('Inline Variable') end, {
+map('n', '<leader>ri', function()
+    require('refactoring').refactor('Inline Variable')
+end, {
     silent = true,
-    desc = "Inline variable"
+    desc = 'Inline variable',
 })
