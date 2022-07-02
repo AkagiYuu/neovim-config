@@ -1,15 +1,16 @@
-pcall(require, "impatient")
+pcall(require, 'impatient')
 
-require("util").disableBuiltins()
+require('util').disableBuiltins()
 
-require("plugins")
-require("theme")
-require("option")
-require("autocmd")
-require("icons")
+require('plugins')
+require('theme')
+require('option')
+require('autocmd')
+require('icons')
 
 vim.defer_fn(function()
-	require("mapping")
-	vim.cmd([[ rshada ]])
+    require('mapping')
+    vim.cmd([[ rshada ]])
     vim.opt.spell = true
 end, 1000)
+

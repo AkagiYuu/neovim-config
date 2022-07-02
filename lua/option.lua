@@ -28,8 +28,8 @@ opt.fillchars = {
     eob = " ",
     diff = "─",
     msgsep = "‾",
-    foldopen = "▾",
-    foldclose = "▸",
+    foldopen = "",
+    foldclose = "",
     foldsep = " ",
 }
 opt.foldlevel = 99
