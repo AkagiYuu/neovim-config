@@ -16,6 +16,7 @@ local servers = {
     'html',
     'jsonls',
     'bashls',
+    'asm_lsp'
 }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {

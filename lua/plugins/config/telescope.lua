@@ -12,7 +12,8 @@ local vertical = {
 
 telescope.setup {
     defaults = {
-        prompt_prefix = '   ',
+        prompt_prefix = '🔭 ',
+        -- 
         selection_caret = '  ',
         layout_strategy = 'flex',
         dynamic_preview_title = true,

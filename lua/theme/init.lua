@@ -5,4 +5,5 @@ vim.cmd([[
 	hi CursorLine guibg=BLACK
 	hi WhichKeyFloat guibg=NONE
 	hi NormalFloat guibg=NONE
+    hi LspFloatWinNormal guibg=NONE
 ]])

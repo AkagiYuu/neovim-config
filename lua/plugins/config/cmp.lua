@@ -21,6 +21,10 @@ cmp.setup {
         documentation = cmp.config.window.bordered { border = 'single' },
     },
     mapping = {
+        ['<C-e>'] = cmp.mapping {
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        },
         ['<Down>'] = {
             i = cmp.mapping.select_next_item { behavior = 'select' },
         },
@@ -29,65 +33,29 @@ cmp.setup {
                 behavior = 'select',
             },
         },
-        ['<C-e>'] = {
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-        },
+        ['<CR>'] = cmp.mapping.confirm { select = true },
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-d>'] = cmp.mapping.scroll_docs(5),
         ['<C-f>'] = cmp.mapping.scroll_docs(-5),
-        ['<Tab>'] = {
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.confirm {
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true,
-                    }
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                else
-                    fallback()
-                end
-            end,
-            s = function(fallback)
-                if luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                else
-                    fallback()
-                end
-            end,
-            c = function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item()
-                else
-                    fallback()
-                end
-            end,
-        },
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if  cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's', 'c' }),
 
-        ['<S-Tab>'] = {
-            i = function(fallback)
-                if luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                else
-                    fallback()
-                end
-            end,
-            s = function(fallback)
-                if luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                else
-                    fallback()
-                end
-            end,
-            c = function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                else
-                    fallback()
-                end
-            end,
-        },
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if  cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's', 'c' }),
     },
     sources = cmp.config.sources({
         -- { name = 'cmp_tabnine', max_item_count = 2 },
@@ -101,6 +69,11 @@ cmp.setup {
         { name = 'path' },
         { name = 'rg', keyword_length = 5 },
     }),
+
+    completion = {
+        completeopt = 'menu,menuone',
+    },
+
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)

@@ -19,7 +19,8 @@ map('v', '<A-f>', vim.lsp.buf.range_formatting, {
 
 --#region Lspsaga
 map('n', '<S-F12>', function()
-    require('lspsaga.provider').lsp_finder()
+    require('lspsaga.finder').lsp_finder()
+    print("test")
 end, {
     desc = 'Search for implementation and definition',
 })
@@ -40,7 +41,10 @@ end, {
 })
 
 map('n', 'K', function()
-    require('lspsaga.hover').render_hover_doc()
+    local winid = require('ufo').peekFoldedLinesUnderCursor()
+    if not winid then
+        require('lspsaga.hover').render_hover_doc()
+    end
 end, {
     desc = 'Hover doc',
 })

@@ -67,7 +67,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.notify')
         end,
-        event = { 'BufRead', 'BufNewFile' },
+        -- event = { 'BufRead', 'BufNewFile' },
     }
 
     use {
@@ -161,10 +161,10 @@ return packer.startup(function(use)
         end,
         event = { 'BufRead', 'BufNewFile' },
     }
-    use { 'hrsh7th/cmp-nvim-lsp', event = { 'BufReadPre', 'BufNewFile' } }
-    use { 'hrsh7th/cmp-cmdline', event = { 'BufRead', 'BufNewFile' } }
-    use { 'hrsh7th/cmp-buffer', event = { 'BufRead', 'BufNewFile' } }
-    use { 'hrsh7th/cmp-path', event = { 'BufRead', 'BufNewFile' } }
+    use { 'hrsh7th/cmp-nvim-lsp', after = "nvim-cmp" }
+    use { 'hrsh7th/cmp-cmdline', after = "nvim-cmp" }
+    use { 'hrsh7th/cmp-buffer', after = "nvim-cmp" }
+    use { 'hrsh7th/cmp-path', after = "nvim-cmp" }
 
     use {
         'L3MON4D3/LuaSnip',
