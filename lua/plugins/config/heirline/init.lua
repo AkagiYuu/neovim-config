@@ -1,8 +1,9 @@
 local conditions = require('heirline.conditions')
-local heirline = require('heirline.utils')
-local mode_color = require('plugins.config.heirline.modules.mode').color
+local utils = require('heirline.utils')
+local mode_color = require('plugins.config.heirline.utils.mode').color
+
 local colors = require('plugins.config.heirline.colors')
-local icons = require('theme.icon').heirline
+local seperators = require('theme.icon').heirline
 
 --#region Components
 local space = {
@@ -15,22 +16,22 @@ local null = {
     provider = '',
 }
 
-local vim_mode = require('plugins.config.heirline.components.vim_mode')(colors, icons)
-local git = require('plugins.config.heirline.components.git')(heirline, conditions, colors)
+local vim_mode = require('plugins.config.heirline.components.vim_mode')(seperators)
+local git = require('plugins.config.heirline.components.git')(utils, conditions)
 
 local file = require('plugins.config.heirline.components.file')
-local file_info = file.info(heirline, conditions, colors, icons)
+local file_info = file.info(utils, conditions)
 
 local location = require('plugins.config.heirline.components.location')
-local locallist = location.locallist(colors)
-local cursor_location = location.cursor(colors)
+local locallist = location.locallist
+local cursor_location = location.cursor
 
 local lsp = require('plugins.config.heirline.components.lsp')
 
 local misc = require('plugins.config.heirline.components.misc')
-local fold_method = misc.fold_method(colors)
-local spell_check = misc.spell_check(colors)
-local help_file_name = misc.help_file_name(colors)
+local fold_method = misc.fold_method
+local spell_check = misc.spell_check
+local help_file_name = misc.help_file_name
 local search_result = misc.search_result
 
 --#endregion
@@ -38,18 +39,18 @@ local search_result = misc.search_result
 --#region Active Status Line
 local active_left_segment = {
     hl = {
-        fg = colors.grey_fg,
+        fg = 'grey',
     },
     vim_mode,
-    heirline.make_flexible_component(3, fold_method, null),
-    heirline.surround({ ' ', ' ' }, colors.statusline_bg, git),
+    utils.make_flexible_component(3, fold_method, null),
+    utils.surround({ ' ', ' ' }, 'statusline_bg', git),
 }
 
 local active_middle_segment = {
     condition = function()
         return vim.fn.expand('%:t') ~= ''
     end,
-    heirline.surround({ ' ', ' ' }, colors.statusline_bg, file_info),
+    utils.surround({ ' ', ' ' }, 'statusline_bg', file_info),
 }
 
 local active_right_segment = {
@@ -57,27 +58,27 @@ local active_right_segment = {
         return vim.fn.expand('%:t') ~= ''
     end,
     hl = {
-        fg = colors.grey_fg,
+        fg = 'grey',
     },
-    lsp.name(heirline, conditions),
+    lsp.name(utils, conditions),
     lsp.diagnostic(conditions, colors),
     spell_check,
-    file.type(heirline),
+    file.type(utils),
     space,
     search_result,
     {
         hl = function(self)
             return {
-                fg = colors.light_bg,
+                fg = 'light_bg',
                 bg = mode_color(self.mode),
             }
         end,
         {
-            provider = icons.left_filled,
+            provider = seperators.left_filled,
             hl = function(self)
                 return {
                     fg = mode_color(self.mode),
-                    bg = colors.statusline_bg,
+                    bg = 'statusline_bg',
                 }
             end,
         },
@@ -95,34 +96,34 @@ local active_right_segment = {
 local active_status_line = {
     condition = conditions.is_active,
     hl = {
-        fg = heirline.get_highlight('StatusLine').fg,
+        fg = utils.get_highlight('StatusLine').fg,
         bg = 'NONE',
     },
 
-    heirline.surround({ '', icons.right_filled }, colors.statusline_bg, active_left_segment),
+    utils.surround({ '', seperators.right_filled }, 'statusline_bg', active_left_segment),
 
     spring,
-    heirline.surround({ icons.left_filled, icons.right_filled }, colors.statusline_bg, active_middle_segment),
+    utils.surround({ seperators.left_filled, seperators.right_filled }, 'statusline_bg', active_middle_segment),
 
     spring,
-    heirline.surround({ icons.left_filled, '' }, colors.statusline_bg, active_right_segment),
+    utils.surround({ seperators.left_filled, '' }, 'statusline_bg', active_right_segment),
 }
 --#endregion
 
 --#region Inactive Status Line
 local inactive_left_slant = {
-    provider = icons.slant_right_2,
+    provider = seperators.slant_right_2,
     hl = {
-        fg = colors.short_bg,
-        bg = colors.mid_bg,
+        fg = 'short_bg',
+        bg = 'mid_bg',
     },
 }
 
 local inactive_right_slant = {
-    provider = icons.slant_right_2,
+    provider = seperators.slant_right_2,
     hl = {
-        fg = colors.mid_bg,
-        bg = colors.short_bg,
+        fg = 'mid_bg',
+        bg = 'short_bg',
     },
 }
 local inactive_right_segment = {
@@ -131,15 +132,15 @@ local inactive_right_segment = {
     end,
 
     hl = {
-        fg = colors.mid_bg,
-        bg = colors.green_pale,
+        fg = 'mid_bg',
+        bg = 'green_pale',
     },
     {
         {
-            provider = icons.slant_left,
+            provider = seperators.slant_left,
             hl = {
-                fg = colors.green_pale,
-                bg = colors.short_bg,
+                fg = 'green_pale',
+                bg = 'short_bg',
             },
         },
         {
@@ -155,12 +156,12 @@ local inactive_status_line = {
         return not conditions.is_active()
     end,
     hl = {
-        fg = colors.white,
-        bg = colors.short_bg,
+        fg = 'white',
+        bg = 'short_bg',
     },
     {
         hl = {
-            bg = colors.mid_bg,
+            bg = 'mid_bg',
         },
         git,
         space,
@@ -172,7 +173,7 @@ local inactive_status_line = {
         inactive_left_slant,
         space,
         hl = {
-            bg = colors.mid_bg,
+            bg = 'mid_bg',
         },
         file_info,
         space,

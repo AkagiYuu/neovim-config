@@ -1,24 +1,20 @@
-local colors = require('plugins.config.heirline.colors')
 local M = {}
 
 local mode_colors = {
-    NORMAL = 'green',
-    OP = 'green',
-    INSERT = 'red',
-    VISUAL = 'skyblue',
-    LINES = 'skyblue',
-    BLOCK = 'skyblue',
-    REPLACE = 'violet',
-    ['V-REPLACE'] = 'violet',
-    ENTER = 'cyan',
-    MORE = 'cyan',
-    SELECT = 'orange',
-    COMMAND = 'green',
-    SHELL = 'green',
-    TERM = 'green',
-    NONE = 'yellow',
+    n = 'green',
+    i = 'red',
+    v = 'nord_blue',
+    V = 'nord_blue',
+    ['\22'] = 'nord_blue',
+    c = 'yellow',
+    s = 'purple',
+    S = 'purple',
+    ['\19'] = 'purple',
+    R = 'orange',
+    r = 'orange',
+    ['!'] = 'red',
+    t = 'red',
 }
-
 local mode_names = {
     n = { 'Normal', '' },
     no = { 'Op·Pending', '' },
@@ -51,52 +47,19 @@ local mode_names = {
     [''] = { 'Empty', '-' },
 }
 
-local mode_alias = {
-    n = 'NORMAL',
-    no = 'OP',
-    nov = 'OP',
-    noV = 'OP',
-    ['no'] = 'OP',
-    niI = 'NORMAL',
-    niR = 'NORMAL',
-    niV = 'NORMAL',
-    nt = 'NORMAL',
-    v = 'VISUAL',
-    V = 'LINES',
-    [''] = 'BLOCK',
-    s = 'SELECT',
-    S = 'SELECT',
-    [''] = 'BLOCK',
-    i = 'INSERT',
-    ic = 'INSERT',
-    ix = 'INSERT',
-    R = 'REPLACE',
-    Rc = 'REPLACE',
-    Rv = 'V-REPLACE',
-    Rx = 'REPLACE',
-    c = 'COMMAND',
-    cv = 'COMMAND',
-    ce = 'COMMAND',
-    r = 'ENTER',
-    rm = 'MORE',
-    ['r?'] = 'CONFIRM',
-    ['!'] = 'SHELL',
-    t = 'TERM',
-    ['null'] = 'NONE',
-}
 
 ---Returns the designated colour for the mode.
 ---@param mode string
 ---@return string
 function M.color(mode)
-    return colors[ mode_colors[ mode_alias[mode] ] ]
+    return mode_colors[mode]
 end
 
 ---Return human-readable mode name.
 ---@param original string original mode name
 ---@return string
 M.info = function(original)
-    return mode_names[original] or { original, ''}
+    return mode_names[original] or { original, '' }
 end
 
 return M

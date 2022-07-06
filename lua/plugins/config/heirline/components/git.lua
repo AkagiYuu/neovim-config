@@ -1,6 +1,5 @@
-local git = require('plugins.config.heirline.modules.git')
-return function(heirline, conditions, colors)
-
+return function(heirline, conditions)
+    local git = require('plugins.config.heirline.utils.git')
     local null = {
         provider = '',
     }
@@ -15,7 +14,7 @@ return function(heirline, conditions, colors)
             {
                 provider = '  ',
                 hl = {
-                    fg = colors.git.add,
+                    fg = git.add,
                 },
             },
             {

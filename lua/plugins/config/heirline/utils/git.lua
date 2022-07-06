@@ -8,7 +8,7 @@ local M = {}
 local parent_pathname = function(path)
     local i = path:find('[\\/:][^\\/:]*$')
     if not i then
-        return
+        return ''
     end
     return path:sub(1, i - 1)
 end
@@ -70,7 +70,7 @@ local get_git_dir = function(path)
     end
 
     if not git_dir then
-        return
+        return ''
     end
 
     if is_path_absolute(git_dir) then
@@ -97,7 +97,7 @@ M.git_root = function()
     return repo
 end
 
-M.git_count = function(prop, colour, icon)
+M.git_count = function(prop, color, icon)
     return {
         condition = function(self)
             return self.status_dict[prop] and self.status_dict[prop] > 0
@@ -105,7 +105,7 @@ M.git_count = function(prop, colour, icon)
         {
             provider = icon,
             hl = {
-                fg = colors.git[colour],
+                fg = colors.git[color],
             },
         },
         {

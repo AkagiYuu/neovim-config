@@ -7,55 +7,51 @@ local null = {
     provider = '',
 }
 
-local size = function(colors)
-    return {
-        provider = function(self)
-            local suffix = { 'b', 'k', 'M', 'G', 'T', 'P', 'E' }
-            local index = 1
-            local fsize = vim.fn.getfsize(self.filename)
+local size = {
+    provider = function(self)
+        local suffix = { 'b', 'k', 'M', 'G', 'T', 'P', 'E' }
+        local index = 1
+        local fsize = vim.fn.getfsize(self.filename)
 
-            if fsize < 0 then
-                fsize = 0
-            end
+        if fsize < 0 then
+            fsize = 0
+        end
 
-            while fsize > 1024 and index < 7 do
-                fsize = fsize / 1024
-                index = index + 1
+        while fsize > 1024 and index < 7 do
+            fsize = fsize / 1024
+            index = index + 1
+        end
+        return string.format(index == 1 and '%g%s' or '%.2f%s', fsize, suffix[index])
+    end,
+    hl = {
+        fg = 'grey',
+    },
+}
+
+local lock_info = {
+    {
+        provider = function()
+            if vim.bo.modified then
+                return ' '
             end
-            return string.format(index == 1 and '%g%s' or '%.2f%s', fsize, suffix[index])
         end,
         hl = {
-            fg = colors.grey_fg,
+            fg = 'green',
         },
-    }
-end
+    },
+    {
+        provider = function()
+            if not vim.bo.modifiable or vim.bo.readonly then
+                return ' '
+            end
+        end,
+        hl = {
+            fg = 'orange',
+        },
+    },
+}
 
-local lock_info = function(colors)
-    return {
-        {
-            provider = function()
-                if vim.bo.modified then
-                    return ' '
-                end
-            end,
-            hl = {
-                fg = colors.green,
-            },
-        },
-        {
-            provider = function()
-                if not vim.bo.modifiable or vim.bo.readonly then
-                    return ' '
-                end
-            end,
-            hl = {
-                fg = colors.orange,
-            },
-        },
-    }
-end
-
-local name = function(heirline)
+local name = function(utils)
     return {
         init = function(self)
             self.filename = vim.fn.fnamemodify(self.filename, ':.')
@@ -63,7 +59,7 @@ local name = function(heirline)
                 return '[No Name]'
             end
         end,
-        heirline.make_flexible_component(1, {
+        utils.make_flexible_component(1, {
             provider = function(self)
                 return self.filename
             end,
@@ -86,32 +82,30 @@ local icon = {
     end,
 }
 
-local folder_name = function(conditions,colors,icons)
+local folder_name = function(utils, conditions)
     return {
-        condition = function()
-            return conditions.is_git_repo()
-        end,
+        condition = function() return conditions.is_git_repo() end,
         {
-            provider = icons.folder_icon,
+            provider = ' ',
             hl = {
-                fg = colors.folder,
+                fg = utils.get_highlight('Directory').fg,
             },
         },
         {
-            provider = require('plugins.config.heirline.modules.git').git_root,
+            provider = require('plugins.config.heirline.utils.git').git_root,
         },
         space,
     }
 end
 
-file.info = function(heirline,conditions,colors,icons)
-    local file_folder_name = folder_name(conditions, colors, icons)
-    local file_name = name(heirline)
-    local file_lock_info = lock_info(colors)
-    local file_size = size(colors)
+file.info = function(utils, conditions)
+    local file_folder_name = folder_name(utils, conditions)
+    local file_name = name(utils)
+    local file_lock_info = lock_info
+    local file_size = size
 
     return {
-        heirline.make_flexible_component(
+        utils.make_flexible_component(
             3,
             { file_folder_name, icon, file_name, file_lock_info, space, file_size },
             { file_folder_name, icon, file_name, file_lock_info },
@@ -121,8 +115,8 @@ file.info = function(heirline,conditions,colors,icons)
     }
 end
 
-file.type = function(heirline)
-    return heirline.make_flexible_component(
+file.type = function(utils)
+    return utils.make_flexible_component(
         2,
         {
             hl = function(self)

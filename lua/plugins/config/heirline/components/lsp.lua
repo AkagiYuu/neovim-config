@@ -1,30 +1,23 @@
 local lsp = {}
 
-local lsp_client_names = require('plugins.config.heirline.modules.lsp').lsp_client_names
+local lsp_client_names = require('plugins.config.heirline.utils.lsp').lsp_client_names
 
-lsp.name = function(heirline, conditions)
-    local null = {
-        provider = '',
-    }
-
+lsp.name = function(utils, conditions)
     return {
         static = {
             icon = '  ',
         },
         condition = conditions.lsp_attached,
-        heirline.make_flexible_component(2, {
-            {
-                provider = function(self)
-                    return self.icon .. lsp_client_names()
-                end,
-            }, -- { provider = util.get_lsp_progress },
+        utils.make_flexible_component(2, {
+            provider = function(self)
+                return self.icon .. lsp_client_names()
+            end,
         }, {
-            {
-                provider = function(self)
-                    return self.icon .. lsp_client_names()
-                end,
-            },
-        }, null),
+            provider = function(self)
+                return self.icon .. lsp_client_names()
+            end,
+        }),
+        update = { 'LspAttach', 'LspDetach' },
     }
 end
 
