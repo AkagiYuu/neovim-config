@@ -33,12 +33,12 @@ return function(heirline, conditions, colors)
             heirline.make_flexible_component(
                 4,
                 {
-                    git.git_count('added', 'add', '  '),
-                    git.git_count('removed', 'del', '  '),
-                    git.git_count('changed', 'change', ' 柳'),
+                    git.git_count('added', 'add', '  '),
+                    git.git_count('removed', 'del', '  '),
+                    git.git_count('changed', 'change', '  '),
                 },
-                { git.git_count('removed', 'del', '  '), git.git_count('changed', 'change', ' 柳') },
-                { git.git_count('removed', 'del', '  ') },
+                { git.git_count('removed', 'del', '  '), git.git_count('changed', 'change', '  ') },
+                { git.git_count('removed', 'del', '  ') },
                 null
             ),
         },
