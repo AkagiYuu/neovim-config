@@ -64,6 +64,9 @@ map('v', '<A-k>', ":m '<-2<CR>gv=gv", {
 })
 --#endregion
 
---#region
+--#region Indent
 map('v', '<', '<gv', { silent = true })
 map('v', '>', '>gv', { silent = true })
+--#endregion
+
+map('t', '<esc>', [[<C-\><C-n>]])

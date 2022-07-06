@@ -1,10 +1,24 @@
 local ok, catppuccin = pcall(require, 'catppuccin')
 
 if ok then
-    vim.g.catppuccin_flavour = 'frappe'
+    vim.g.catppuccin_flavour = 'mocha'
     catppuccin.setup {
         transparent_background = true,
         term_colors = true,
+        styles = {
+            comments = 'italic',
+            conditionals = 'italic',
+            loops = 'italic',
+            functions = 'italic',
+            keywords = 'italic',
+            strings = 'NONE',
+            variables = 'NONE',
+            numbers = 'NONE',
+            booleans = 'NONE',
+            properties = 'NONE',
+            types = 'NONE',
+            operators = 'NONE',
+        },
         integrations = {
             nvimtree = {
                 enabled = true,
@@ -23,9 +37,12 @@ if ok then
             lsp_saga = true,
             which_key = true,
             dashboard = false,
-            lightspeed = false,
+            lightspeed = true,
             ts_rainbow = true,
         },
     }
-    vim.cmd([[colorscheme catppuccin]])
+    vim.cmd([[
+        colorscheme catppuccin
+        hi! link lightspeedGreyWash Comment
+    ]])
 end

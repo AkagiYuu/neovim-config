@@ -20,34 +20,34 @@ local mode_colors = {
 }
 
 local mode_names = {
-    n = { 'Normal', '-' },
-    no = { 'Op·Pending', 'P' },
-    nov = { 'Op·Pending', 'v' },
-    noV = { 'Op·Pending', 'V' },
-    niI = { '(Normal)', 'I' },
-    niR = { '(Normal)', 'R' },
-    niV = { '(Normal)', 'V' },
-    nt = { 'Normal', 'T' },
-    v = { 'Visual', 'C' },
-    V = { 'V·Line', 'L' },
-    [''] = { 'V·Block', 'B' },
-    s = { 'Select', '-' },
-    S = { 'S·Line', 'L' },
-    [''] = { 'S·Block', 'B' },
-    i = { 'Insert', '-' },
+    n = { 'Normal', '' },
+    no = { 'Op·Pending', '' },
+    nov = { 'Op·Pending', '' },
+    noV = { 'Op·Pending', '' },
+    niI = { '(Normal)', '' },
+    niR = { '(Normal)', '' },
+    niV = { '(Normal)', '' },
+    nt = { 'Normal', '' },
+    v = { 'Visual', '' },
+    V = { 'V·Line', '' },
+    [''] = { 'V·Block', '' },
+    s = { 'Select', '' },
+    S = { 'S·Line', '' },
+    [''] = { 'S·Block', '' },
+    i = { 'Insert', '' },
     ic = { 'Ins·Compl', 'C' },
     ix = { 'Ins·Compl', 'X' },
-    R = { 'Replace', '-' },
-    Rv = { 'Replace', 'V' },
-    Rx = { 'Replace', 'X' },
-    c = { 'Command', '-' },
+    R = { 'Replace', '' },
+    Rv = { 'Replace', '' },
+    Rx = { 'Replace', '' },
+    c = { 'Command', '' },
     cv = { 'Vim·Ex', 'Q' },
     ce = { 'Ex', '-' },
     r = { 'Prompt', '-' },
     rm = { 'More', '-' },
     ['r?'] = { 'Confirm', '-' },
-    ['!'] = { 'Shell', '-' },
-    t = { 'Terminal', '-' },
+    ['!'] = { 'Shell', '' },
+    t = { 'Terminal', '' },
     [''] = { 'Empty', '-' },
 }
 
@@ -95,8 +95,8 @@ end
 ---Return human-readable mode name.
 ---@param original string original mode name
 ---@return string
-M.name = function(original)
-    return mode_names[original][1] or original
+M.info = function(original)
+    return mode_names[original] or { original, ''}
 end
 
 return M

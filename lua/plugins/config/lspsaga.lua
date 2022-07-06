@@ -27,4 +27,6 @@ saga.init_lsp_saga {
         sign_priority = 20,
         virtual_text = true,
     },
+    symbol_in_winbar = true,
+    winbar_separator = '   '
 }

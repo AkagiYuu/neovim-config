@@ -24,9 +24,10 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-capabilities.offsetEncoding = 'utf-8'
-lspconfig.clangd.setup {
-    capabilities = capabilities,
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/yuu/Applications/omnisharp/OmniSharp"
+require 'lspconfig'.omnisharp.setup {
+    cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) };
 }
 
 lspconfig.sumneko_lua.setup {
@@ -45,4 +46,9 @@ lspconfig.sumneko_lua.setup {
             -- },
         },
     },
+}
+
+capabilities.offsetEncoding = 'utf-8'
+lspconfig.clangd.setup {
+    capabilities = capabilities,
 }

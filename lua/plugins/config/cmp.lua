@@ -70,9 +70,9 @@ cmp.setup {
         { name = 'rg', keyword_length = 5 },
     }),
 
-    completion = {
-        completeopt = 'menu,menuone',
-    },
+    -- completion = {
+    --     completeopt = 'menu,menuone',
+    -- },
 
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },

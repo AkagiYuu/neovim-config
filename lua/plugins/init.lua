@@ -53,21 +53,38 @@ return packer.startup(function(use)
     }
 
     use {
+        'rcarriga/nvim-notify',
+        config = function()
+            require('plugins.config.notify')
+        end,
+        -- event = { 'BufRead', 'BufNewFile' },
+    }
+    use {
         'rebelot/heirline.nvim',
         config = function()
             require('plugins.config.heirline')
         end,
+        event = { 'BufRead', 'BufNewFile' },
     }
     use {
         'ggandor/lightspeed.nvim',
         event = { 'BufRead', 'BufNewFile' },
     }
     use {
-        'rcarriga/nvim-notify',
+        'ziontee113/syntax-tree-surfer',
         config = function()
-            require('plugins.config.notify')
+            require('syntax-tree-surfer').setup {}
         end,
-        -- event = { 'BufRead', 'BufNewFile' },
+        event = { 'BufRead', 'BufNewFile' }
+    }
+    use {
+        'kylechui/nvim-surround',
+        config = function()
+            require('nvim-surround').setup {
+            -- Configuration here, or leave empty to use defaults
+            }
+        end,
+        event = { 'BufRead', 'BufNewFile' }
     }
 
     use {
@@ -102,14 +119,7 @@ return packer.startup(function(use)
     }
 
     --#region Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = function()
-            require('plugins.config.treesitter')
-        end,
-        event = { 'BufRead', 'BufNewFile' },
-    }
+    use { 'nvim-treesitter/playground', event = { 'BufRead', 'BufNewFile' } }
     use { 'windwp/nvim-ts-autotag', event = { 'BufRead', 'BufNewFile' } }
     use {
         'm-demare/hlargs.nvim',
@@ -122,6 +132,14 @@ return packer.startup(function(use)
         'lewis6991/spellsitter.nvim',
         config = function()
             require('spellsitter').setup {}
+        end,
+        event = { 'BufRead', 'BufNewFile' },
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function()
+            require('plugins.config.treesitter')
         end,
         event = { 'BufRead', 'BufNewFile' },
     }
@@ -161,10 +179,10 @@ return packer.startup(function(use)
         end,
         event = { 'BufRead', 'BufNewFile' },
     }
-    use { 'hrsh7th/cmp-nvim-lsp', after = "nvim-cmp" }
-    use { 'hrsh7th/cmp-cmdline', after = "nvim-cmp" }
-    use { 'hrsh7th/cmp-buffer', after = "nvim-cmp" }
-    use { 'hrsh7th/cmp-path', after = "nvim-cmp" }
+    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
 
     use {
         'L3MON4D3/LuaSnip',

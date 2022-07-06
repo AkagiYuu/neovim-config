@@ -3,8 +3,8 @@ pcall(require, 'impatient')
 require('util').disableBuiltins()
 
 require('plugins')
-require('theme')
 require('option')
+require('theme')
 require('autocmd')
 require('icons')
 
