@@ -1,20 +1,6 @@
 local M = {}
 
-local mode_colors = {
-    n = 'green',
-    i = 'red',
-    v = 'nord_blue',
-    V = 'nord_blue',
-    ['\22'] = 'nord_blue',
-    c = 'yellow',
-    s = 'purple',
-    S = 'purple',
-    ['\19'] = 'purple',
-    R = 'orange',
-    r = 'orange',
-    ['!'] = 'red',
-    t = 'red',
-}
+
 local mode_names = {
     n = { 'Normal', '' },
     no = { 'Op·Pending', '' },
@@ -46,14 +32,6 @@ local mode_names = {
     t = { 'Terminal', '' },
     [''] = { 'Empty', '-' },
 }
-
-
----Returns the designated colour for the mode.
----@param mode string
----@return string
-function M.color(mode)
-    return mode_colors[mode]
-end
 
 ---Return human-readable mode name.
 ---@param original string original mode name

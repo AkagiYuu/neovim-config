@@ -1,6 +1,22 @@
 local lspconfig = require('lspconfig')
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local completionItem = capabilities.textDocument.completion.completionItem
+
+  completionItem.snippetSupport = true
+  completionItem.preselectSupport = true
+  completionItem.insertReplaceSupport = true
+  completionItem.labelDetailsSupport = true
+  completionItem.deprecatedSupport = true
+  completionItem.commitCharactersSupport = true
+  completionItem.tagSupport = { valueSet = { 1 } }
+  completionItem.resolveSupport = {
+    properties = {
+      'documentation',
+      'detail',
+      'additionalTextEdits',
+    }
+  }
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -16,7 +32,8 @@ local servers = {
     'html',
     'jsonls',
     'bashls',
-    'asm_lsp'
+    'asm_lsp',
+    'vimls'
 }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {

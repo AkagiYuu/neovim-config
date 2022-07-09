@@ -1,9 +1,7 @@
 pcall(require, 'impatient')
 
-require('util').disableBuiltins()
-
-require('plugins')
 require('option')
+require('plugins')
 require('theme')
 require('autocmd')
 require('icons')

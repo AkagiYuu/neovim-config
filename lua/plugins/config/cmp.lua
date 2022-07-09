@@ -1,7 +1,7 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-local cmp_kinds = require('theme.icon').cmp_kind
+local cmp_kinds = require('icons.cmp')
 
 local source_map = {
     cmp_tabnine = '[tabnine]',

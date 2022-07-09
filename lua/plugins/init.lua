@@ -43,6 +43,12 @@ return packer.startup(function(use)
 
     use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
     use { 'kyazdani42/nvim-web-devicons' }
+    use {
+        'rcarriga/nvim-notify',
+        config = function()
+            require('plugins.config.notify')
+        end,
+    }
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -53,38 +59,11 @@ return packer.startup(function(use)
     }
 
     use {
-        'rcarriga/nvim-notify',
-        config = function()
-            require('plugins.config.notify')
-        end,
-        -- event = { 'BufRead', 'BufNewFile' },
-    }
-    use {
         'rebelot/heirline.nvim',
         config = function()
             require('plugins.config.heirline')
         end,
         event = { 'BufRead', 'BufNewFile' },
-    }
-    use {
-        'ggandor/lightspeed.nvim',
-        event = { 'BufRead', 'BufNewFile' },
-    }
-    use {
-        'ziontee113/syntax-tree-surfer',
-        config = function()
-            require('syntax-tree-surfer').setup {}
-        end,
-        event = { 'BufRead', 'BufNewFile' }
-    }
-    use {
-        'kylechui/nvim-surround',
-        config = function()
-            require('nvim-surround').setup {
-            -- Configuration here, or leave empty to use defaults
-            }
-        end,
-        event = { 'BufRead', 'BufNewFile' }
     }
 
     use {
@@ -92,7 +71,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.hydra')
         end,
-        event = { 'BufRead', 'BufNewFile' },
+        -- event = { 'BufRead', 'BufNewFile' },
     }
     use {
         'folke/which-key.nvim',
@@ -124,7 +103,9 @@ return packer.startup(function(use)
     use {
         'm-demare/hlargs.nvim',
         config = function()
-            require('hlargs').setup {}
+            require('hlargs').setup {
+                use_colorpalette = true,
+            }
         end,
         event = { 'BufRead', 'BufNewFile' },
     }
@@ -205,19 +186,41 @@ return packer.startup(function(use)
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
-        event = { 'BufRead', 'BufNewFile' },
-        cmd = 'Telescope',
-    }
-    use {
-        'nvim-telescope/telescope-file-browser.nvim',
-        after = 'telescope-fzf-native.nvim',
+        module = 'telescope.builtin',
+        cmd = 'Telescope'
     }
     use {
         'nvim-telescope/telescope.nvim',
         config = function()
             require('plugins.config.telescope')
         end,
-        after = 'telescope-fzf-native.nvim',
+        after = 'telescope-fzf-native.nvim'
+    }
+    use {
+        'nvim-telescope/telescope-file-browser.nvim',
+        config = function() require('telescope').load_extension('file_browser') end,
+        after = 'telescope-fzf-native.nvim'
+    }
+    --#endregion
+
+    --#region Motion
+    use {
+        'ggandor/lightspeed.nvim',
+        event = { 'BufRead', 'BufNewFile' },
+    }
+    use {
+        'ziontee113/syntax-tree-surfer',
+        config = function()
+            require('syntax-tree-surfer').setup {}
+        end,
+        event = { 'BufRead', 'BufNewFile' }
+    }
+    use {
+        'kylechui/nvim-surround',
+        config = function()
+            require('nvim-surround').setup {}
+        end,
+        event = { 'BufRead', 'BufNewFile' }
     }
     --#endregion
 
@@ -257,6 +260,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.ufo')
         end,
+        module = 'ufo',
         keys = {
             'zc',
             'zM',
@@ -350,5 +354,21 @@ return packer.startup(function(use)
             require('refactoring').setup {}
         end,
         event = { 'BufRead', 'BufNewFile' },
+    }
+    use {
+        'JASONews/glow-hover',
+        opt = true
+        -- event = { 'BufRead', 'BufNewFile' }
+    }
+    use {
+        'potamides/pantran.nvim',
+        config = function()
+            require('pantran').setup {
+                engines = {
+                    default_engine = 'google'
+                }
+            }
+        end,
+        cmd = 'Pantran'
     }
 end)

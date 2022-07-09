@@ -15,7 +15,7 @@ location.cursor = {
         provider = ' %P',
         hl = function(self)
             return {
-                fg = require('plugins.config.heirline.utils.mode').color(self.mode),
+                fg = self:mode_color(),
                 bg = 'mid_bg',
             }
         end,

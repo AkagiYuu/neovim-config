@@ -17,6 +17,14 @@ lsp.name = function(utils, conditions)
                 return self.icon .. lsp_client_names()
             end,
         }),
+        on_click = {
+            callback = function()
+                vim.defer_fn(function()
+                    vim.cmd("LspInfo")
+                end, 100)
+            end,
+            name = "heirline_LSP",
+        },
         update = { 'LspAttach', 'LspDetach' },
     }
 end
@@ -78,6 +86,14 @@ lsp.diagnostic = function(conditions, colors)
             hl = {
                 fg = colors.diag.hint,
             },
+        },
+        on_click = {
+            callback = function()
+                vim.cmd[[TroubleToggle]]
+                -- or
+                -- vim.diagnostic.setqflist()
+            end,
+            name = "heirline_diagnostics",
         },
     }
 end

@@ -4,4 +4,5 @@ require('kanagawa').setup {
 vim.cmd([[
     colorscheme kanagawa
     hi TelescopeBorder guibg=NONE
+    hi FloatBorder guibg=NONE
 ]])

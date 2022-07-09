@@ -4,7 +4,7 @@ return function(seperators)
     return {
         hl = function(self)
             return {
-                fg = mode.color(self.mode),
+                fg = self:mode_color(),
                 bold = true,
             }
         end,
@@ -12,12 +12,11 @@ return function(seperators)
             hl = function(self)
                 return {
                     fg = 'statusline_bg',
-                    bg = mode.color(self.mode),
+                    bg = self:mode_color(),
                     bold = true,
                 }
             end,
             provider = function(self)
-                print(self.mode)
                 return ' ' .. mode.info(self.mode)[2] .. ' '
             end,
         },

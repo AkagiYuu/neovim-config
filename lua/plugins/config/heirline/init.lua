@@ -1,9 +1,7 @@
 local conditions = require('heirline.conditions')
 local utils = require('heirline.utils')
-local mode_color = require('plugins.config.heirline.utils.mode').color
-
 local colors = require('plugins.config.heirline.colors')
-local seperators = require('theme.icon').heirline
+local seperators = require('icons.heirline')
 
 --#region Components
 local space = {
@@ -70,14 +68,14 @@ local active_right_segment = {
         hl = function(self)
             return {
                 fg = 'light_bg',
-                bg = mode_color(self.mode),
+                bg = self:mode_color(),
             }
         end,
         {
             provider = seperators.left_filled,
             hl = function(self)
                 return {
-                    fg = mode_color(self.mode),
+                    fg = self:mode_color(),
                     bg = 'statusline_bg',
                 }
             end,
@@ -204,6 +202,27 @@ local status_line = {
         })
         self.mode = vim.fn.mode(1)
     end,
+    static = {
+        mode_colors = {
+            n = 'green',
+            i = 'red',
+            v = 'nord_blue',
+            V = 'nord_blue',
+            ['\22'] = 'nord_blue',
+            c = 'yellow',
+            s = 'purple',
+            S = 'purple',
+            ['\19'] = 'purple',
+            R = 'orange',
+            r = 'orange',
+            ['!'] = 'red',
+            t = 'red',
+        },
+        mode_color = function(self)
+            local mode = conditions.is_active() and vim.fn.mode() or "n"
+            return self.mode_colors[mode]
+        end,
+    },
 
     stop_when = function(_, out)
         return out ~= ''
