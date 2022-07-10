@@ -1,7 +1,39 @@
-local mode = require('plugins.config.heirline.utils.mode')
-
 return function(seperators)
     return {
+        static = {
+            mode_names = {
+                n = { 'Normal', '' },
+                no = { 'Op·Pending', '' },
+                nov = { 'Op·Pending', '' },
+                noV = { 'Op·Pending', '' },
+                niI = { '(Normal)', '' },
+                niR = { '(Normal)', '' },
+                niV = { '(Normal)', '' },
+                nt = { 'Normal', '' },
+                v = { 'Visual', '' },
+                V = { 'V·Line', '' },
+                [''] = { 'V·Block', '' },
+                s = { 'Select', '' },
+                S = { 'S·Line', '' },
+                [''] = { 'S·Block', '' },
+                i = { 'Insert', '' },
+                ic = { 'Ins·Compl', 'C' },
+                ix = { 'Ins·Compl', 'X' },
+                R = { 'Replace', '' },
+                Rv = { 'Replace', '' },
+                Rx = { 'Replace', '' },
+                c = { 'Command', '' },
+                cv = { 'Vim·Ex', 'Q' },
+                ce = { 'Ex', '-' },
+                r = { 'Prompt', '-' },
+                rm = { 'More', '-' },
+                ['r?'] = { 'Confirm', '-' },
+                ['!'] = { 'Shell', '' },
+                t = { 'Terminal', '' },
+                [''] = { 'Empty', '-' },
+            },
+            mode_info = function(self) return self.mode_names[self.mode] or { self.mode, '' } end
+        },
         hl = function(self)
             return {
                 fg = self:mode_color(),
@@ -16,14 +48,10 @@ return function(seperators)
                     bold = true,
                 }
             end,
-            provider = function(self)
-                return ' ' .. mode.info(self.mode)[2] .. ' '
-            end,
+            provider = function(self) return ' ' .. self:mode_info()[2] .. ' ' end,
         },
         {
-            provider = function(self)
-                return seperators.right_filled .. '  %2(' .. mode.info(self.mode)[1] .. '%) '
-            end,
+            provider = function(self) return seperators.right_filled .. '  %2(' .. self:mode_info()[1] .. '%) ' end,
         },
     }
 end

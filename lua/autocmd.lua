@@ -5,23 +5,16 @@ nvim_create_autocmd('User', {
     command = 'set scrolloff=8',
 })
 
-nvim_create_autocmd({ 'FocusGained', 'FocusLost' }, {
-    command = 'checktime',
-})
+nvim_create_autocmd({ 'FocusGained', 'FocusLost' }, { command = 'checktime' })
 
 nvim_create_autocmd('BufWritePost', {
     pattern = '**/lua/plugins/init.lua',
     command = 'source <afile> | PackerCompile',
 })
 
-nvim_create_autocmd('TermOpen', {
-    pattern = 'term://*',
-    command = 'setlocal nonumber nospell',
-})
+nvim_create_autocmd('TermOpen', { command = 'setlocal nospell' })
 
-nvim_create_autocmd('QuitPre', {
-    command = 'wshada',
-})
+nvim_create_autocmd('QuitPre', { command = 'wshada' })
 
 nvim_create_autocmd('User', {
     pattern = 'PackerCompileDone',
@@ -32,8 +25,6 @@ nvim_create_autocmd('User', {
 })
 
 nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+    callback = function() vim.highlight.on_yank() end,
     desc = 'Highlight on yank',
 })

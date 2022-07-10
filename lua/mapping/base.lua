@@ -7,16 +7,16 @@ map('n', '<C-Up>', ':resize -2<CR>', { silent = true })
 map('n', '<C-Down>', ':resize +2<CR>', { silent = true })
 --#endregion
 
---region Scroll
-map('n', '<C-Left>', '20zh', {
-    silent = true,
-    desc = 'Scroll left',
-})
-map('n', '<C-Right>', '20zl', {
-    silent = true,
-    desc = 'Scroll right',
-})
---endregion
+-- --region Scroll
+-- map('n', '<S-ScrollWheelUp>', '<ScrollWheelLeft>', {
+--     silent = true,
+--     desc = 'Scroll left',
+-- })
+-- map('n', '<S-ScrollWheelDown>', '<ScrollWheelRight>', {
+--     silent = true,
+--     desc = 'Scroll right',
+-- })
+-- --endregion
 
 -- --#region Switch window
 -- map("n", "<C-h>", "<C-w>h", {
@@ -70,3 +70,5 @@ map('v', '>', '>gv', { silent = true })
 --#endregion
 
 map('t', '<esc>', [[<C-\><C-n>]])
+
+map("v", "p", '"_dP')

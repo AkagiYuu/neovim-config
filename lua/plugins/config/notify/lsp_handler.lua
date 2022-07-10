@@ -96,15 +96,4 @@ M.progress = function(_, result, ctx)
     end
 end
 
-local severity = {
-    'error',
-    'warn',
-    'info',
-    'info',
-}
-
-M.show_message = function(_, method, params, _)
-    vim.notify(method.message, severity[params.type])
-end
-
 return M

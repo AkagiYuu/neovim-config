@@ -8,7 +8,20 @@ map('n', '<F12>', vim.lsp.buf.definition, {
     desc = 'Search for definition',
 })
 map('n', '<A-f>', function()
-    vim.lsp.buf.format { async = true }
+    local disable_server = {
+        tsserver = true,
+        html = true,
+    }
+    vim.lsp.buf.format {
+        async = true,
+        filter = function(client)
+            if disable_server[client.name] then
+                return false
+            end
+
+            return true
+        end,
+    }
 end, {
     desc = 'Format',
 })
@@ -20,7 +33,7 @@ map('v', '<A-f>', vim.lsp.buf.range_formatting, {
 --#region Lspsaga
 map('n', '<S-F12>', function()
     require('lspsaga.finder').lsp_finder()
-    print("test")
+    print('test')
 end, {
     desc = 'Search for implementation and definition',
 })
@@ -41,7 +54,12 @@ end, {
 })
 
 map('n', 'K', function()
-    local winid = require('ufo').peekFoldedLinesUnderCursor()
+    local ok, ufo = pcall(require, 'ufo')
+    local winid = nil
+    if ok then
+        winid = ufo.peekFoldedLinesUnderCursor()
+    end
+
     if not winid then
         require('lspsaga.hover').render_hover_doc()
     end

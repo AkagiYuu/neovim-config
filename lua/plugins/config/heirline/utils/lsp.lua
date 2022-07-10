@@ -2,8 +2,8 @@ local M = {}
 
 local lsp_names = {
     ['null-ls'] = 'Null',
-    ['diagnostics_on_open'] = 'Diagnostics',
-    ['diagnostics_on_save'] = 'Diagnostics',
+    diagnostics_on_open = 'Diagnostics',
+    diagnostics_on_save = 'Diagnostics',
     bashls = 'Bash',
     clangd = 'C++',
     dockerls = 'Docker',
@@ -19,14 +19,14 @@ local lsp_names = {
 }
 
 M.lsp_client_names = function()
-    local clients = {}
+    local clients = '   '
 
     for _, client in pairs(vim.lsp.buf_get_clients(0)) do
         local name = lsp_names[client.name] or client.name
-        clients[#clients + 1] = name
+        clients = clients .. name  .. '   '
     end
 
-    return table.concat(clients, '   '), ' '
+    return clients
 end
 
 return M

@@ -1,5 +1,4 @@
 local Hydra = require('hydra')
 
-Hydra(require(... .. '.telescope'))
-Hydra(require(... .. '.window'))
-Hydra(require(... .. '.diagnostic'))
+Hydra(require('plugins.config.hydra.window'))
+Hydra(require('plugins.config.hydra.diagnostic'))

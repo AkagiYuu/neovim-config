@@ -39,7 +39,8 @@ return packer.startup(function(use)
     use { 'wbthomason/packer.nvim' }
 
     use { 'catppuccin/nvim', as = 'catppuccin' }
-    use { 'rebelot/kanagawa.nvim' }
+    use { 'rebelot/kanagawa.nvim', module = 'kanagawa' }
+    use { 'Shatur/neovim-ayu', opt = true }
 
     use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
     use { 'kyazdani42/nvim-web-devicons' }
@@ -51,19 +52,10 @@ return packer.startup(function(use)
     }
 
     use {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require('gitsigns').setup {}
-        end,
-        event = { 'BufRead', 'BufNewFile' },
-    }
-
-    use {
         'rebelot/heirline.nvim',
         config = function()
             require('plugins.config.heirline')
         end,
-        event = { 'BufRead', 'BufNewFile' },
     }
 
     use {
@@ -71,12 +63,18 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.hydra')
         end,
-        -- event = { 'BufRead', 'BufNewFile' },
     }
     use {
         'folke/which-key.nvim',
         config = function()
             require('plugins.config.whichkey')
+        end,
+    }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup {}
         end,
         event = { 'BufRead', 'BufNewFile' },
     }
@@ -94,28 +92,10 @@ return packer.startup(function(use)
         config = function()
             require('cybu').setup {}
         end,
-        cmd = { 'CybuNext', 'CybuPre' },
+        event = { 'BufRead', 'BufNewFile' },
     }
 
     --#region Treesitter
-    use { 'nvim-treesitter/playground', event = { 'BufRead', 'BufNewFile' } }
-    use { 'windwp/nvim-ts-autotag', event = { 'BufRead', 'BufNewFile' } }
-    use {
-        'm-demare/hlargs.nvim',
-        config = function()
-            require('hlargs').setup {
-                use_colorpalette = true,
-            }
-        end,
-        event = { 'BufRead', 'BufNewFile' },
-    }
-    use {
-        'lewis6991/spellsitter.nvim',
-        config = function()
-            require('spellsitter').setup {}
-        end,
-        event = { 'BufRead', 'BufNewFile' },
-    }
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -123,6 +103,29 @@ return packer.startup(function(use)
             require('plugins.config.treesitter')
         end,
         event = { 'BufRead', 'BufNewFile' },
+    }
+    use {
+        'ziontee113/syntax-tree-surfer',
+        config = function()
+            require('syntax-tree-surfer').setup {}
+        end,
+        after = 'nvim-treesitter'
+    }
+    use { 'nvim-treesitter/playground', opt = true }
+    use { 'windwp/nvim-ts-autotag', event = 'InsertCharPre' }
+    use {
+        'm-demare/hlargs.nvim',
+        config = function()
+            require('hlargs').setup { use_colorpalette = true }
+        end,
+        after = 'nvim-treesitter'
+    }
+    use {
+        'lewis6991/spellsitter.nvim',
+        config = function()
+            require('spellsitter').setup {}
+        end,
+        after = 'nvim-treesitter'
     }
     --#endregion
 
@@ -140,7 +143,7 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.null-ls')
         end,
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = { 'BufRead', 'BufNewFile' },
     }
 
     use {
@@ -167,13 +170,11 @@ return packer.startup(function(use)
 
     use {
         'L3MON4D3/LuaSnip',
-        requires = {
-            { 'rafamadriz/friendly-snippets' },
-        },
+        requires = { { 'rafamadriz/friendly-snippets' } },
         config = function()
             require('plugins.config.luasnip')
         end,
-        event = { 'BufRead', 'BufNewFile' },
+        module = 'luasnip',
     }
     use { 'saadparwaiz1/cmp_luasnip', event = 'InsertCharPre' }
     use { 'tzachar/cmp-tabnine', run = './install.sh', event = 'InsertCharPre' }
@@ -208,13 +209,7 @@ return packer.startup(function(use)
         'ggandor/lightspeed.nvim',
         event = { 'BufRead', 'BufNewFile' },
     }
-    use {
-        'ziontee113/syntax-tree-surfer',
-        config = function()
-            require('syntax-tree-surfer').setup {}
-        end,
-        event = { 'BufRead', 'BufNewFile' }
-    }
+
     use {
         'kylechui/nvim-surround',
         config = function()
@@ -260,7 +255,6 @@ return packer.startup(function(use)
         config = function()
             require('plugins.config.ufo')
         end,
-        module = 'ufo',
         keys = {
             'zc',
             'zM',
@@ -268,14 +262,21 @@ return packer.startup(function(use)
     }
 
     use {
-        'yamatsum/nvim-cursorline',
-        event = { 'BufRead', 'BufNewFile' },
-    }
-
-    use {
-        'folke/zen-mode.nvim',
-        requires = { { 'folke/twilight.nvim', after = 'zen-mode.nvim' } },
-        cmd = 'ZenMode',
+        'Pocco81/TrueZen.nvim',
+        config = function()
+            require('true-zen').setup {
+                ui = {
+                    bottom = {
+                        laststatus = 3,
+                    }
+                },
+            }
+        end,
+        cmd = {
+            'TZAtaraxis',
+            'TZFocus',
+            'TZMinimalist'
+        }
     }
 
     use {
@@ -323,10 +324,10 @@ return packer.startup(function(use)
 
     use {
         'saecki/crates.nvim',
-        event = { 'BufRead Cargo.toml' },
         config = function()
             require('crates').setup {}
         end,
+        event = { 'BufRead Cargo.toml' },
     }
 
     use {
@@ -334,7 +335,7 @@ return packer.startup(function(use)
         config = function()
             require('lsp_lines').register_lsp_virtual_lines()
         end,
-        event = { 'BufRead', 'BufNewFile' },
+        opt = true
     }
 
     use {
@@ -344,7 +345,7 @@ return packer.startup(function(use)
         end,
         keys = {
             '<C-a>',
-            '<C-d>',
+            '<C-x>',
         },
     }
 
@@ -353,13 +354,11 @@ return packer.startup(function(use)
         config = function()
             require('refactoring').setup {}
         end,
-        event = { 'BufRead', 'BufNewFile' },
+        opt = true,
+        -- event = { 'BufRead', 'BufNewFile' },
     }
-    use {
-        'JASONews/glow-hover',
-        opt = true
-        -- event = { 'BufRead', 'BufNewFile' }
-    }
+    use { 'JASONews/glow-hover', opt = true }
+
     use {
         'potamides/pantran.nvim',
         config = function()
@@ -370,5 +369,26 @@ return packer.startup(function(use)
             }
         end,
         cmd = 'Pantran'
+    }
+
+    use {
+        'lewis6991/satellite.nvim',
+        config = function()
+            require('satellite').setup {
+                winblend = 0,
+            }
+        end,
+        event = { 'BufRead', 'BufNewFile' }
+    }
+    use {
+        'declancm/cinnamon.nvim',
+        config = function()
+            require('cinnamon').setup {
+                default_keymaps = true,
+                extra_keymaps = true,
+                extended_keymaps = true,
+                scroll_limit = 100,
+            }
+        end
     }
 end)

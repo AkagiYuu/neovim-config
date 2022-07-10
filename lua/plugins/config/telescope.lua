@@ -2,19 +2,19 @@ local telescope = require('telescope')
 local action_layout = require('telescope.actions.layout')
 local actions = require('telescope.actions')
 
-local vertical = {
-    layout_strategies = 'vertical',
-    layout_config = {
-        prompt_position = 'top',
-        anchor = 'N',
-    },
-}
+-- local vertical = {
+--     layout_strategies = 'vertical',
+--     layout_config = {
+--         prompt_position = 'top',
+--         anchor = 'N',
+--     },
+-- }
 
 telescope.setup {
     defaults = {
         prompt_prefix = '🔭 ',
-        -- 
-        selection_caret = '  ',
+        --
+        selection_caret = ' ',
         layout_strategy = 'flex',
         dynamic_preview_title = true,
 
@@ -30,13 +30,13 @@ telescope.setup {
             timeout = 1000,
         },
     },
-    pickers = {
-        commands = vertical,
-        keymaps = vertical,
-        lsp_references = {
-            theme = 'cursor',
-        },
-    },
+    -- pickers = {
+    --     commands = vertical,
+    --     keymaps = vertical,
+    --     lsp_references = {
+    --         theme = 'cursor',
+    --     },
+    -- },
 }
 
 telescope.load_extension('fzf')

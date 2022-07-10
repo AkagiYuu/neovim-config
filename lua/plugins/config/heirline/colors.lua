@@ -13,7 +13,7 @@ require('heirline').load_colors {
     purple = utils.get_highlight('Statement').fg,
     cyan = utils.get_highlight('Special').fg,
     yellow = utils.get_highlight('DiagnosticWarn').fg,
-    folder = utils.get_highlight('NvimTreeFolderName').fg,
+    -- folder = utils.get_highlight('NvimTreeFolderName').fg,
 
     short_bg = '#34393D',
     statusline_bg = '#181f26',

@@ -34,6 +34,6 @@ require('dial.config').augends:register_group {
         -- augend.case.new("PascalCase", "snake_case", "camelCase"),
     },
 }
--- 3.0.0
+
 vim.keymap.set('n', '<C-a>', require('dial.map').inc_normal())
-vim.keymap.set('n', '<C-d>', require('dial.map').dec_normal())
+vim.keymap.set('n', '<C-x>', require('dial.map').dec_normal())

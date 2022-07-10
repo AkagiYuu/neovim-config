@@ -1,22 +1,24 @@
 local lspconfig = require('lspconfig')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local completionItem = capabilities.textDocument.completion.completionItem
 
-  completionItem.snippetSupport = true
-  completionItem.preselectSupport = true
-  completionItem.insertReplaceSupport = true
-  completionItem.labelDetailsSupport = true
-  completionItem.deprecatedSupport = true
-  completionItem.commitCharactersSupport = true
-  completionItem.tagSupport = { valueSet = { 1 } }
-  completionItem.resolveSupport = {
-    properties = {
-      'documentation',
-      'detail',
-      'additionalTextEdits',
-    }
-  }
+capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { 'markdown', 'plaintext' },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+      properties = {
+         'documentation',
+         'detail',
+         'additionalTextEdits',
+      },
+    },
+}
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -42,7 +44,7 @@ for _, lsp in ipairs(servers) do
 end
 
 local pid = vim.fn.getpid()
-local omnisharp_bin = "/home/yuu/Applications/omnisharp/OmniSharp"
+local omnisharp_bin = '/home/yuu/Applications/omnisharp/OmniSharp'
 require 'lspconfig'.omnisharp.setup {
     cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) };
 }
@@ -57,9 +59,18 @@ lspconfig.sumneko_lua.setup {
                     ['codestyle-check'] = 'Any',
                 },
             },
+            workspace = {
+                library = {
+                    [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+                    [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+                },
+                maxPreload = 100000,
+                preloadFileSize = 10000,
+            },
             -- workspace = {
-            -- -- Make the server aware of Neovim runtime files
             -- 	library = vim.api.nvim_get_runtime_file('', true),
+            --     maxPreload = 100000,
+            --     preloadFileSize = 10000,
             -- },
         },
     },
@@ -69,3 +80,13 @@ capabilities.offsetEncoding = 'utf-8'
 lspconfig.clangd.setup {
     capabilities = capabilities,
 }
+
+-- Borders for LspInfo window
+local win = require 'lspconfig.ui.windows'
+local _default_opts = win.default_opts
+
+win.default_opts = function(options)
+    local opts = _default_opts(options)
+    opts.border = 'single'
+    return opts
+end

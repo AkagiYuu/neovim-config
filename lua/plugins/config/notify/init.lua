@@ -10,4 +10,3 @@ notify.setup {
 vim.notify = notify
 
 vim.lsp.handlers['$/progress'] = lsp_handler.progress
-vim.lsp.handlers['window/showMessage'] = lsp_handler.show_message

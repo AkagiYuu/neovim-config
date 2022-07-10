@@ -6,6 +6,7 @@ require('nvim-tree').setup {
     view = {
         side = 'right',
         preserve_window_proportions = true,
+        signcolumn = "no",
     },
     renderer = {
         highlight_opened_files = 'name',
