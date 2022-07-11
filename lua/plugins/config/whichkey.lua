@@ -22,16 +22,23 @@ which_key.setup {
 which_key.register({
     f = {
         name = 'Find',
+        ['<Enter>'] = { function() require('telescope.builtin').builtin() end, 'All picker' },
+        r = { function() require('telescope.builtin').resume() end, 'Resume' },
         f = { function() require('telescope.builtin').find_files() end, 'File' },
         g = { function() require('telescope.builtin').live_grep() end, 'Live grep' },
         ['?'] = { function() require('telescope.builtin').help_tags() end, ' Help' },
         o = { function() require('telescope.builtin').oldfiles() end, 'Recently opened files' },
         a = { function() require('telescope.builtin').autocommands() end, 'Auto commands' },
         k = { function() require('telescope.builtin').keymaps() end, 'Keymaps' },
-        r = { function() require('telescope.builtin').registers() end, 'Registers' },
-        b = { ':Telescope file_browser<cr>', 'File browser' },
+        b = { function() require('telescope').extensions.file_browser.file_browser() end, 'File browser' },
         ['/'] = { function() require('telescope.builtin').current_buffer_fuzzy_find() end, ' Find' },
         c = { function() require('telescope.builtin').commands() end, ' Commands' },
+    },
+    g = {
+        name = 'Git',
+        c = { function() require('telescope.builtin').git_commits() end, 'View commit' },
+        b = { function() require('telescope.builtin').git_branches() end, 'View branches' },
+        ['?'] = { function() require('telescope.builtin').git_status() end, 'Git status' },
     },
     p = {
         name = 'Packer',

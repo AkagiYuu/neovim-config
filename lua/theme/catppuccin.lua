@@ -35,7 +35,7 @@ if ok then
             lsp_trouble = true,
             lsp_saga = true,
             which_key = true,
-            dashboard = false,
+            -- dashboard = false,
             -- lightspeed = true,
             ts_rainbow = true,
         },

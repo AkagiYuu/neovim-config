@@ -27,7 +27,7 @@ g.loaded_ruby_provider = 0
 g.loaded_python3_provider = 0
 
 opt.termguicolors = true
-opt.guicursor = ''
+opt.guicursor = 'a:ver25'
 opt.mouse = 'a'
 opt.laststatus = 3
 -- opt.cmdheight = 0

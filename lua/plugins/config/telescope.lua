@@ -13,16 +13,20 @@ local actions = require('telescope.actions')
 telescope.setup {
     defaults = {
         prompt_prefix = '🔭 ',
-        --
-        selection_caret = ' ',
+        selection_caret = '➜ ',
         layout_strategy = 'flex',
+        layout_config = {
+            height = 0.9,
+            width = 0.8,
+            prompt_position = 'top'
+        },
         dynamic_preview_title = true,
 
         mappings = {
             i = {
                 ['<A-p>'] = action_layout.toggle_preview,
-                ['<C-Up>'] = actions.preview_scrolling_up,
-                ['<C-Down>'] = actions.preview_scrolling_down,
+                ['<ScrollUp>'] = actions.preview_scrolling_up,
+                ['<ScrollDown>'] = actions.preview_scrolling_down,
                 ['<Esc>'] = actions.close,
             },
         },
@@ -40,3 +44,5 @@ telescope.setup {
 }
 
 telescope.load_extension('fzf')
+telescope.load_extension('file_browser')
+telescope.load_extension("persisted")
