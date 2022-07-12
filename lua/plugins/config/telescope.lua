@@ -25,9 +25,9 @@ telescope.setup {
         mappings = {
             i = {
                 ['<A-p>'] = action_layout.toggle_preview,
-                ['<ScrollUp>'] = actions.preview_scrolling_up,
-                ['<ScrollDown>'] = actions.preview_scrolling_down,
-                ['<Esc>'] = actions.close,
+                ['<C-Up>'] = 'preview_scrolling_up',
+                ['<C-Down>'] = 'preview_scrolling_down',
+                ['<Esc>'] = 'close',
             },
         },
         preview = {

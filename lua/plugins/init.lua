@@ -329,4 +329,9 @@ return packer.startup(function(use)
         end,
         event = { 'BufRead', 'BufNewFile' }
     }
+
+    use {
+        'jakemason/ouroboros',
+        ft = { 'c', 'cpp' }
+    }
 end)
