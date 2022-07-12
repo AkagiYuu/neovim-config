@@ -38,7 +38,7 @@ return packer.startup(function(use)
 
     use { 'wbthomason/packer.nvim' }
 
-    use { 'catppuccin/nvim', as = 'catppuccin' }
+    use { 'catppuccin/nvim', branch = 'dev', as = 'catppuccin' }
     use { 'rebelot/kanagawa.nvim', module = 'kanagawa' }
     use { 'Shatur/neovim-ayu', opt = true }
 

@@ -32,6 +32,7 @@ if ok then
                     information = 'undercurl',
                 },
             },
+            -- telescope = false,
             lsp_trouble = true,
             lsp_saga = true,
             which_key = true,
