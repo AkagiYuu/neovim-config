@@ -5,11 +5,11 @@ if ok then
         transparent_background = true,
         term_colors = true,
         styles = {
-            comments = 'italic',
-            conditionals = 'italic',
-            loops = 'italic',
-            functions = 'italic',
-            keywords = 'italic',
+            comments = { 'italic' },
+            conditionals = { 'italic' },
+            loops = { 'italic' },
+            functions = { 'italic' },
+            keywords = { 'italic' },
             -- strings = 'NONE',
             -- variables = 'NONE',
             -- numbers = 'NONE',
@@ -33,13 +33,19 @@ if ok then
                 },
             },
             -- telescope = false,
-            lsp_trouble = true,
             lsp_saga = true,
             which_key = true,
-            -- dashboard = false,
+            dashboard = false,
             -- lightspeed = true,
-            ts_rainbow = true,
+            telekasten = false,
+            symbols_outline = false,
+        },
+        custom_highlights = {
+            CursorLine = { bg = 'NONE' },
+            WhichKeyFloat = { bg = 'NONE' },
+            NormalFloat = { bg = 'NONE' },
+            LspFloatWinNormal = { bg = 'NONE' }
         },
     }
-    vim.cmd("colorscheme catppuccin")
+    vim.cmd('colorscheme catppuccin')
 end
