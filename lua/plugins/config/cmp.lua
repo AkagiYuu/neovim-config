@@ -61,6 +61,7 @@ cmp.setup {
         -- { name = 'cmp_tabnine', max_item_count = 2 },
         { name = 'luasnip', max_item_count = 2 },
         { name = 'nvim_lsp' },
+        { name = 'neorg' },
         { name = 'crates' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'calc' },

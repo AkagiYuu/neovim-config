@@ -71,4 +71,8 @@ map('v', '>', '>gv', { silent = true })
 
 map('t', '<esc>', [[<C-\><C-n>]])
 
-map("v", "p", '"_dP')
+map('v', 'p', '"_dP')
+
+map('n', '<M-c>', function()
+    vim.opt.conceallevel = vim.opt.conceallevel:get() > 0 and 0 or 2
+end)

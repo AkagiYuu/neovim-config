@@ -33,8 +33,19 @@ return packer.startup(function(use)
     use { 'lewis6991/impatient.nvim' }
     use { 'nathom/filetype.nvim' }
 
+    --#region Library
     use { 'nvim-lua/plenary.nvim' }
     use { 'kevinhwang91/promise-async' }
+    use {
+        'stevearc/dressing.nvim',
+        config = function()
+            require('dressing').setup {
+                input = { winblend = 0 }
+            }
+        end,
+        event = 'User Defer'
+    }
+    --#endregion
 
     use { 'wbthomason/packer.nvim' }
 
@@ -62,12 +73,11 @@ return packer.startup(function(use)
         opt = true
     }
     use {
-        'olimorris/persisted.nvim',
-        --module = "persisted", -- For lazy loading
-        config = function()
-            require('persisted').setup()
-            -- require('telescope').load_extension('persisted') -- To load the telescope extension
-        end,
+        'nvim-neorg/neorg',
+        ft = 'norg',
+        after = 'nvim-treesitter',
+        config = function() require('plugins.config.neorg') end,
+        requires = 'nvim-lua/plenary.nvim'
     }
 
     use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
@@ -191,8 +201,7 @@ return packer.startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         config = function() require('plugins.config.telescope') end,
-        cmd = 'Telescope',
-        module = 'telescope.builtin'
+        event = 'User Defer'
     }
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -273,7 +282,13 @@ return packer.startup(function(use)
 
     use {
         'akinsho/toggleterm.nvim',
-        config = function() require('toggleterm').setup {} end,
+        config = function()
+            require('toggleterm').setup {
+                winbar = {
+                    enabled = true,
+                },
+            }
+        end,
         cmd = 'ToggleTerm',
     }
 
@@ -330,8 +345,10 @@ return packer.startup(function(use)
         event = { 'BufRead', 'BufNewFile' }
     }
 
+    use { 'jakemason/ouroboros', ft = { 'c', 'cpp' } }
+
     use {
-        'jakemason/ouroboros',
-        ft = { 'c', 'cpp' }
+        'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end
     }
 end)

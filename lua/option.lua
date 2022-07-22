@@ -28,6 +28,10 @@ g.loaded_python3_provider = 0
 
 opt.termguicolors = true
 opt.guicursor = 'a:ver25'
+opt.guifont = {
+    "Delugia:h12",
+    "nonicons:h12"
+}
 opt.mouse = 'a'
 opt.laststatus = 3
 -- opt.cmdheight = 0

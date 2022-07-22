@@ -27,7 +27,7 @@ map('n', '<leader>fc', function() require('telescope.builtin').commands() end, {
 map('n', '<leader>ff', function() require('telescope.builtin').find_files() end, {
     desc = 'File'
 })
-map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, {
+map('n', '<leader>fw', function() require('telescope.builtin').live_grep() end, {
     desc = 'Live grep'
 })
 map('n', '<leader>fh', function() require('telescope.builtin').highlights() end, {

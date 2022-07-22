@@ -26,26 +26,29 @@ saga.init_lsp_saga {
     -- }
     symbol_in_winbar = {
         in_custom = false,
-        enable = true,
+        enable = not vim.g.started_by_firenvim,
         separator = '   ',
         show_file = true,
-        click_support = function(line_start, line_end, clicks, button, modifiers)
+        click_support = function(node, clicks, button, modifiers)
+            -- To see all avaiable details: vim.pretty_print(node)
+            local st = node.range.start
+            local en = node.range['end']
             if  button == 'l' then
                 if clicks == 2 then
-                    -- double left click to visual select node
-                    vim.cmd("execute 'normal vv' | " .. line_start .. 'mark < | ' .. line_end .. 'mark > | normal gvV')
-                else
-                    vim.cmd(':' .. line_start) -- jump to node's starting line
+                    -- double left click to do nothing
+                else -- jump to node's starting line+char
+                    vim.fn.cursor(st.line + 1, st.character + 1)
                 end
             elseif button == 'r' then
                 if modifiers == 's' then
-                    -- shift right click to print "lspsaga"
-                    print 'lspsaga'
-                end
-                vim.cmd(':' .. line_end) -- jump to node's ending line
+                    print 'lspsaga' -- shift right click to print "lspsaga"
+                end -- jump to node's ending line+char
+                vim.fn.cursor(en.line + 1, en.character + 1)
             elseif button == 'm' then
                 -- middle click to visual select node
-                vim.cmd("execute 'normal vv' | " .. line_start .. 'mark < | ' .. line_end .. 'mark > | normal gvV')
+                vim.fn.cursor(st.line + 1, st.character + 1)
+                vim.cmd 'normal v'
+                vim.fn.cursor(en.line + 1, en.character + 1)
             end
         end,
     },

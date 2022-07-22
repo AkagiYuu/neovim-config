@@ -13,7 +13,7 @@ local actions = require('telescope.actions')
 telescope.setup {
     defaults = {
         prompt_prefix = '🔭 ',
-        selection_caret = '➜ ',
+        selection_caret = '  ',
         layout_strategy = 'flex',
         layout_config = {
             height = 0.9,
@@ -45,4 +45,3 @@ telescope.setup {
 
 telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
-telescope.load_extension("persisted")
