@@ -1,7 +1,7 @@
 vim.diagnostic.config {
-    virtual_text = true,
+    virtual_lines = true,
+    virtual_text = false,
     update_in_insert = true,
-    virtual_lines = false,
     signs = true,
 }
 
