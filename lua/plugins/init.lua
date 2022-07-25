@@ -49,7 +49,7 @@ return packer.startup(function(use)
 
     use { 'wbthomason/packer.nvim' }
 
-    use { 'catppuccin/nvim', as = 'catppuccin' }
+    use { 'catppuccin/nvim', as = 'catppuccin', run = ":CatppuccinCompile" }
     use { 'rebelot/kanagawa.nvim', module = 'kanagawa' }
     use { 'Shatur/neovim-ayu', opt = true }
 
@@ -312,8 +312,8 @@ return packer.startup(function(use)
 
     use {
         'Maan2003/lsp_lines.nvim',
-        config = function() require('lsp_lines').register_lsp_virtual_lines() end,
-        opt = true
+        config = function() require('lsp_lines').setup() end,
+        event = 'User Defer'
     }
 
     use {
@@ -343,6 +343,12 @@ return packer.startup(function(use)
             require('satellite').setup { winblend = 0, }
         end,
         event = { 'BufRead', 'BufNewFile' }
+    }
+
+    use {
+        'NvChad/nvim-colorizer.lua',
+        config = function() require 'colorizer'.setup() end,
+        event = 'User Defer'
     }
 
     use { 'jakemason/ouroboros', ft = { 'c', 'cpp' } }

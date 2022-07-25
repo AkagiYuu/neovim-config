@@ -44,7 +44,7 @@ if ok then
             WhichKeyFloat              = { bg = 'NONE' },
             NormalFloat                = { bg = 'NONE' },
             LspFloatWinNormal          = { bg = 'NONE' },
-            TelescopeSelection         = { bg = 'NONE' }
+            TelescopeSelection         = { bg = 'NONE' },
         },
     }
     vim.g.catppuccin_flavour = 'mocha'

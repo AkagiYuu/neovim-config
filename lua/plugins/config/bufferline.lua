@@ -1,5 +1,6 @@
 require('bufferline').setup {
     options = {
+        mode = 'buffers',
         max_name_length = 10,
         max_prefix_length = 15,
         diagnostics = 'nvim_lsp',
@@ -28,7 +29,7 @@ require('bufferline').setup {
         },
         show_close_icon = false,
         persist_buffer_sort = true,
-        enforce_regular_tabs = true,
+        -- enforce_regular_tabs = true,
         -- always_show_bufferline = false,
     },
 }
