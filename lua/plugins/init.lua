@@ -36,6 +36,7 @@ return packer.startup(function(use)
     --#region Library
     use { 'nvim-lua/plenary.nvim' }
     use { 'kevinhwang91/promise-async' }
+    use { 'ii14/emmylua-nvim', opt = true }
     use {
         'stevearc/dressing.nvim',
         config = function()
