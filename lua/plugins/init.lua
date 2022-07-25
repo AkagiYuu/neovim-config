@@ -49,7 +49,7 @@ return packer.startup(function(use)
 
     use { 'wbthomason/packer.nvim' }
 
-    use { 'catppuccin/nvim', as = 'catppuccin', run = ":CatppuccinCompile" }
+    use { 'catppuccin/nvim', as = 'catppuccin', run = ':CatppuccinCompile' }
     use { 'rebelot/kanagawa.nvim', module = 'kanagawa' }
     use { 'Shatur/neovim-ayu', opt = true }
 
@@ -145,11 +145,14 @@ return packer.startup(function(use)
         after = 'nvim-treesitter'
     }
     use {
-        'narutoxy/dim.lua',
+        'zbirenbaum/neodim',
         config = function()
-            require('dim').setup { disable_lsp_decorations = false }
+            require('neodim').setup {
+                alpha = 0.75,
+                update_in_insert = { enable = false, },
+            }
         end,
-        after = 'nvim-treesitter'
+        event = 'User Defer',
     }
     --#endregion
 
@@ -360,8 +363,8 @@ return packer.startup(function(use)
 
     use {
         'tamton-aquib/zone.nvim',
-        config = function ()
-            require("zone").setup()
+        config = function()
+            require('zone').setup()
         end,
         cmd = 'Zone',
     }
