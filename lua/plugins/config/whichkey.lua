@@ -19,6 +19,9 @@ which_key.register({
         name = 'Telescope',
         g = 'Git',
     },
+    d = {
+        name = 'Diagnostic/Debug'
+    }
 }, { prefix = '<leader>' })
 
 which_key.register({

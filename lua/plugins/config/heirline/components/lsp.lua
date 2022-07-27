@@ -7,7 +7,7 @@ lsp.name = function(conditions)
         provider = require('plugins.config.heirline.utils.lsp').lsp_client_names,
         on_click = {
             callback = function()
-                vim.defer_fn(function() vim.cmd('LspInfo') end, 100)
+                vim.defer_fn(function() vim.cmd.LspInfo() end, 100)
             end,
             name = 'heirline_LSP',
         },
@@ -52,7 +52,7 @@ lsp.diagnostic = function(conditions, colors)
             hl = { fg = colors.diag.hint },
         },
         on_click = {
-            callback = function() vim.cmd [[TroubleToggle]] end,
+            callback = function() vim.cmd.TroubleToggle() end,
             name = 'heirline_diagnostics',
         },
     }

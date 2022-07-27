@@ -19,6 +19,6 @@ vim.defer_fn(function()
             "nonicons:h12"
         }
     end
-    vim.cmd([[ rshada ]])
+    vim.cmd.rshada()
     vim.opt.spell = true
 end, 1000)

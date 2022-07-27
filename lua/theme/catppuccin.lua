@@ -30,6 +30,10 @@ if ok then
             which_key = true,
             dashboard = false,
             -- lightspeed = true,
+            dap = {
+                enabled = true,
+                enable_ui = true,
+            },
             telekasten = false,
             symbols_outline = false,
             vimwiki = false,
@@ -48,5 +52,5 @@ if ok then
         },
     }
     vim.g.catppuccin_flavour = 'mocha'
-    vim.cmd('colorscheme catppuccin')
+    vim.cmd.colorscheme('catppuccin')
 end

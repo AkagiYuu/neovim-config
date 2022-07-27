@@ -49,6 +49,22 @@ return packer.startup(function(use)
     --#endregion
 
     use { 'wbthomason/packer.nvim' }
+    use {
+        'williamboman/mason.nvim',
+        config = function()
+            require('mason').setup {
+                ui = {
+                    border = 'single',
+                    icons = {
+                        package_installed = '✓',
+                        package_pending = '➜',
+                        package_uninstalled = '✗'
+                    }
+                }
+            }
+        end,
+        cmd = 'Mason',
+    }
 
     use { 'catppuccin/nvim', as = 'catppuccin', run = ':CatppuccinCompile' }
     use { 'rebelot/kanagawa.nvim', module = 'kanagawa' }
@@ -201,6 +217,18 @@ return packer.startup(function(use)
     use { 'hrsh7th/cmp-calc', event = 'InsertCharPre' }
     --#endregion
 
+    --#region Debug
+    use {
+        'mfussenegger/nvim-dap',
+        config = function() require('plugins.config.dap') end,
+        event = 'User Defer',
+    }
+    use {
+        'rcarriga/nvim-dap-ui',
+        event = 'User Defer',
+    }
+    --#endregion
+
     --#region Telescope
     use {
         'nvim-telescope/telescope.nvim',
@@ -288,9 +316,9 @@ return packer.startup(function(use)
         'akinsho/toggleterm.nvim',
         config = function()
             require('toggleterm').setup {
-                winbar = {
-                    enabled = true,
-                },
+                -- winbar = {
+                --     enabled = true,
+                -- },
             }
         end,
         cmd = 'ToggleTerm',

@@ -1,4 +1,5 @@
 local lspconfig = require('lspconfig')
+local lsp_path = vim.fn.stdpath('data') .. "/mason/bin/"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -24,6 +25,30 @@ capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true,
 }
 
+lspconfig.sumneko_lua.setup {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+                neededFileStatus = {
+                    ['codestyle-check'] = 'Any',
+                },
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+                    [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+                },
+                maxPreload = 100000,
+            }
+            -- workspace = {
+            --     library = vim.api.nvim_get_runtime_file('', true),
+            --     maxPreload = 1000000,
+            -- },
+        },
+    },
+    capabilities = capabilities,
+}
 local servers = {
     'tsserver',
     'gopls',
@@ -44,7 +69,7 @@ for _, lsp in ipairs(servers) do
 end
 
 local pid = vim.fn.getpid()
-local omnisharp_bin = '/home/yuu/Applications/omnisharp/OmniSharp'
+local omnisharp_bin = lsp_path .. 'omnisharp'
 require 'lspconfig'.omnisharp.setup {
     cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
     enable_roslyn_analyzers = true,
@@ -52,29 +77,6 @@ require 'lspconfig'.omnisharp.setup {
     enable_import_completion = true,
 }
 
-lspconfig.sumneko_lua.setup {
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' },
-                neededFileStatus = {
-                    ['codestyle-check'] = 'Any',
-                },
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file('', true),
-                maxPreload = 10000,
-                preloadFileSize = 10000,
-            },
-            -- workspace = {
-            -- 	library = vim.api.nvim_get_runtime_file('', true),
-            --     maxPreload = 100000,
-            --     preloadFileSize = 10000,
-            -- },
-        },
-    },
-}
 
 capabilities.offsetEncoding = 'utf-8'
 lspconfig.clangd.setup {
