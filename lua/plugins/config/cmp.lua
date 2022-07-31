@@ -62,6 +62,7 @@ cmp.setup {
         { name = 'luasnip', max_item_count = 2 },
         { name = 'nvim_lsp' },
         { name = 'neorg' },
+        { name = 'lab.quick_data', keyword_length = 4 },
         { name = 'crates' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'calc' },

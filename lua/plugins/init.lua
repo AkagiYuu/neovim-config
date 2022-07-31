@@ -397,4 +397,11 @@ return packer.startup(function(use)
         end,
         cmd = 'Zone',
     }
+
+    use {
+        '0x100101/lab.nvim',
+        run = 'cd js && npm ci',
+        config = function() require('lab').setup {} end,
+        event = 'User Defer'
+    }
 end)
