@@ -1,5 +1,4 @@
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 map('n', '<F3>', ':NvimTreeToggle<cr>', {
     desc = 'Toggle file tree',
@@ -48,14 +47,14 @@ end, {
 
 
 
-vim.keymap.set('n', 'vU', function()
+map('n', 'vU', function()
     vim.opt.opfunc = 'v:lua.STSSwapUpNormal_Dot'
     return 'g@l'
 end, {
     expr = true,
     desc = 'Swap master node up'
 })
-vim.keymap.set('n', 'vD', function()
+map('n', 'vD', function()
     vim.opt.opfunc = 'v:lua.STSSwapDownNormal_Dot'
     return 'g@l'
 end, {
@@ -63,14 +62,14 @@ end, {
     desc = 'Swap master node down'
 })
 
-vim.keymap.set('n', 'vu', function()
+map('n', 'vu', function()
     vim.opt.opfunc = 'v:lua.STSSwapCurrentNodePrevNormal_Dot'
     return 'g@l'
 end, {
     expr = true,
     desc = 'Swap current node down'
 })
-vim.keymap.set('n', 'vd', function()
+map('n', 'vd', function()
     vim.opt.opfunc = 'v:lua.STSSwapCurrentNodeNextNormal_Dot'
     return 'g@l'
 end, {
@@ -78,10 +77,13 @@ end, {
     desc = 'Swap current node down'
 })
 
-vim.keymap.set('n', 'vx', '<cmd>STSSelectMasterNode<cr>', opts)
-vim.keymap.set('n', 'vn', '<cmd>STSSelectCurrentNode<cr>', opts)
+local opts = { noremap = true, silent = true }
+map('n', 'vx', '<cmd>STSSelectMasterNode<cr>', opts)
+map('n', 'vn', '<cmd>STSSelectCurrentNode<cr>', opts)
 
-vim.keymap.set('x', 'J', '<cmd>STSSelectNextSiblingNode<cr>', opts)
-vim.keymap.set('x', 'K', '<cmd>STSSelectPrevSiblingNode<cr>', opts)
-vim.keymap.set('x', 'H', '<cmd>STSSelectParentNode<cr>', opts)
-vim.keymap.set('x', 'L', '<cmd>STSSelectChildNode<cr>', opts)
+map('x', 'J', '<cmd>STSSelectNextSiblingNode<cr>', opts)
+map('x', 'K', '<cmd>STSSelectPrevSiblingNode<cr>', opts)
+map('x', 'H', '<cmd>STSSelectParentNode<cr>', opts)
+map('x', 'L', '<cmd>STSSelectChildNode<cr>', opts)
+
+map('n', '<C-j>', function () require('trevj').format_at_cursor() end)

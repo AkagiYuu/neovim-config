@@ -89,20 +89,20 @@ end, {
     desc = 'Preview definition',
 })
 
-map('n', '<leader>dl', function() require('lspsaga.diagnostic').show_line_diagnostics() end, {
-    desc = 'Show line diagnostics',
-})
-map('n', '<leader>dp', function() require('lspsaga.diagnostic').goto_prev() end, {
-    desc = 'Goto previous diagnostic',
-})
-map('n', '<leader>dn', function() require('lspsaga.diagnostic').goto_next() end, {
-    desc = 'Goto next diagnostic',
-})
-map('n', '<leader>dt', function()
-    local virtual_lines_enable = not vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config {
-        virtual_lines = virtual_lines_enable,
-        virtual_text = not virtual_lines_enable
-    }
-end, { desc = 'Toggle virtual lines', })
+-- map('n', '<leader>dl', function() require('lspsaga.diagnostic').show_line_diagnostics() end, {
+--     desc = 'Show line diagnostics',
+-- })
+-- map('n', '<leader>dp', function() require('lspsaga.diagnostic').goto_prev() end, {
+--     desc = 'Goto previous diagnostic',
+-- })
+-- map('n', '<leader>dn', function() require('lspsaga.diagnostic').goto_next() end, {
+--     desc = 'Goto next diagnostic',
+-- })
+-- map('n', '<leader>dt', function()
+--     local virtual_lines_enable = not vim.diagnostic.config().virtual_lines
+--     vim.diagnostic.config {
+--         virtual_lines = virtual_lines_enable,
+--         virtual_text = not virtual_lines_enable
+--     }
+-- end, { desc = 'Toggle virtual lines', })
 --#endregion

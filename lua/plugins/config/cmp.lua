@@ -58,7 +58,7 @@ cmp.setup {
         end, { 'i', 's', 'c' }),
     },
     sources = cmp.config.sources({
-        -- { name = 'cmp_tabnine', max_item_count = 2 },
+        { name = 'cmp_tabnine', max_item_count = 2 },
         { name = 'luasnip', max_item_count = 2 },
         { name = 'nvim_lsp' },
         { name = 'neorg' },
@@ -79,7 +79,7 @@ cmp.setup {
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-            vim_item.kind = cmp_kinds[vim_item.kind] or ''
+            vim_item.kind = cmp_kinds[vim_item.kind] or vim_item.kind
             vim_item.menu = source_map[entry.source.name] or ''
             return vim_item
         end,

@@ -291,10 +291,19 @@ return packer.startup(function(use)
     }
 
     use {
-        'Pocco81/TrueZen.nvim',
+        'Pocco81/true-zen.nvim',
         config = function()
             require('true-zen').setup {
-                ui = { bottom = { laststatus = 3 } },
+                modes = { -- configurations per mode
+                          -- ataraxis = {
+                          --     open_callback = function ()
+                          --         vim.opt.laststatus = 0;
+                          --     end,
+                          --     close_callback = function ()
+                          --         vim.opt.laststatus = 3
+                          --     end
+                          -- }
+                }
             }
         end,
         cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist' }
@@ -403,5 +412,10 @@ return packer.startup(function(use)
         run = 'cd js && npm ci',
         config = function() require('lab').setup {} end,
         event = 'User Defer'
+    }
+    use {
+        'AckslD/nvim-trevJ.lua',
+        config = function() require('trevj').setup {} end,
+        event = 'User Defer',
     }
 end)

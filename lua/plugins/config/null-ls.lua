@@ -11,5 +11,6 @@ null_ls.setup {
         },
         formatting.fish_indent,
         diagnostics.fish,
+        -- diagnostics.cppcheck
     },
 }

@@ -24,4 +24,9 @@ return {
     Event = '  ',
     Operator = '  ',
     TypeParameter = '  ',
+    TypeAlias = ' ',
+    Parameter = ' ',
+    StaticMethod = 'ﴂ ',
+    Macro = ' ',
 }
+

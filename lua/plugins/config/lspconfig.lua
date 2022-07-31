@@ -50,6 +50,7 @@ lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
 }
 local servers = {
+    -- 'ccls',
     'tsserver',
     'gopls',
     'rust_analyzer',
@@ -78,7 +79,7 @@ require 'lspconfig'.omnisharp.setup {
 }
 
 
-capabilities.offsetEncoding = 'utf-8'
+-- capabilities.offsetEncoding = 'utf-8'
 lspconfig.clangd.setup {
     capabilities = capabilities,
 }
